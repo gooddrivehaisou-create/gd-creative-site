@@ -814,7 +814,7 @@ requestAnimationFrame(() => stage.classList.add('ready'));
 // ---- ポストエフェクト(ライムの発光)
 const composer = new EffectComposer(renderer);
 composer.addPass(new RenderPass(scene, camera));
-const bloom = new UnrealBloomPass(new THREE.Vector2(hero.clientWidth || innerWidth, hero.clientHeight || innerHeight), 0.7, 0.55, 0.82);
+const bloom = new UnrealBloomPass(new THREE.Vector2(hero.clientWidth || innerWidth, hero.clientHeight || innerHeight), 0.32, 0.4, 0.92);
 composer.addPass(bloom);
 composer.addPass(new OutputPass());
 
