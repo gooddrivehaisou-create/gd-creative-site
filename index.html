@@ -854,6 +854,7 @@ addEventListener('pointerup', () => dragging = false);
 let visible = true;
 new IntersectionObserver(([e]) => { visible = e.isIntersecting; }, { threshold: 0 }).observe(hero);
 
+window.__gd = { scene, spinner, emblem, renderer, composer, camera };
 const clock = new THREE.Clock();
 function tick() {
   requestAnimationFrame(tick);
