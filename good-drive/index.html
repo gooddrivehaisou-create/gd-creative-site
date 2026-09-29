@@ -1,0 +1,854 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GOOD DRIVE｜東京・足立区の軽貨物ドライバー募集（未経験OK）</title>
+<meta name="description" content="東京・足立区発の軽貨物カンパニー GOOD DRIVE。未経験OK・車両リースあり。配送 × SNS発信 × AIで、ドライバーの新しい働き方をつくる。LINEで気軽に応募・相談。">
+<meta name="theme-color" content="#03050a">
+<meta property="og:type" content="website">
+<meta property="og:title" content="GOOD DRIVE｜軽貨物ドライバー募集（未経験OK）">
+<meta property="og:description" content="東京・足立区発の軽貨物カンパニー。未経験OK・車両リースあり。LINEで気軽に応募・相談。">
+<meta property="og:image" content="https://gooddrivehaisou-create.github.io/gd-creative-site/good-drive/assets/ogp.jpg">
+<meta property="og:url" content="https://gooddrivehaisou-create.github.io/gd-creative-site/good-drive/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+html{scroll-behavior:smooth}
+body{margin:0}
+[hidden]{display:none !important}
+.pc,.sp{display:none}
+@media (min-width: 900px){
+.pc{display:block}
+
+body{margin:0;background:#03050a;color:#e8eef7;font-family:"Zen Kaku Gothic New",sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#7fb6ff}a:hover{color:#cfe3ff}
+*{box-sizing:border-box}
+.en{font-family:"Chakra Petch",sans-serif;letter-spacing:.14em;text-transform:uppercase}
+.jp-d{font-family:"Dela Gothic One",sans-serif;font-weight:400}
+.p3{transform-style:preserve-3d}
+
+/* ===== keyframes ===== */
+@keyframes sway{0%{transform:rotateX(10deg) rotateY(-32deg)}100%{transform:rotateX(4deg) rotateY(32deg)}}
+@keyframes spinY{from{transform:rotateX(-8deg) rotateY(0)}to{transform:rotateX(-8deg) rotateY(-360deg)}}
+@keyframes cube{from{transform:rotateX(0) rotateY(0)}to{transform:rotateX(360deg) rotateY(360deg)}}
+@keyframes bob{0%,100%{translate:0 0}50%{translate:0 -26px}}
+@keyframes gridMove{0%{background-position:0 0}100%{background-position:0 90px}}
+@keyframes glowPulse{0%,100%{filter:drop-shadow(0 0 14px rgba(40,130,255,.75)) drop-shadow(0 0 50px rgba(30,110,255,.35))}50%{filter:drop-shadow(0 0 26px rgba(90,170,255,1)) drop-shadow(0 0 110px rgba(30,110,255,.6))}}
+@keyframes lineUp{0%{transform:translateY(110%)}100%{transform:translateY(0)}}
+@keyframes fadeUp{0%{opacity:0;transform:translateY(30px)}100%{opacity:1;transform:none}}
+@keyframes sweep{0%{transform:translateX(-120%) skewX(-20deg)}100%{transform:translateX(320%) skewX(-20deg)}}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes dash{to{stroke-dashoffset:0}}
+@keyframes beam{0%,100%{opacity:.45;height:90px}50%{opacity:1;height:130px}}
+@keyframes ping{0%{transform:scale(.5);opacity:.9}100%{transform:scale(2.8);opacity:0}}
+@keyframes floatPanelL{0%,100%{transform:rotateY(34deg) translateZ(-60px) translateY(0)}50%{transform:rotateY(28deg) translateZ(-40px) translateY(-16px)}}
+@keyframes floatPanelR{0%,100%{transform:rotateY(-34deg) translateZ(-60px) translateY(0)}50%{transform:rotateY(-28deg) translateZ(-40px) translateY(-16px)}}
+@keyframes ringSpin{to{transform:rotateX(76deg) rotateZ(360deg)}}
+@keyframes shine{0%{background-position:-200% 0}100%{background-position:200% 0}}
+
+/* ===== reveal on scroll ===== */
+.rv{opacity:0;transform:perspective(1200px) translateY(80px) rotateX(18deg);transition:opacity 1.1s cubic-bezier(.2,.8,.2,1),transform 1.1s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+.rv .route{stroke-dasharray:1400;stroke-dashoffset:1400}
+.rv.in .route{animation:dash 2.8s cubic-bezier(.4,0,.2,1) .4s forwards}
+
+/* ===== hero ===== */
+.stage{perspective:1400px;perspective-origin:50% 40%}
+.floor{position:absolute;left:-30%;right:-30%;bottom:-18%;height:70%;background-image:linear-gradient(rgba(40,130,255,.28) 1px,transparent 1px),linear-gradient(90deg,rgba(40,130,255,.28) 1px,transparent 1px);background-size:90px 90px;transform:perspective(700px) rotateX(68deg);transform-origin:center top;animation:gridMove 1s linear infinite;mask-image:linear-gradient(to bottom,transparent,#000 25%,#000 55%,transparent)}
+.logo3d{animation:sway 5.5s ease-in-out infinite alternate}
+.front{animation:glowPulse 3.2s ease-in-out infinite}
+.orbit{position:absolute;left:50%;top:50%;width:900px;height:900px;margin:-450px 0 0 -450px;border-radius:50%;border:1px solid rgba(90,160,255,.28);animation:ringSpin 26s linear infinite}
+.orbit::after{content:"";position:absolute;top:-6px;left:50%;width:12px;height:12px;border-radius:50%;background:#bfe0ff;box-shadow:0 0 20px 6px rgba(60,150,255,.9)}
+.panelL{animation:floatPanelL 7s ease-in-out infinite}
+.panelR{animation:floatPanelR 7s ease-in-out infinite}
+.vpanel{position:relative;width:250px;height:444px;border-radius:18px;overflow:hidden;border:1px solid rgba(160,205,255,.45);box-shadow:0 0 0 6px rgba(8,14,30,.9),0 30px 90px rgba(20,90,230,.5),0 0 40px rgba(30,123,255,.35)}
+.vpanel video{width:100%;height:100%;object-fit:cover;display:block}
+.vpanel::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.18),transparent 35%,transparent 70%,rgba(60,150,255,.18));pointer-events:none}
+
+/* cubes */
+.cubeWrap{position:absolute;animation:bob 6s ease-in-out infinite}
+.cube{position:relative;animation:cube linear infinite}
+.face{position:absolute;inset:0;border:1px solid rgba(150,200,255,.75);background:linear-gradient(135deg,rgba(40,120,255,.28),rgba(10,30,80,.18));box-shadow:inset 0 0 18px rgba(80,160,255,.45)}
+.face::after{content:"";position:absolute;left:0;right:0;top:44%;height:12%;background:rgba(120,190,255,.35)}
+
+/* buttons */
+.btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:56px;padding:0 30px;border-radius:4px;text-decoration:none;font-weight:700;font-size:16px;transition:transform .25s,box-shadow .25s;font-family:inherit;cursor:pointer}
+.btn:hover{transform:translateY(-2px)}
+.btn-p{background:#1e6bff;color:#ffffff;border:none;box-shadow:0 0 0 1px #5a9bff inset,0 10px 40px rgba(30,107,255,.5)}
+.btn-p:hover{color:#ffffff;box-shadow:0 0 0 1px #9cc4ff inset,0 14px 60px rgba(30,107,255,.8)}
+.btn-p::after{content:"";position:absolute;top:0;left:0;width:40%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);animation:sweep 2.8s ease-in-out infinite}
+.btn-g{color:#e8eef7;border:1px solid rgba(207,227,255,.35);background:rgba(4,8,18,.4)}
+.btn-g:hover{color:#ffffff;border-color:#7fb6ff;background:rgba(30,123,255,.1)}
+.mask{display:block;overflow:hidden}
+.mask>span{display:block;animation:lineUp 1s cubic-bezier(.2,.8,.2,1) both}
+.fu{animation:fadeUp 1s cubic-bezier(.2,.8,.2,1) both}
+.chrome{background:linear-gradient(100deg,#8fa6c8 0%,#ffffff 22%,#b9c9e2 40%,#ffffff 55%,#7d93b8 75%,#ffffff 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite}
+.navlink{color:#c3cee2;text-decoration:none;font-size:14px;padding:12px 4px}
+.navlink:hover{color:#ffffff}
+
+/* prism */
+.prism{position:relative;width:380px;height:460px;animation:spinY 20s linear infinite}
+.prism:hover{animation-play-state:paused}
+.pface{position:absolute;inset:0;padding:40px 34px;display:flex;flex-direction:column;gap:18px;background:linear-gradient(180deg,rgba(14,28,60,.92),rgba(5,10,22,.95));border:1px solid rgba(110,170,255,.55);box-shadow:inset 0 0 60px rgba(30,110,255,.18),0 0 40px rgba(30,110,255,.2);backface-visibility:hidden}
+
+/* holo map */
+.holo{transform:rotateX(58deg) rotateZ(-8deg);transform-origin:center 60%}
+.pin{position:absolute;width:0;height:0}
+.pin .b{position:absolute;left:-1px;bottom:0;width:2px;background:linear-gradient(to top,#5aa8ff,transparent);animation:beam 2.4s ease-in-out infinite;transform-origin:bottom;transform:rotateX(-90deg)}
+.pin .d{position:absolute;left:-7px;top:-7px;width:14px;height:14px;border-radius:50%;background:#3d8bff;box-shadow:0 0 16px #3d8bff}
+.pin .r{position:absolute;left:-14px;top:-14px;width:28px;height:28px;border-radius:50%;border:2px solid #7fb6ff;animation:ping 2s ease-out infinite}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border:1px solid rgba(90,155,255,.3);border-radius:40px;font-size:15px;background:rgba(12,20,38,.7)}
+
+/* phones */
+.phone{position:relative;width:260px;height:540px;border-radius:38px;background:#05080f;padding:9px;border:1px solid rgba(190,215,255,.35);box-shadow:0 40px 110px rgba(20,90,230,.45),0 0 0 1px rgba(0,0,0,.8)}
+.phone video{width:100%;height:100%;object-fit:cover;border-radius:30px;display:block;background:#0a1328}
+.phone::after{content:"";position:absolute;inset:9px;border-radius:30px;background:linear-gradient(120deg,rgba(255,255,255,.16),transparent 30%);pointer-events:none}
+.fan{transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.fanWrap:hover .f1{transform:rotateY(38deg) translateX(-40px) translateZ(-80px)}
+.fanWrap:hover .f3{transform:rotateY(-38deg) translateX(40px) translateZ(-80px)}
+.fanWrap:hover .f2{transform:translateZ(60px)}
+
+.card{position:relative;overflow:hidden;background:linear-gradient(180deg,#0c1426,#070b16);border:1px solid rgba(90,155,255,.2);border-radius:6px;transition:transform .5s cubic-bezier(.2,.8,.2,1),border-color .4s,box-shadow .4s}
+.card:hover{transform:perspective(900px) rotateX(6deg) translateY(-6px);border-color:rgba(127,182,255,.7);box-shadow:0 30px 80px rgba(20,90,220,.35)}
+.outline{color:transparent;-webkit-text-stroke:1.5px rgba(127,182,255,.5)}
+.mq{display:flex;width:max-content;animation:marquee 28s linear infinite}
+.field{display:flex;flex-direction:column;gap:8px}
+.field label{font-size:14px;color:#aab7cf;font-weight:500}
+.field input,.field select,.field textarea{background:#070b16;border:1px solid rgba(90,155,255,.28);border-radius:4px;color:#e8eef7;padding:14px 16px;font-size:16px;font-family:inherit;min-height:52px}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:#5a9bff;box-shadow:0 0 0 3px rgba(30,123,255,.25)}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;background:none;border:none;color:#e8eef7;font-family:inherit;font-size:18px;font-weight:700;text-align:left;padding:26px 0;cursor:pointer;min-height:44px}
+.faq-q:hover{color:#7fb6ff}
+
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.001s !important;animation-iteration-count:1 !important;transition-duration:.001s !important}}
+
+}
+@media (max-width: 899.98px){
+.sp{display:block}
+.sp-root{padding-bottom:0}
+
+body{margin:0;background:#03050a;color:#e8eef7;font-family:"Zen Kaku Gothic New",sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#7fb6ff}a:hover{color:#cfe3ff}
+*{box-sizing:border-box}
+.en{font-family:"Chakra Petch",sans-serif;letter-spacing:.14em;text-transform:uppercase}
+.jp-d{font-family:"Dela Gothic One",sans-serif;font-weight:400}
+.p3{transform-style:preserve-3d}
+@keyframes sway{0%{transform:rotateX(10deg) rotateY(-30deg)}100%{transform:rotateX(4deg) rotateY(30deg)}}
+@keyframes spinY{from{transform:rotateX(-8deg) rotateY(0)}to{transform:rotateX(-8deg) rotateY(-360deg)}}
+@keyframes cube{from{transform:rotateX(0) rotateY(0)}to{transform:rotateX(360deg) rotateY(360deg)}}
+@keyframes bob{0%,100%{translate:0 0}50%{translate:0 -14px}}
+@keyframes gridMove{0%{background-position:0 0}100%{background-position:0 60px}}
+@keyframes glowPulse{0%,100%{filter:drop-shadow(0 0 10px rgba(40,130,255,.75)) drop-shadow(0 0 36px rgba(30,110,255,.35))}50%{filter:drop-shadow(0 0 18px rgba(90,170,255,1)) drop-shadow(0 0 70px rgba(30,110,255,.6))}}
+@keyframes lineUp{0%{transform:translateY(110%)}100%{transform:translateY(0)}}
+@keyframes fadeUp{0%{opacity:0;transform:translateY(24px)}100%{opacity:1;transform:none}}
+@keyframes sweep{0%{transform:translateX(-120%) skewX(-20deg)}100%{transform:translateX(320%) skewX(-20deg)}}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes dash{to{stroke-dashoffset:0}}
+@keyframes ping{0%{transform:scale(.5);opacity:.9}100%{transform:scale(2.8);opacity:0}}
+@keyframes floatPanel{0%,100%{transform:rotateY(-22deg) translateZ(-120px) translateY(0)}50%{transform:rotateY(-16deg) translateZ(-100px) translateY(-10px)}}
+@keyframes shine{0%{background-position:-200% 0}100%{background-position:200% 0}}
+
+.rv{opacity:0;transform:perspective(900px) translateY(50px) rotateX(14deg);transition:opacity 1s cubic-bezier(.2,.8,.2,1),transform 1s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+.rv .route{stroke-dasharray:1400;stroke-dashoffset:1400}
+.rv.in .route{animation:dash 2.6s cubic-bezier(.4,0,.2,1) .3s forwards}
+
+.floor{position:absolute;left:-60%;right:-60%;bottom:-10%;height:52%;background-image:linear-gradient(rgba(40,130,255,.28) 1px,transparent 1px),linear-gradient(90deg,rgba(40,130,255,.28) 1px,transparent 1px);background-size:60px 60px;transform:perspective(500px) rotateX(66deg);transform-origin:center top;animation:gridMove 1s linear infinite;mask-image:linear-gradient(to bottom,transparent,#000 25%,#000 55%,transparent)}
+.logo3d{animation:sway 5s ease-in-out infinite alternate}
+.front{animation:glowPulse 3.2s ease-in-out infinite}
+.panel{animation:floatPanel 7s ease-in-out infinite}
+.vpanel{position:relative;width:150px;height:266px;border-radius:14px;overflow:hidden;border:1px solid rgba(160,205,255,.45);box-shadow:0 0 0 4px rgba(8,14,30,.9),0 20px 60px rgba(20,90,230,.5)}
+.vpanel video{width:100%;height:100%;object-fit:cover;display:block}
+.cubeWrap{position:absolute;animation:bob 6s ease-in-out infinite}
+.cube{position:relative;animation:cube linear infinite}
+.face{position:absolute;inset:0;border:1px solid rgba(150,200,255,.75);background:linear-gradient(135deg,rgba(40,120,255,.28),rgba(10,30,80,.18));box-shadow:inset 0 0 12px rgba(80,160,255,.45)}
+.face::after{content:"";position:absolute;left:0;right:0;top:44%;height:12%;background:rgba(120,190,255,.35)}
+
+.btn{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 22px;border-radius:6px;text-decoration:none;font-weight:700;font-size:16px;font-family:inherit;cursor:pointer;width:100%}
+.btn-p{background:#1e6bff;color:#ffffff;border:none;box-shadow:0 0 0 1px #5a9bff inset,0 10px 30px rgba(30,107,255,.5)}
+.btn-p:hover{color:#ffffff}
+.btn-p::after{content:"";position:absolute;top:0;left:0;width:40%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);animation:sweep 2.8s ease-in-out infinite}
+.btn-line{background:#06c755;color:#ffffff;border:none;box-shadow:0 10px 30px rgba(6,199,85,.35)}
+.btn-line:hover{color:#ffffff}
+.btn-g{color:#e8eef7;border:1px solid rgba(207,227,255,.35);background:rgba(4,8,18,.4)}
+.btn-g:hover{color:#ffffff}
+.mask{display:block;overflow:hidden}
+.mask>span{display:block;animation:lineUp 1s cubic-bezier(.2,.8,.2,1) both}
+.fu{animation:fadeUp 1s cubic-bezier(.2,.8,.2,1) both}
+.chrome{background:linear-gradient(100deg,#8fa6c8 0%,#ffffff 22%,#b9c9e2 40%,#ffffff 55%,#7d93b8 75%,#ffffff 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite}
+.prism{position:relative;width:250px;height:320px;animation:spinY 18s linear infinite}
+.pface{position:absolute;inset:0;padding:26px 22px;display:flex;flex-direction:column;gap:12px;background:linear-gradient(180deg,rgba(14,28,60,.94),rgba(5,10,22,.96));border:1px solid rgba(110,170,255,.55);box-shadow:inset 0 0 40px rgba(30,110,255,.18);backface-visibility:hidden}
+.holo{transform:rotateX(52deg) rotateZ(-8deg);transform-origin:center 60%}
+.pin{position:absolute;width:0;height:0}
+.pin .d{position:absolute;left:-5px;top:-5px;width:10px;height:10px;border-radius:50%;background:#3d8bff;box-shadow:0 0 12px #3d8bff}
+.pin .r{position:absolute;left:-10px;top:-10px;width:20px;height:20px;border-radius:50%;border:2px solid #7fb6ff;animation:ping 2s ease-out infinite}
+.chip{display:inline-flex;align-items:center;padding:8px 14px;border:1px solid rgba(90,155,255,.3);border-radius:40px;font-size:14px;background:rgba(12,20,38,.7)}
+.snap{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px 24px 24px;scrollbar-width:none}
+.snap::-webkit-scrollbar{display:none}
+.phone{flex:0 0 auto;scroll-snap-align:center;position:relative;width:220px;height:440px;border-radius:32px;background:#05080f;padding:7px;border:1px solid rgba(190,215,255,.35);box-shadow:0 26px 70px rgba(20,90,230,.4)}
+.phone video{width:100%;height:100%;object-fit:cover;border-radius:26px;display:block;background:#0a1328}
+.card{position:relative;background:linear-gradient(180deg,#0c1426,#070b16);border:1px solid rgba(90,155,255,.22);border-radius:8px}
+.outline{color:transparent;-webkit-text-stroke:1.2px rgba(127,182,255,.5)}
+.mq{display:flex;width:max-content;animation:marquee 22s linear infinite}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;background:none;border:none;color:#e8eef7;font-family:inherit;font-size:16px;font-weight:700;text-align:left;padding:20px 0;cursor:pointer;min-height:44px;line-height:1.6}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:13px;color:#aab7cf;font-weight:500}
+.field input,.field select,.field textarea{background:#070b16;border:1px solid rgba(90,155,255,.28);border-radius:6px;color:#e8eef7;padding:12px 14px;font-size:16px;font-family:inherit;min-height:50px}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:#5a9bff}
+.iconbtn{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:8px;border:1px solid rgba(207,227,255,.25);background:rgba(4,8,18,.5);color:#e8eef7;cursor:pointer}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.001s !important;animation-iteration-count:1 !important;transition-duration:.001s !important}}
+
+}
+</style>
+</head>
+<body>
+<div class="pc">
+
+
+<div style="width: 100%; background: #03050a; overflow: hidden; position: relative">
+
+  <!-- ================= NAV ================= -->
+  <header style="position: absolute; top: 0; left: 0; right: 0; z-index: 30; display: flex; justify-content: space-between; align-items: center; padding: 22px 56px">
+    <a href="#top" style="display: flex; align-items: center; gap: 12px; text-decoration: none" aria-label="GOOD DRIVE トップへ">
+      <svg width="58" height="34" viewBox="0 0 240 140" fill="none" stroke-linejoin="miter" stroke-miterlimit="10"><path d="M104 14 L40 14 L12 42 L12 98 L40 126 L96 126 L124 98 L124 76 L70 76" stroke="#e8eef7" stroke-width="20"></path><path d="M158 14 L200 14 L228 42 L228 98 L200 126 L150 126 L150 70" stroke="#e8eef7" stroke-width="20"></path><polygon points="116,4 148,4 110,58 78,58" fill="#1e7bff"></polygon></svg>
+      <span class="en" style="color: #ffffff; font-weight: 700; font-size: 16px">Good Drive</span>
+    </a>
+    <nav style="display: flex; align-items: center; gap: 28px">
+      <a class="navlink" href="#business">事業</a>
+      <a class="navlink" href="#area">配送エリア</a>
+      <a class="navlink" href="#sns">SNS</a>
+      <a class="navlink" href="#recruit">ドライバー募集</a>
+      <a class="btn btn-p" href="https://lin.ee/r5xgMfa" style="min-height: 44px; padding: 0 22px; font-size: 14px">LINEで応募</a>
+    </nav>
+  </header>
+
+  <!-- ================= HERO (3D) ================= -->
+  <section id="top" class="stage" style="position: relative; height: 1020px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; text-align: center; padding-top: 120px; background: radial-gradient(ellipse at 50% 38%, #0b2150 0%, #050b1c 42%, #03050a 72%)">
+    <div class="floor"></div>
+
+    <!-- 3D scene -->
+    <div style="position: relative; width: 1200px; height: 520px; perspective: 1400px; display: flex; justify-content: center; align-items: center">
+      <div class="orbit p3"></div>
+
+      <!-- left video panel -->
+      <div class="p3" style="position: absolute; left: 40px; top: 20px; perspective: 1200px">
+        <div class="panelL p3">
+          <div class="vpanel"><video data-src="assets/cine.mp4" preload="none" autoplay="" muted="" loop="" playsinline="" aria-label="配送シーン映像"></video></div>
+        </div>
+      </div>
+      <!-- right video panel -->
+      <div class="p3" style="position: absolute; right: 40px; top: 20px; perspective: 1200px">
+        <div class="panelR p3">
+          <div class="vpanel"><video data-src="assets/recruit.mp4" preload="none" autoplay="" muted="" loop="" playsinline="" aria-label="ドライバー募集映像"></video></div>
+        </div>
+      </div>
+
+      <!-- floating glass cubes -->
+      <div class="cubeWrap p3" aria-hidden="true" style="left:330px;top:40px;animation-delay:0s;"><div class="cube p3" style="width:54px;height:54px;animation-duration:11s;"><div class="face" style="transform:translateZ(27.0px)"></div><div class="face" style="transform:rotateY(180deg) translateZ(27.0px)"></div><div class="face" style="transform:rotateY(90deg) translateZ(27.0px)"></div><div class="face" style="transform:rotateY(-90deg) translateZ(27.0px)"></div><div class="face" style="transform:rotateX(90deg) translateZ(27.0px)"></div><div class="face" style="transform:rotateX(-90deg) translateZ(27.0px)"></div></div></div>
+<div class="cubeWrap p3" aria-hidden="true" style="left:820px;top:70px;animation-delay:1.2s;"><div class="cube p3" style="width:40px;height:40px;animation-duration:15s;"><div class="face" style="transform:translateZ(20.0px)"></div><div class="face" style="transform:rotateY(180deg) translateZ(20.0px)"></div><div class="face" style="transform:rotateY(90deg) translateZ(20.0px)"></div><div class="face" style="transform:rotateY(-90deg) translateZ(20.0px)"></div><div class="face" style="transform:rotateX(90deg) translateZ(20.0px)"></div><div class="face" style="transform:rotateX(-90deg) translateZ(20.0px)"></div></div></div>
+<div class="cubeWrap p3" aria-hidden="true" style="left:300px;top:380px;animation-delay:2.1s;"><div class="cube p3" style="width:36px;height:36px;animation-duration:9s;"><div class="face" style="transform:translateZ(18.0px)"></div><div class="face" style="transform:rotateY(180deg) translateZ(18.0px)"></div><div class="face" style="transform:rotateY(90deg) translateZ(18.0px)"></div><div class="face" style="transform:rotateY(-90deg) translateZ(18.0px)"></div><div class="face" style="transform:rotateX(90deg) translateZ(18.0px)"></div><div class="face" style="transform:rotateX(-90deg) translateZ(18.0px)"></div></div></div>
+<div class="cubeWrap p3" aria-hidden="true" style="left:860px;top:360px;animation-delay:0.6s;"><div class="cube p3" style="width:60px;height:60px;animation-duration:13s;"><div class="face" style="transform:translateZ(30.0px)"></div><div class="face" style="transform:rotateY(180deg) translateZ(30.0px)"></div><div class="face" style="transform:rotateY(90deg) translateZ(30.0px)"></div><div class="face" style="transform:rotateY(-90deg) translateZ(30.0px)"></div><div class="face" style="transform:rotateX(90deg) translateZ(30.0px)"></div><div class="face" style="transform:rotateX(-90deg) translateZ(30.0px)"></div></div></div>
+<div class="cubeWrap p3" aria-hidden="true" style="left:560px;top:-10px;animation-delay:1.7s;"><div class="cube p3" style="width:28px;height:28px;animation-duration:8s;"><div class="face" style="transform:translateZ(14.0px)"></div><div class="face" style="transform:rotateY(180deg) translateZ(14.0px)"></div><div class="face" style="transform:rotateY(90deg) translateZ(14.0px)"></div><div class="face" style="transform:rotateY(-90deg) translateZ(14.0px)"></div><div class="face" style="transform:rotateX(90deg) translateZ(14.0px)"></div><div class="face" style="transform:rotateX(-90deg) translateZ(14.0px)"></div></div></div>
+<div class="cubeWrap p3" aria-hidden="true" style="left:600px;top:440px;animation-delay:2.6s;"><div class="cube p3" style="width:32px;height:32px;animation-duration:12s;"><div class="face" style="transform:translateZ(16.0px)"></div><div class="face" style="transform:rotateY(180deg) translateZ(16.0px)"></div><div class="face" style="transform:rotateY(90deg) translateZ(16.0px)"></div><div class="face" style="transform:rotateY(-90deg) translateZ(16.0px)"></div><div class="face" style="transform:rotateX(90deg) translateZ(16.0px)"></div><div class="face" style="transform:rotateX(-90deg) translateZ(16.0px)"></div></div></div>
+
+      <!-- extruded GD monogram -->
+      <div class="logo3d p3" style="position: relative; width: 480px; height: 280px">
+        <svg width="480" height="280" viewBox="0 0 240 140" fill="none" stroke-linejoin="miter" stroke-miterlimit="10" aria-hidden="true" style="position: absolute; left: 0; top: 0; transform: translateZ(-35.2px)"><path d="M104 14 L40 14 L12 42 L12 98 L40 126 L96 126 L124 98 L124 76 L70 76" stroke="hsl(218, 70%, 18%)" stroke-width="20"></path><path d="M158 14 L200 14 L228 42 L228 98 L200 126 L150 126 L150 70" stroke="hsl(218, 70%, 18%)" stroke-width="20"></path><polygon points="116,4 148,4 110,58 78,58" fill="hsl(216, 95%, 26%)"></polygon></svg>
+<svg width="480" height="280" viewBox="0 0 240 140" fill="none" stroke-linejoin="miter" stroke-miterlimit="10" aria-hidden="true" style="position: absolute; left: 0; top: 0; transform: translateZ(-33.0px)"><path d="M104 14 L40 14 L12 42 L12 98 L40 126 L96 126 L124 98 L124 76 L70 76" stroke="hsl(218, 70%, 20%)" stroke-width="20"></path><path d="M158 14 L200 14 L228 42 L228 98 L200 126 L150 126 L150 70" stroke="hsl(218, 70%, 20%)" stroke-width="20"></path><polygon points="116,4 148,4 110,58 78,58" fill="hsl(216, 95%, 28%)"></polygon></svg>
+<svg width="480" height="280" viewBox="0 0 240 140" fill="none" stroke-linejoin="miter" stroke-miterlimit="10" aria-hidden="true" style="position: absolute; left: 0; top: 0; transform: translateZ(-30.8px)"><path d="M104 14 L40 14 L12 42 L12 98 L40 126 L96 126 L124 98 L124 76 L70 76" stroke="hsl(218, 70%, 22%)" stroke-width="20"></path><path d="M158 14 L200 14 L228 42 L228 98 L200 126 L150 126 L150 70" stroke="hsl(218, 70%, 22%)" stroke-width="20"></path><polygon points="116,4 148,4 110,58 78,58" fill="hsl(216, 95%, 30%)"></polygon></svg>
+<svg width="480" height="280" viewBox="0 0 240 140" fill="none" stroke-linejoin="miter" stroke-miterlimit="10" aria-hidden="true" style="position: absolute; left: 0; top: 0; transform: translateZ(-28.6px)"><path d="M104 14 L40 14 L12 42 L12 98 L40 126 L96 126 L124 98 L124 76 L70 76" stroke="hsl(218, 70%, 24%)" stroke-width="20"></path><path d="M158 14 L200 14 L228 42 L228 98 L200 126 L150 126 L150 70" stroke="hsl(218, 70%, 24%)" stroke-width="20"></path><polygon points="116,4 148,4 110,58 78,58" fill="hsl(216, 95%, 32%)"></polygon></svg>
+<svg width="480" height="280" viewBox="0 0 240 140" fill="none" stroke-linejoin="miter" stroke-miterlimit="10" aria-hidden="true" style="position: absolute; left: 0; top: 0; transform: translateZ(-26.4px)"><path d="M104 14 L40 14 L12 42 L12 98 L40 126 L96 126 L124 98 L124 76 L70 76" stroke="hsl(218, 70%, 26%)" stroke-width="20"></path><path d="M158 14 L200 14 L228 42 L228 98 L200 126 L150 126 L150 70" stroke="hsl(218, 70%, 26%)" stroke-width="20"></path><polygon points="116,4 148,4 110,58 78,58" fill="hsl(216, 95%, 34%)"></polygon></svg>
+<svg width="480" height="280" viewBox="0 0 240 140" fill="none" stroke-linejoin="miter" stroke-miterlimit="10" aria-hidden="true" style="position: absolute; left: 0; top: 0; transform: translateZ(-24.2px)"><path d="M104 14 L40 14 L12 42 L12 98 L40 126 L96 126 L124 98 L124 76 L70 76" stroke="hsl(218, 70%, 27%)" stroke-width="20"></path><path d="M158 14 L200 14 L228 42 L228 98 L200 126 L150 126 L150 70" stroke="hsl(218, 70%, 27%)" stroke-width="20"></path><polygon points="116,4 148,4 110,58 78,58" fill="hsl(216, 95%, 35%)"></polygon></svg>
+<svg width="480" height="280" viewBox="0 0 240 140" fill="none" stroke-linejoin="miter" stroke-miterlimit="10" aria-hidden="true" style="position: absolute; left: 0; top: 0; transform: translateZ(-22.0px)"><path d="M104 14 L40 14 L12 42 L12 98 L40 126 L96 126 L124 98 L124 76 L70 76" stroke="hsl(218, 70%, 29%)" stroke-width="20"></path><path d="M158 14 L200 14 L228 42 L228 98 L200 126 L150 126 L150 70" stroke="hsl(218, 70%, 29%)" stroke-width="20"></path><polygon points="116,4 148,4 110,58 78,58" fill="hsl(216, 95%, 37%)"></polygon></svg>
+<svg width="480" height="280" viewBox="0 0 240 140" fill="none" stroke-linejoin="miter" stroke-miterlimit="10" aria-hidden="true" style="position: absolute; left: 0; top: 0; transform: translateZ(-19.8px)"><path d="M104 14 L40 14 L12 42 L12 98 L40 126 L96 126 L124 98 L124 76 L70 76" stroke="hsl(218, 70%, 31%)" stroke-width="20"></path><path d="M158 14 L200 14 L228 42 L228 98 L200 126 L150 126 L150 70" stroke="hsl(218, 70%, 31%)" stroke-width="20"></path><polygon points="116,4 148,4 110,58 78,58" fill="hsl(216, 95%, 39%)"></polygon></svg>
+<svg width="480" height="280" viewBox="0 0 240 140" fill="none" stroke-linejoin="miter" stroke-miterlimit="10" aria-hidden="true" style="position: absolute; left: 0; top: 0; transform: translateZ(-17.6px)"><path d="M104 14 L40 14 L12 42 L12 98 L40 126 L96 126 L124 98 L124 76 L70 76" stroke="hsl(218, 70%, 33%)" stroke-width="20"></path><path d="M158 14 L200 14 L228 42 L228 98 L200 126 L150 126 L150 70" stroke="hsl(218, 70%, 33%)" stroke-width="20"></path><polygon points="116,4 148,4 110,58 78,58" fill="hsl(216, 95%, 41%)"></polygon></svg>
+<svg width="480" height="280" viewBox="0 0 240 140" fill="none" stroke-linejoin="miter" stroke-miterlimit="10" aria-hidden="true" style="position: absolute; left: 0; top: 0; transform: translateZ(-15.4px)"><path d="M104 14 L40 14 L12 42 L12 98 L40 126 L96 126 L124 98 L124 76 L70 76" stroke="hsl(218, 70%, 35%)" stroke-width="20"></path><path d="M158 14 L200 14 L228 42 L228 98 L200 126 L150 126 L150 70" stroke="hsl(218, 70%, 35%)" stroke-width="20"></path><polygon points="116,4 148,4 110,58 78,58" fill="hsl(216, 95%, 43%)"></polygon></svg>
+<svg width="480" height="280" viewBox="0 0 240 140" fill="none" stroke-linejoin="miter" stroke-miterlimit="10" aria-hidden="true" style="position: absolute; left: 0; top: 0; transform: translateZ(-13.2px)"><path d="M104 14 L40 14 L12 42 L12 98 L40 126 L96 126 L124 98 L124 76 L70 76" stroke="hsl(218, 70%, 37%)" stroke-width="20"></path><path d="M158 14 L200 14 L228 42 L228 98 L200 126 L150 126 L150 70" stroke="hsl(218, 70%, 37%)" stroke-width="20"></path><polygon points="116,4 148,4 110,58 78,58" fill="hsl(216, 95%, 45%)"></polygon></svg>
+<svg width="480" height="280" viewBox="0 0 240 140" fill="none" stroke-linejoin="miter" stroke-miterlimit="10" aria-hidden="true" style="position: absolute; left: 0; top: 0; transform: translateZ(-11.0px)"><path d="M104 14 L40 14 L12 42 L12 98 L40 126 L96 126 L124 98 L124 76 L70 76" stroke="hsl(218, 70%, 39%)" stroke-width="20"></path><path d="M158 14 L200 14 L228 42 L228 98 L200 126 L150 126 L150 70" stroke="hsl(218, 70%, 39%)" stroke-width="20"></path><polygon points="116,4 148,4 110,58 78,58" fill="hsl(216, 95%, 47%)"></polygon></svg>
+<svg width="480" height="280" viewBox="0 0 240 140" fill="none" stroke-linejoin="miter" stroke-miterlimit="10" aria-hidden="true" style="position: absolute; left: 0; top: 0; transform: translateZ(-8.8px)"><path d="M104 14 L40 14 L12 42 L12 98 L40 126 L96 126 L124 98 L124 76 L70 76" stroke="hsl(218, 70%, 40%)" stroke-width="20"></path><path d="M158 14 L200 14 L228 42 L228 98 L200 126 L150 126 L150 70" stroke="hsl(218, 70%, 40%)" stroke-width="20"></path><polygon points="116,4 148,4 110,58 78,58" fill="hsl(216, 95%, 48%)"></polygon></svg>
+<svg width="480" height="280" viewBox="0 0 240 140" fill="none" stroke-linejoin="miter" stroke-miterlimit="10" aria-hidden="true" style="position: absolute; left: 0; top: 0; transform: translateZ(-6.6px)"><path d="M104 14 L40 14 L12 42 L12 98 L40 126 L96 126 L124 98 L124 76 L70 76" stroke="hsl(218, 70%, 42%)" stroke-width="20"></path><path d="M158 14 L200 14 L228 42 L228 98 L200 126 L150 126 L150 70" stroke="hsl(218, 70%, 42%)" stroke-width="20"></path><polygon points="116,4 148,4 110,58 78,58" fill="hsl(216, 95%, 50%)"></polygon></svg>
+<svg width="480" height="280" viewBox="0 0 240 140" fill="none" stroke-linejoin="miter" stroke-miterlimit="10" aria-hidden="true" style="position: absolute; left: 0; top: 0; transform: translateZ(-4.4px)"><path d="M104 14 L40 14 L12 42 L12 98 L40 126 L96 126 L124 98 L124 76 L70 76" stroke="hsl(218, 70%, 44%)" stroke-width="20"></path><path d="M158 14 L200 14 L228 42 L228 98 L200 126 L150 126 L150 70" stroke="hsl(218, 70%, 44%)" stroke-width="20"></path><polygon points="116,4 148,4 110,58 78,58" fill="hsl(216, 95%, 52%)"></polygon></svg>
+<svg width="480" height="280" viewBox="0 0 240 140" fill="none" stroke-linejoin="miter" stroke-miterlimit="10" aria-hidden="true" style="position: absolute; left: 0; top: 0; transform: translateZ(-2.2px)"><path d="M104 14 L40 14 L12 42 L12 98 L40 126 L96 126 L124 98 L124 76 L70 76" stroke="hsl(218, 70%, 46%)" stroke-width="20"></path><path d="M158 14 L200 14 L228 42 L228 98 L200 126 L150 126 L150 70" stroke="hsl(218, 70%, 46%)" stroke-width="20"></path><polygon points="116,4 148,4 110,58 78,58" fill="hsl(216, 95%, 54%)"></polygon></svg>
+        <svg class="front" width="480" height="280" viewBox="0 0 240 140" fill="none" stroke-linejoin="miter" stroke-miterlimit="10" style="position: absolute; left: 0; top: 0; transform: translateZ(1px)" aria-label="GOOD DRIVE ロゴ">
+          <defs>
+            <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#ffffff"></stop>
+              <stop offset=".35" stop-color="#c9d6ea"></stop>
+              <stop offset=".55" stop-color="#ffffff"></stop>
+              <stop offset=".8" stop-color="#9fb3d4"></stop>
+              <stop offset="1" stop-color="#eef4ff"></stop>
+            </linearGradient>
+            <linearGradient id="blueg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#7cc0ff"></stop>
+              <stop offset="1" stop-color="#0a55e0"></stop>
+            </linearGradient>
+          </defs>
+          <path d="M104 14 L40 14 L12 42 L12 98 L40 126 L96 126 L124 98 L124 76 L70 76" stroke="url(#metal)" stroke-width="20"></path>
+          <path d="M158 14 L200 14 L228 42 L228 98 L200 126 L150 126 L150 70" stroke="url(#metal)" stroke-width="20"></path>
+          <polygon points="116,4 148,4 110,58 78,58" fill="url(#blueg)"></polygon>
+          <path d="M104 6 L40 6 L4 42" stroke="rgba(170,215,255,.9)" stroke-width="1.2"></path>
+          <path d="M158 6 L203 6 L236 40" stroke="rgba(170,215,255,.9)" stroke-width="1.2"></path>
+        </svg>
+      </div>
+    </div>
+
+    <div style="position: relative; z-index: 5; display: flex; flex-direction: column; align-items: center; gap: 26px; margin-top: -10px">
+      <div class="fu" style="animation-delay: .3s"><div class="en chrome" style="font-size: 54px; font-weight: 700; letter-spacing: .32em">Good Drive</div></div>
+      <h1 class="jp-d" style="margin: 0; font-size: 60px; line-height: 1.15; color: #ffffff">
+        <span class="mask"><span style="animation-delay: .6s">働き方は、<span style="color: #3d8bff; text-shadow: 0 0 40px rgba(30,123,255,.7)">自分で選ぶ。</span></span></span>
+      </h1>
+      <p class="fu" style="margin: 0; max-width: 680px; font-size: 18px; line-height: 1.9; color: #b9c6dc; animation-delay: .9s">東京・足立区発の軽貨物カンパニー。配送 × SNS発信 × AIで、ドライバーの新しい働き方をつくる。</p>
+      <div class="fu" style="display: flex; gap: 16px; animation-delay: 1.1s">
+        <a class="btn btn-p" href="https://lin.ee/r5xgMfa">未経験OK｜LINEで応募する</a>
+        <a class="btn btn-g" href="#business">配送のご依頼はこちら</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MARQUEE ================= -->
+  <section style="position: relative; border-top: 1px solid rgba(90,155,255,.2); border-bottom: 1px solid rgba(90,155,255,.2); background: #060a14; padding: 22px 0; overflow: hidden">
+    <div class="mq en" style="font-size: 44px; font-weight: 700; color: #e8eef7; gap: 48px; white-space: nowrap">
+      <span>Last One Mile</span><span style="color: #1e7bff">◆</span><span class="outline">Social Media</span><span style="color: #1e7bff">◆</span><span>AI Automation</span><span style="color: #1e7bff">◆</span><span class="outline">Driver Recruit</span><span style="color: #1e7bff">◆</span>
+      <span>Last One Mile</span><span style="color: #1e7bff">◆</span><span class="outline">Social Media</span><span style="color: #1e7bff">◆</span><span>AI Automation</span><span style="color: #1e7bff">◆</span><span class="outline">Driver Recruit</span><span style="color: #1e7bff">◆</span>
+    </div>
+  </section>
+
+  <!-- ================= BUSINESS: rotating prism ================= -->
+  <section id="business" style="max-width: 1280px; margin: 0 auto; padding: 150px 40px 140px">
+    <div data-rv="biz" class="rv" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 60px; align-items: center">
+      <div style="display: flex; flex-direction: column; gap: 22px">
+        <div class="en" style="font-size: 14px; color: #3d8bff">01 — Business</div>
+        <h2 class="jp-d" style="margin: 0; font-size: 58px; line-height: 1.2; color: #ffffff">3つのエンジンで、<br>走り続ける。</h2>
+        <p style="margin: 0; font-size: 17px; line-height: 1.9; color: #9fadc6">配送の現場力を土台に、発信力とAIの仕組み化を掛け合わせる。GOOD DRIVE は「運ぶ会社」から「動かす会社」へ。</p>
+        <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 8px">
+          <div style="display: flex; gap: 18px; align-items: baseline; padding: 16px 0; border-bottom: 1px solid rgba(90,155,255,.18)"><span class="en" style="color: #3d8bff; font-weight: 700">01</span><span style="font-size: 20px; font-weight: 700; color: #ffffff; width: 140px">軽貨物配送</span><span style="font-size: 15px; color: #9fadc6">店舗宅配・ラストワンマイル／スポット便</span></div>
+          <div style="display: flex; gap: 18px; align-items: baseline; padding: 16px 0; border-bottom: 1px solid rgba(90,155,255,.18)"><span class="en" style="color: #3d8bff; font-weight: 700">02</span><span style="font-size: 20px; font-weight: 700; color: #ffffff; width: 140px">SNS運用</span><span style="font-size: 15px; color: #9fadc6">ショート動画の企画・編集・運用代行</span></div>
+          <div style="display: flex; gap: 18px; align-items: baseline; padding: 16px 0; border-bottom: 1px solid rgba(90,155,255,.18)"><span class="en" style="color: #3d8bff; font-weight: 700">03</span><span style="font-size: 20px; font-weight: 700; color: #ffffff; width: 140px">AI事業</span><span style="font-size: 15px; color: #9fadc6">AI動画制作（GD CREATIVE）・業務自動化</span></div>
+        </div>
+      </div>
+
+      <div style="height: 620px; display: flex; justify-content: center; align-items: center; perspective: 1400px">
+        <div class="prism p3">
+          <div class="pface" style="transform: rotateY(0deg) translateZ(110px)">
+            <span class="en" style="font-size: 72px; font-weight: 700; color: #1d3566">01</span>
+            <svg width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="#7fb6ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 7h13v9H1zM14 10h4l4 3v3h-8z"></path><circle cx="5.5" cy="17.5" r="2"></circle><circle cx="17.5" cy="17.5" r="2"></circle></svg>
+            <span class="en" style="font-size: 13px; color: #7fb6ff">Light Freight</span>
+            <span class="jp-d" style="font-size: 36px; color: #ffffff">軽貨物配送</span>
+            <span style="font-size: 15px; line-height: 1.8; color: #aab7cf">ドラッグストア店舗の宅配ルートを中心に、東京東部〜北部を毎日カバー。</span>
+          </div>
+          <div class="pface" style="transform: rotateY(120deg) translateZ(110px)">
+            <span class="en" style="font-size: 72px; font-weight: 700; color: #1d3566">02</span>
+            <svg width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="#7fb6ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2"></rect><path d="M10 9l5 3-5 3z"></path></svg>
+            <span class="en" style="font-size: 13px; color: #7fb6ff">Social Media</span>
+            <span class="jp-d" style="font-size: 36px; color: #ffffff">SNS運用</span>
+            <span style="font-size: 15px; line-height: 1.8; color: #aab7cf">軽貨物のリアルを毎日発信。仲間集めと認知拡大のエンジンに。</span>
+          </div>
+          <div class="pface" style="transform: rotateY(240deg) translateZ(110px)">
+            <span class="en" style="font-size: 72px; font-weight: 700; color: #1d3566">03</span>
+            <svg width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="#7fb6ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="14" height="14" rx="2"></rect><rect x="9" y="9" width="6" height="6"></rect><path d="M9 1v4M15 1v4M9 19v4M15 19v4M1 9h4M1 15h4M19 9h4M19 15h4"></path></svg>
+            <span class="en" style="font-size: 13px; color: #7fb6ff">AI Business</span>
+            <span class="jp-d" style="font-size: 36px; color: #ffffff">AI事業</span>
+            <span style="font-size: 15px; line-height: 1.8; color: #aab7cf">AI動画スタジオ GD CREATIVE と、現場発の業務自動化ツール。</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= AREA: holographic 3D map ================= -->
+  <section id="area" style="position: relative; background: linear-gradient(180deg, #03050a, #071023 50%, #03050a); padding: 130px 0">
+    <div data-rv="area" class="rv" style="max-width: 1280px; margin: 0 auto; padding: 0 40px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; align-items: center">
+      <div style="display: flex; flex-direction: column; gap: 26px">
+        <div class="en" style="font-size: 14px; color: #3d8bff">02 — Delivery Area</div>
+        <h2 class="jp-d" style="margin: 0; font-size: 56px; line-height: 1.2; color: #ffffff">東京の東と北を、<br>毎日つなぐ。</h2>
+        <p style="margin: 0; font-size: 17px; line-height: 1.9; color: #9fadc6">足立区を拠点に、4つの店舗ルートから6つの区へ。地域を知り尽くしたドライバーが、今日も最短で届けます。</p>
+        <div style="display: flex; gap: 40px">
+          <div style="display: flex; flex-direction: column; gap: 4px"><span class="en" style="font-size: 76px; font-weight: 700; color: #ffffff; line-height: 1; letter-spacing: 0">4</span><span style="font-size: 14px; color: #8fa0bd">店舗ルート</span></div>
+          <div style="width: 1px; background: rgba(90,155,255,.3)"></div>
+          <div style="display: flex; flex-direction: column; gap: 4px"><span class="en" style="font-size: 76px; font-weight: 700; color: #3d8bff; line-height: 1; letter-spacing: 0; text-shadow: 0 0 30px rgba(30,123,255,.6)">6</span><span style="font-size: 14px; color: #8fa0bd">配送エリア（区）</span></div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px"><span class="chip">足立区</span><span class="chip">葛飾区</span><span class="chip">江戸川区</span><span class="chip">北区</span><span class="chip">板橋区</span><span class="chip">文京区</span></div>
+      </div>
+
+      <div style="position: relative; height: 620px; perspective: 1300px; display: flex; justify-content: center; align-items: center">
+        <div class="holo p3" style="position: relative; width: 600px; height: 520px; border: 1px solid rgba(90,160,255,.45); border-radius: 8px; background: radial-gradient(circle at 50% 45%, rgba(30,107,255,.28), rgba(5,10,24,.9) 65%); box-shadow: 0 0 80px rgba(30,110,255,.35)">
+          <div style="position: absolute; inset: 0; background-image: linear-gradient(rgba(90,155,255,.14) 1px, transparent 1px), linear-gradient(90deg, rgba(90,155,255,.14) 1px, transparent 1px); background-size: 40px 40px"></div>
+          <svg viewBox="0 0 600 520" width="600" height="520" style="position: absolute; inset: 0" aria-label="配送ルートの模式図">
+            <path class="route" d="M300 250 C 250 190, 190 150, 130 130" stroke="#3d8bff" stroke-width="3" fill="none"></path>
+            <path class="route" d="M300 250 C 300 200, 250 120, 220 80" stroke="#3d8bff" stroke-width="3" fill="none" style="animation-delay: .7s"></path>
+            <path class="route" d="M300 250 C 380 280, 430 330, 470 390" stroke="#3d8bff" stroke-width="3" fill="none" style="animation-delay: 1s"></path>
+            <path class="route" d="M300 250 C 380 250, 460 240, 520 260" stroke="#3d8bff" stroke-width="3" fill="none" style="animation-delay: 1.3s"></path>
+            <path class="route" d="M300 250 C 280 320, 240 380, 200 430" stroke="#3d8bff" stroke-width="3" fill="none" style="animation-delay: 1.6s"></path>
+            <path class="route" d="M300 250 C 230 260, 150 280, 90 300" stroke="#3d8bff" stroke-width="3" fill="none" style="animation-delay: 1.9s"></path>
+          </svg>
+          <div class="pin p3" style="left: 300px; top: 250px"><span class="r"></span><span class="d" style="width: 20px; height: 20px; left: -10px; top: -10px; background: #ffffff"></span></div>
+          <div class="pin p3" style="left: 130px; top: 130px"><span class="r"></span><span class="d"></span></div>
+          <div class="pin p3" style="left: 220px; top: 80px"><span class="r" style="animation-delay: .4s"></span><span class="d"></span></div>
+          <div class="pin p3" style="left: 470px; top: 390px"><span class="r" style="animation-delay: .8s"></span><span class="d"></span></div>
+          <div class="pin p3" style="left: 520px; top: 260px"><span class="r" style="animation-delay: 1.2s"></span><span class="d"></span></div>
+          <div class="pin p3" style="left: 200px; top: 430px"><span class="r" style="animation-delay: 1.6s"></span><span class="d"></span></div>
+          <div class="pin p3" style="left: 90px; top: 300px"><span class="r" style="animation-delay: 2s"></span><span class="d"></span></div>
+        </div>
+        <!-- floating labels (upright) -->
+        <div style="position: absolute; inset: 0; pointer-events: none; font-size: 14px; color: #cfe3ff">
+          <span style="position: absolute; left: 50%; top: 232px; transform: translateX(-50%); font-weight: 700; color: #ffffff; background: rgba(4,8,18,.8); border: 1px solid rgba(90,155,255,.5); padding: 6px 12px; border-radius: 4px">GOOD DRIVE 拠点（足立区）</span>
+          <span style="position: absolute; left: 60px; top: 170px">板橋区</span>
+          <span style="position: absolute; left: 200px; top: 140px">北区・赤羽</span>
+          <span style="position: absolute; right: 30px; top: 250px">葛飾区・亀有／奥戸</span>
+          <span style="position: absolute; right: 90px; top: 420px">江戸川区</span>
+          <span style="position: absolute; left: 150px; top: 440px">台東区・浅草</span>
+          <span style="position: absolute; left: 30px; top: 330px">文京区</span>
+        </div>
+        <div class="en" style="position: absolute; left: 10px; bottom: 6px; font-size: 11px; color: #6d7d99">Route Map — schematic / not to scale</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SNS: 3D phone fan ================= -->
+  <section id="sns" style="position: relative; padding: 140px 0 130px; overflow: hidden">
+    <div class="en outline" style="position: absolute; top: 70px; left: 0; font-size: 190px; font-weight: 700; white-space: nowrap; opacity: .35; pointer-events: none">
+      <div class="mq" style="gap: 80px"><span>Follow The Drive</span><span>Follow The Drive</span><span>Follow The Drive</span><span>Follow The Drive</span></div>
+    </div>
+    <div data-rv="sns" class="rv" style="position: relative; max-width: 1280px; margin: 0 auto; padding: 0 40px; display: flex; flex-direction: column; align-items: center; gap: 56px; text-align: center">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 18px">
+        <div class="en" style="font-size: 14px; color: #3d8bff">03 — Social Media</div>
+        <h2 class="jp-d" style="margin: 0; font-size: 56px; line-height: 1.2; color: #ffffff">現場のリアルを、発信力に変える。</h2>
+        <p style="margin: 0; max-width: 720px; font-size: 17px; line-height: 1.9; color: #9fadc6">「ぐぐ@軽貨物」として、TikTok・Instagramで軽貨物のリアルを発信中。オーナー目線のノウハウと本音が、信頼と仲間を連れてくる。</p>
+      </div>
+
+      <div class="fanWrap p3" style="position: relative; width: 1000px; height: 640px; perspective: 1500px; display: flex; justify-content: center; align-items: center">
+        <div style="position: absolute; bottom: 20px; left: 50%; width: 820px; height: 120px; margin-left: -410px; border-radius: 50%; background: radial-gradient(ellipse, rgba(30,110,255,.45), transparent 70%); filter: blur(10px)"></div>
+        <div class="p3" style="position: relative; display: flex; gap: 0; align-items: center">
+          <div class="fan f1 phone" style="transform: rotateY(28deg) translateX(10px) translateZ(-40px)">
+            <video data-src="assets/sns1.mp4" preload="none" autoplay="" muted="" loop="" playsinline="" aria-label="配達時に困る事3選"></video>
+          </div>
+          <div class="fan f2 phone" style="transform: translateZ(30px); z-index: 2; margin: 0 -20px">
+            <video data-src="assets/sns2.mp4" preload="none" autoplay="" muted="" loop="" playsinline="" aria-label="こんな軽貨物会社はやめとけ3選"></video>
+          </div>
+          <div class="fan f3 phone" style="transform: rotateY(-28deg) translateX(-10px) translateZ(-40px)">
+            <video data-src="assets/sns3.mp4" preload="none" autoplay="" muted="" loop="" playsinline="" aria-label="置き配エピソード"></video>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 16px">
+        <a class="btn btn-p" href="https://www.tiktok.com/@googootime_33">TikTok @googootime_33</a>
+        <a class="btn btn-g" href="https://www.instagram.com/gooddrive_official/">Instagram @gooddrive_official</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= AI strip ================= -->
+  <section id="ai" style="position: relative; padding: 110px 0; background: #050913; border-top: 1px solid rgba(90,155,255,.15); border-bottom: 1px solid rgba(90,155,255,.15)">
+    <div data-rv="ai" class="rv" style="max-width: 1280px; margin: 0 auto; padding: 0 40px; display: flex; flex-direction: column; gap: 56px">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px">
+        <div style="display: flex; flex-direction: column; gap: 16px">
+          <div class="en" style="font-size: 14px; color: #3d8bff">04 — AI × Logistics</div>
+          <h2 class="jp-d" style="margin: 0; font-size: 56px; line-height: 1.2; color: #ffffff">現場の「面倒」を、AIで0にする。</h2>
+        </div>
+        <a class="btn btn-g" href="https://gooddrivehaisou-create.github.io/gd-creative-site/">GD CREATIVE を見る</a>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px">
+        <div class="card" style="padding: 32px 28px; display: flex; flex-direction: column; gap: 14px"><span class="en" style="font-size: 12px; color: #7fb6ff">Shift</span><span style="font-size: 20px; font-weight: 700; color: #ffffff">シフト自動化</span><span style="font-size: 14px; line-height: 1.8; color: #9fadc6">休み希望の回収からシフト作成・LINE共有まで。</span></div>
+        <div class="card" style="padding: 32px 28px; display: flex; flex-direction: column; gap: 14px"><span class="en" style="font-size: 12px; color: #7fb6ff">Address</span><span style="font-size: 20px; font-weight: 700; color: #ffffff">住所取り込み</span><span style="font-size: 14px; line-height: 1.8; color: #9fadc6">配送先住所を地図アプリへ一括反映。</span></div>
+        <div class="card" style="padding: 32px 28px; display: flex; flex-direction: column; gap: 14px"><span class="en" style="font-size: 12px; color: #7fb6ff">Trend</span><span style="font-size: 20px; font-weight: 700; color: #ffffff">トレンド分析</span><span style="font-size: 14px; line-height: 1.8; color: #9fadc6">SNSのトレンドを自動で拾い、企画を高速化。</span></div>
+        <div class="card" style="padding: 32px 28px; display: flex; flex-direction: column; gap: 14px"><span class="en" style="font-size: 12px; color: #7fb6ff">Video</span><span style="font-size: 20px; font-weight: 700; color: #ffffff">AI動画制作</span><span style="font-size: 14px; line-height: 1.8; color: #9fadc6">このページの映像もAIで制作しています。</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= RECRUIT ================= -->
+  <section id="recruit" style="position: relative; padding: 140px 0; background: radial-gradient(ellipse at 30% 50%, rgba(30,107,255,.2), transparent 55%)">
+    <div data-rv="rec" class="rv" style="max-width: 1280px; margin: 0 auto; padding: 0 40px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 64px; align-items: center">
+      <div style="height: 680px; display: flex; justify-content: center; align-items: center; perspective: 1400px">
+        <div class="p3" style="transform: rotateY(18deg) rotateX(4deg)">
+          <div class="phone" style="width: 320px; height: 660px">
+            <video data-src="assets/recruit.mp4" preload="none" autoplay="" muted="" loop="" playsinline="" aria-label="軽貨物ドライバー募集動画"></video>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 24px">
+        <div class="en" style="font-size: 14px; color: #7fb6ff">05 — Driver Recruit</div>
+        <h2 class="jp-d" style="margin: 0; font-size: 58px; line-height: 1.2; color: #ffffff">未経験OK。<br>一緒に走る仲間、募集中。</h2>
+        <p style="margin: 0; font-size: 17px; line-height: 1.9; color: #aab7cf">オーナーが現場に立つ会社だから、ルートのコツも、稼ぎ方の考え方も、直接伝えます。</p>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+          <div class="card" style="padding: 20px 22px; display: flex; flex-direction: column; gap: 6px"><span class="en" style="font-size: 11px; color: #7fb6ff">Vehicle</span><span style="font-size: 17px; font-weight: 700; color: #ffffff">車がなくてもリースOK</span></div>
+          <div class="card" style="padding: 20px 22px; display: flex; flex-direction: column; gap: 6px"><span class="en" style="font-size: 11px; color: #7fb6ff">Shift</span><span style="font-size: 17px; font-weight: 700; color: #ffffff">休み希望はLINEで</span></div>
+          <div class="card" style="padding: 20px 22px; display: flex; flex-direction: column; gap: 6px"><span class="en" style="font-size: 11px; color: #7fb6ff">Support</span><span style="font-size: 17px; font-weight: 700; color: #ffffff">同乗研修で伴走</span></div>
+          <div class="card" style="padding: 20px 22px; display: flex; flex-direction: column; gap: 6px"><span class="en" style="font-size: 11px; color: #7fb6ff">Challenge</span><span style="font-size: 17px; font-weight: 700; color: #ffffff">SNS・AIにも挑戦可</span></div>
+        </div>
+        <div style="display: grid; grid-template-columns: 140px 1fr; row-gap: 12px; font-size: 15px; color: #d6e0f0; padding: 22px 0; border-top: 1px solid rgba(90,155,255,.2); border-bottom: 1px solid rgba(90,155,255,.2)">
+          <span style="color: #7fb6ff">稼働時間</span><span>9:00〜（早ければ17:00終了）<br><span style="font-size: 13px; color: #8fa0bd">※ 案件により変動</span></span>
+          <span style="color: #7fb6ff">車両</span><span>持ち込みOK（推奨）／リースあり 月額40,000円〜</span>
+          <span style="color: #7fb6ff">報酬</span><span>末締め・末払い<br><span style="font-size: 13px; color: #8fa0bd">※ 案件により変動</span></span>
+          <span style="color: #7fb6ff">応募の流れ</span><span>LINEで応募 → 面談 → 同乗研修 → 稼働スタート</span>
+        </div>
+        <div style="display: flex; gap: 14px; flex-wrap: wrap">
+          <a class="btn btn-p" href="https://lin.ee/r5xgMfa">LINEで応募・相談する</a>
+          <a class="btn btn-g" href="https://www.tiktok.com/@googootime_33">DMで応募</a>
+        </div>
+        <p style="margin: 0; font-size: 12px; color: #7f8ca6; line-height: 1.7">※ 稼働時間・報酬は案件により変動します。詳しくは面談にてご説明します。収入は稼働日数・ルート等により個人差があります。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MOTTO ================= -->
+  <section style="position: relative; padding: 130px 0; overflow: hidden; text-align: center">
+    <div style="position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(30,107,255,.22), transparent 60%)"></div>
+    <div class="mq jp-d outline" style="font-size: 120px; white-space: nowrap; gap: 60px; opacity: .5">
+      <span>やらない後悔より</span><span>やって後悔</span><span>やらない後悔より</span><span>やって後悔</span>
+    </div>
+    <div style="position: relative; padding: 40px 40px 0; display: flex; flex-direction: column; align-items: center; gap: 22px">
+      <div class="en" style="font-size: 14px; color: #3d8bff">Our Motto</div>
+      <p class="jp-d" style="margin: 0; font-size: 64px; line-height: 1.3; color: #ffffff">やらない後悔より、<br><span style="color: #3d8bff; text-shadow: 0 0 40px rgba(30,123,255,.7)">やって後悔。</span></p>
+      <p style="margin: 0; max-width: 680px; font-size: 17px; line-height: 1.9; color: #9fadc6">元プロサッカー選手として海外のピッチに立った代表・ぐぐ。挑戦し続けるマインドは、配送の現場でも、発信でも、AIでも変わらない。</p>
+    </div>
+  </section>
+
+  <!-- ================= FAQ ================= -->
+  <section style="max-width: 960px; margin: 0 auto; padding: 40px 40px 110px">
+    <div class="en" style="font-size: 14px; color: #3d8bff; margin-bottom: 16px">06 — FAQ</div>
+    <h2 class="jp-d" style="margin: 0 0 32px; font-size: 44px; color: #ffffff">よくある質問</h2>
+    <div style="border-top: 1px solid rgba(90,155,255,.2)">
+      <div style="border-bottom: 1px solid rgba(90,155,255,.2)"><button class="faq-q" type="button" aria-expanded="true" aria-controls="pc-faq0"><span>軽貨物の経験がなくても応募できますか？</span><span class="en faq-sign" style="font-size: 24px; color: #3d8bff; width: 26px; text-align: center; flex-shrink: 0">−</span></button><p id="pc-faq0" class="faq-a" style="margin: 0; padding: 0 0 24px; font-size: 16px; line-height: 1.9; color: #aab7cf">はい、未経験の方も歓迎です。同乗研修でルートや積み込みのコツからお伝えします。</p></div>
+<div style="border-bottom: 1px solid rgba(90,155,255,.2)"><button class="faq-q" type="button" aria-expanded="false" aria-controls="pc-faq1"><span>車両は持っていないといけませんか？</span><span class="en faq-sign" style="font-size: 24px; color: #3d8bff; width: 26px; text-align: center; flex-shrink: 0">+</span></button><p id="pc-faq1" class="faq-a" hidden style="margin: 0; padding: 0 0 24px; font-size: 16px; line-height: 1.9; color: #aab7cf">軽貨物車両は必要ですが、お持ちでなくても大丈夫です。GOOD DRIVEでリース（月額40,000円〜）をご用意しています。お持ちの方は持ち込みがおすすめです。</p></div>
+<div style="border-bottom: 1px solid rgba(90,155,255,.2)"><button class="faq-q" type="button" aria-expanded="false" aria-controls="pc-faq2"><span>稼働時間や報酬の支払いはどうなりますか？</span><span class="en faq-sign" style="font-size: 24px; color: #3d8bff; width: 26px; text-align: center; flex-shrink: 0">+</span></button><p id="pc-faq2" class="faq-a" hidden style="margin: 0; padding: 0 0 24px; font-size: 16px; line-height: 1.9; color: #aab7cf">稼働は9時スタート、早ければ17時に終了します。報酬は基本的に末締め・末払いです。いずれも案件により変動するため、詳しくは面談でご説明します。</p></div>
+<div style="border-bottom: 1px solid rgba(90,155,255,.2)"><button class="faq-q" type="button" aria-expanded="false" aria-controls="pc-faq3"><span>スポットの配送だけでも依頼できますか？</span><span class="en faq-sign" style="font-size: 24px; color: #3d8bff; width: 26px; text-align: center; flex-shrink: 0">+</span></button><p id="pc-faq3" class="faq-a" hidden style="margin: 0; padding: 0 0 24px; font-size: 16px; line-height: 1.9; color: #aab7cf">対応エリア・日時によってご相談可能です。フォームからお問い合わせください。</p></div>
+<div style="border-bottom: 1px solid rgba(90,155,255,.2)"><button class="faq-q" type="button" aria-expanded="false" aria-controls="pc-faq4"><span>SNS運用やAI制作だけの依頼も可能ですか？</span><span class="en faq-sign" style="font-size: 24px; color: #3d8bff; width: 26px; text-align: center; flex-shrink: 0">+</span></button><p id="pc-faq4" class="faq-a" hidden style="margin: 0; padding: 0 0 24px; font-size: 16px; line-height: 1.9; color: #aab7cf">可能です。AI動画制作・SNS運用代行・LP／HP制作は、GD CREATIVE にて承っています。</p></div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section id="contact" style="position: relative; padding: 120px 0; background: linear-gradient(180deg, #03050a, #0a1a3d)">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 40px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 72px">
+      <div style="display: flex; flex-direction: column; gap: 24px">
+        <div class="en" style="font-size: 14px; color: #3d8bff">07 — For Business</div>
+        <h2 class="jp-d" style="margin: 0; font-size: 54px; line-height: 1.2; color: #ffffff">配送・SNS・AIの<br>ご相談はこちら。</h2>
+        <p style="margin: 0; font-size: 17px; line-height: 1.9; color: #9fadc6">スポット便・定期便のご依頼、SNS運用代行、AI動画制作まで。法人のお客様はフォームからどうぞ。</p>
+        <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 12px; font-size: 16px; color: #d6e0f0">
+          <div style="display: flex; gap: 14px; align-items: center"><span class="en" style="width: 90px; font-size: 12px; color: #7fb6ff">Company</span>GOOD DRIVE</div>
+          <div style="display: flex; gap: 14px; align-items: center"><span class="en" style="width: 90px; font-size: 12px; color: #7fb6ff">Base</span>東京都足立区</div>
+          <div style="display: flex; gap: 14px; align-items: center"><span class="en" style="width: 90px; font-size: 12px; color: #7fb6ff">Mail</span><a href="mailto:gooddrive.haisou@gmail.com">gooddrive.haisou@gmail.com</a></div>
+        </div>
+      </div>
+      <form class="card mailform" style="padding: 44px; display: flex; flex-direction: column; gap: 20px"><div style="display: flex; flex-direction: column; gap: 20px"><div class="field"><label for="pc-type">ご用件</label><select id="pc-type" name="type"><option>配送のご依頼</option><option>SNS運用のご相談</option><option>AI・制作のご相談</option><option>その他</option></select></div><div class="field"><label for="pc-name">会社名・お名前</label><input id="pc-name" name="name" type="text" autocomplete="name" placeholder="株式会社〇〇 山田 太郎"></div><div class="field"><label for="pc-msg">内容</label><textarea id="pc-msg" name="msg" rows="4" placeholder="ご相談内容をご記入ください"></textarea></div><button type="submit" class="btn btn-p">メールで送信する</button><p style="margin: 0; font-size: 12px; color: #8a97b0; line-height: 1.7">お使いのメールアプリが開き、入力内容が gooddrive.haisou@gmail.com 宛てに入ります。</p></div></form>
+    </div>
+  </section>
+
+  <footer style="border-top: 1px solid rgba(90,155,255,.2); padding: 40px 56px; display: flex; justify-content: space-between; align-items: center; background: #03050a">
+    <span class="en" style="font-size: 13px; color: #8fa0bd">© Good Drive</span>
+    <div style="display: flex; gap: 24px">
+      <a class="navlink" href="https://www.tiktok.com/@googootime_33">TikTok</a>
+      <a class="navlink" href="https://www.instagram.com/gooddrive_official/">Instagram</a>
+      <a class="navlink" href="https://gooddrivehaisou-create.github.io/gd-creative-site/">GD CREATIVE</a>
+    </div>
+  </footer>
+</div>
+
+</div>
+<div class="sp">
+
+
+<div class="sp-root" style="width: 100%; background: #03050a; overflow-x: clip; position: relative">
+
+  <!-- header -->
+  <header style="position: sticky; top: 0; z-index: 40; display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: rgba(3,5,10,.82); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(90,155,255,.15)">
+    <a href="#sp-top" style="display: flex; align-items: center; gap: 10px; text-decoration: none" aria-label="GOOD DRIVE トップへ">
+      <svg width="46" height="27" viewBox="0 0 240 140" fill="none" stroke-linejoin="miter" stroke-miterlimit="10"><path d="M104 14 L40 14 L12 42 L12 98 L40 126 L96 126 L124 98 L124 76 L70 76" stroke="#e8eef7" stroke-width="20"></path><path d="M158 14 L200 14 L228 42 L228 98 L200 126 L150 126 L150 70" stroke="#e8eef7" stroke-width="20"></path><polygon points="116,4 148,4 110,58 78,58" fill="#1e7bff"></polygon></svg>
+      <span class="en" style="color: #ffffff; font-weight: 700; font-size: 14px">Good Drive</span>
+    </a>
+    <button class="iconbtn" id="sp-menu-btn" type="button" aria-label="メニュー" aria-expanded="false" aria-controls="sp-menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path id="sp-menu-icon" d="M4 7h16M4 12h16M4 17h16"></path></svg>
+    </button>
+  </header>
+  
+    <nav id="sp-menu" hidden class="fu" style="position: absolute; top: 69px; left: 0; right: 0; z-index: 39; background: rgba(3,5,10,.97); border-bottom: 1px solid rgba(90,155,255,.25); padding: 8px 16px 20px; display: flex; flex-direction: column; animation-duration: .35s">
+      <a href="#sp-business" class="sp-menu-link" style="padding: 16px 4px; color: #e8eef7; text-decoration: none; font-size: 17px; border-bottom: 1px solid rgba(90,155,255,.15)">事業</a>
+      <a href="#sp-area" class="sp-menu-link" style="padding: 16px 4px; color: #e8eef7; text-decoration: none; font-size: 17px; border-bottom: 1px solid rgba(90,155,255,.15)">配送エリア</a>
+      <a href="#sp-sns" class="sp-menu-link" style="padding: 16px 4px; color: #e8eef7; text-decoration: none; font-size: 17px; border-bottom: 1px solid rgba(90,155,255,.15)">SNS</a>
+      <a href="#sp-recruit" class="sp-menu-link" style="padding: 16px 4px; color: #e8eef7; text-decoration: none; font-size: 17px; border-bottom: 1px solid rgba(90,155,255,.15)">ドライバー募集</a>
+      <a href="#sp-contact" class="sp-menu-link" style="padding: 16px 4px; color: #e8eef7; text-decoration: none; font-size: 17px">法人のお問い合わせ</a>
+    </nav>
+  
+
+  <!-- HERO -->
+  <section id="sp-top" style="position: relative; height: 780px; display: flex; flex-direction: column; align-items: center; padding: 30px 16px 0; text-align: center; background: radial-gradient(ellipse at 50% 30%, #0b2150 0%, #050b1c 45%, #03050a 75%); perspective: 1000px">
+    <div class="floor"></div>
+    <div style="position: relative; width: 358px; height: 330px; perspective: 1000px; display: flex; justify-content: center; align-items: center">
+      <div class="p3" style="position: absolute; right: -6px; top: 18px; perspective: 900px">
+        <div class="panel p3"><div class="vpanel"><video data-src="assets/cine.mp4" preload="none" autoplay="" muted="" loop="" playsinline="" aria-label="配送シーン映像"></video></div></div>
+      </div>
+      <div class="cubeWrap p3" aria-hidden="true" style="left:20px;top:30px;animation-delay:0s;"><div class="cube p3" style="width:34px;height:34px;animation-duration:11s;"><div class="face" style="transform:translateZ(17.0px)"></div><div class="face" style="transform:rotateY(180deg) translateZ(17.0px)"></div><div class="face" style="transform:rotateY(90deg) translateZ(17.0px)"></div><div class="face" style="transform:rotateY(-90deg) translateZ(17.0px)"></div><div class="face" style="transform:rotateX(90deg) translateZ(17.0px)"></div><div class="face" style="transform:rotateX(-90deg) translateZ(17.0px)"></div></div></div>
+<div class="cubeWrap p3" aria-hidden="true" style="left:30px;top:250px;animation-delay:1.4s;"><div class="cube p3" style="width:26px;height:26px;animation-duration:9s;"><div class="face" style="transform:translateZ(13.0px)"></div><div class="face" style="transform:rotateY(180deg) translateZ(13.0px)"></div><div class="face" style="transform:rotateY(90deg) translateZ(13.0px)"></div><div class="face" style="transform:rotateY(-90deg) translateZ(13.0px)"></div><div class="face" style="transform:rotateX(90deg) translateZ(13.0px)"></div><div class="face" style="transform:rotateX(-90deg) translateZ(13.0px)"></div></div></div>
+<div class="cubeWrap p3" aria-hidden="true" style="left:250px;top:290px;animation-delay:0.7s;"><div class="cube p3" style="width:30px;height:30px;animation-duration:13s;"><div class="face" style="transform:translateZ(15.0px)"></div><div class="face" style="transform:rotateY(180deg) translateZ(15.0px)"></div><div class="face" style="transform:rotateY(90deg) translateZ(15.0px)"></div><div class="face" style="transform:rotateY(-90deg) translateZ(15.0px)"></div><div class="face" style="transform:rotateX(90deg) translateZ(15.0px)"></div><div class="face" style="transform:rotateX(-90deg) translateZ(15.0px)"></div></div></div>
+<div class="cubeWrap p3" aria-hidden="true" style="left:150px;top:0px;animation-delay:2s;"><div class="cube p3" style="width:20px;height:20px;animation-duration:8s;"><div class="face" style="transform:translateZ(10.0px)"></div><div class="face" style="transform:rotateY(180deg) translateZ(10.0px)"></div><div class="face" style="transform:rotateY(90deg) translateZ(10.0px)"></div><div class="face" style="transform:rotateY(-90deg) translateZ(10.0px)"></div><div class="face" style="transform:rotateX(90deg) translateZ(10.0px)"></div><div class="face" style="transform:rotateX(-90deg) translateZ(10.0px)"></div></div></div>
+      <div class="logo3d p3" style="position: relative; width: 280px; height: 164px">
+        <svg width="280" height="164" viewBox="0 0 240 140" fill="none" stroke-linejoin="miter" stroke-miterlimit="10" aria-hidden="true" style="position: absolute; left: 0; top: 0; transform: translateZ(-21.6px)"><path d="M104 14 L40 14 L12 42 L12 98 L40 126 L96 126 L124 98 L124 76 L70 76" stroke="hsl(218, 70%, 18%)" stroke-width="20"></path><path d="M158 14 L200 14 L228 42 L228 98 L200 126 L150 126 L150 70" stroke="hsl(218, 70%, 18%)" stroke-width="20"></path><polygon points="116,4 148,4 110,58 78,58" fill="hsl(216, 95%, 26%)"></polygon></svg>
+<svg width="280" height="164" viewBox="0 0 240 140" fill="none" stroke-linejoin="miter" stroke-miterlimit="10" aria-hidden="true" style="position: absolute; left: 0; top: 0; transform: translateZ(-19.8px)"><path d="M104 14 L40 14 L12 42 L12 98 L40 126 L96 126 L124 98 L124 76 L70 76" stroke="hsl(218, 70%, 20%)" stroke-width="20"></path><path d="M158 14 L200 14 L228 42 L228 98 L200 126 L150 126 L150 70" stroke="hsl(218, 70%, 20%)" stroke-width="20"></path><polygon points="116,4 148,4 110,58 78,58" fill="hsl(216, 95%, 28%)"></polygon></svg>
+<svg width="280" height="164" viewBox="0 0 240 140" fill="none" stroke-linejoin="miter" stroke-miterlimit="10" aria-hidden="true" style="position: absolute; left: 0; top: 0; transform: translateZ(-18.0px)"><path d="M104 14 L40 14 L12 42 L12 98 L40 126 L96 126 L124 98 L124 76 L70 76" stroke="hsl(218, 70%, 23%)" stroke-width="20"></path><path d="M158 14 L200 14 L228 42 L228 98 L200 126 L150 126 L150 70" stroke="hsl(218, 70%, 23%)" stroke-width="20"></path><polygon points="116,4 148,4 110,58 78,58" fill="hsl(216, 95%, 31%)"></polygon></svg>
+<svg width="280" height="164" viewBox="0 0 240 140" fill="none" stroke-linejoin="miter" stroke-miterlimit="10" aria-hidden="true" style="position: absolute; left: 0; top: 0; transform: translateZ(-16.2px)"><path d="M104 14 L40 14 L12 42 L12 98 L40 126 L96 126 L124 98 L124 76 L70 76" stroke="hsl(218, 70%, 26%)" stroke-width="20"></path><path d="M158 14 L200 14 L228 42 L228 98 L200 126 L150 126 L150 70" stroke="hsl(218, 70%, 26%)" stroke-width="20"></path><polygon points="116,4 148,4 110,58 78,58" fill="hsl(216, 95%, 34%)"></polygon></svg>
+<svg width="280" height="164" viewBox="0 0 240 140" fill="none" stroke-linejoin="miter" stroke-miterlimit="10" aria-hidden="true" style="position: absolute; left: 0; top: 0; transform: translateZ(-14.4px)"><path d="M104 14 L40 14 L12 42 L12 98 L40 126 L96 126 L124 98 L124 76 L70 76" stroke="hsl(218, 70%, 28%)" stroke-width="20"></path><path d="M158 14 L200 14 L228 42 L228 98 L200 126 L150 126 L150 70" stroke="hsl(218, 70%, 28%)" stroke-width="20"></path><polygon points="116,4 148,4 110,58 78,58" fill="hsl(216, 95%, 36%)"></polygon></svg>
+<svg width="280" height="164" viewBox="0 0 240 140" fill="none" stroke-linejoin="miter" stroke-miterlimit="10" aria-hidden="true" style="position: absolute; left: 0; top: 0; transform: translateZ(-12.6px)"><path d="M104 14 L40 14 L12 42 L12 98 L40 126 L96 126 L124 98 L124 76 L70 76" stroke="hsl(218, 70%, 30%)" stroke-width="20"></path><path d="M158 14 L200 14 L228 42 L228 98 L200 126 L150 126 L150 70" stroke="hsl(218, 70%, 30%)" stroke-width="20"></path><polygon points="116,4 148,4 110,58 78,58" fill="hsl(216, 95%, 38%)"></polygon></svg>
+<svg width="280" height="164" viewBox="0 0 240 140" fill="none" stroke-linejoin="miter" stroke-miterlimit="10" aria-hidden="true" style="position: absolute; left: 0; top: 0; transform: translateZ(-10.8px)"><path d="M104 14 L40 14 L12 42 L12 98 L40 126 L96 126 L124 98 L124 76 L70 76" stroke="hsl(218, 70%, 33%)" stroke-width="20"></path><path d="M158 14 L200 14 L228 42 L228 98 L200 126 L150 126 L150 70" stroke="hsl(218, 70%, 33%)" stroke-width="20"></path><polygon points="116,4 148,4 110,58 78,58" fill="hsl(216, 95%, 41%)"></polygon></svg>
+<svg width="280" height="164" viewBox="0 0 240 140" fill="none" stroke-linejoin="miter" stroke-miterlimit="10" aria-hidden="true" style="position: absolute; left: 0; top: 0; transform: translateZ(-9.0px)"><path d="M104 14 L40 14 L12 42 L12 98 L40 126 L96 126 L124 98 L124 76 L70 76" stroke="hsl(218, 70%, 36%)" stroke-width="20"></path><path d="M158 14 L200 14 L228 42 L228 98 L200 126 L150 126 L150 70" stroke="hsl(218, 70%, 36%)" stroke-width="20"></path><polygon points="116,4 148,4 110,58 78,58" fill="hsl(216, 95%, 44%)"></polygon></svg>
+<svg width="280" height="164" viewBox="0 0 240 140" fill="none" stroke-linejoin="miter" stroke-miterlimit="10" aria-hidden="true" style="position: absolute; left: 0; top: 0; transform: translateZ(-7.2px)"><path d="M104 14 L40 14 L12 42 L12 98 L40 126 L96 126 L124 98 L124 76 L70 76" stroke="hsl(218, 70%, 38%)" stroke-width="20"></path><path d="M158 14 L200 14 L228 42 L228 98 L200 126 L150 126 L150 70" stroke="hsl(218, 70%, 38%)" stroke-width="20"></path><polygon points="116,4 148,4 110,58 78,58" fill="hsl(216, 95%, 46%)"></polygon></svg>
+<svg width="280" height="164" viewBox="0 0 240 140" fill="none" stroke-linejoin="miter" stroke-miterlimit="10" aria-hidden="true" style="position: absolute; left: 0; top: 0; transform: translateZ(-5.4px)"><path d="M104 14 L40 14 L12 42 L12 98 L40 126 L96 126 L124 98 L124 76 L70 76" stroke="hsl(218, 70%, 40%)" stroke-width="20"></path><path d="M158 14 L200 14 L228 42 L228 98 L200 126 L150 126 L150 70" stroke="hsl(218, 70%, 40%)" stroke-width="20"></path><polygon points="116,4 148,4 110,58 78,58" fill="hsl(216, 95%, 48%)"></polygon></svg>
+<svg width="280" height="164" viewBox="0 0 240 140" fill="none" stroke-linejoin="miter" stroke-miterlimit="10" aria-hidden="true" style="position: absolute; left: 0; top: 0; transform: translateZ(-3.6px)"><path d="M104 14 L40 14 L12 42 L12 98 L40 126 L96 126 L124 98 L124 76 L70 76" stroke="hsl(218, 70%, 43%)" stroke-width="20"></path><path d="M158 14 L200 14 L228 42 L228 98 L200 126 L150 126 L150 70" stroke="hsl(218, 70%, 43%)" stroke-width="20"></path><polygon points="116,4 148,4 110,58 78,58" fill="hsl(216, 95%, 51%)"></polygon></svg>
+<svg width="280" height="164" viewBox="0 0 240 140" fill="none" stroke-linejoin="miter" stroke-miterlimit="10" aria-hidden="true" style="position: absolute; left: 0; top: 0; transform: translateZ(-1.8px)"><path d="M104 14 L40 14 L12 42 L12 98 L40 126 L96 126 L124 98 L124 76 L70 76" stroke="hsl(218, 70%, 46%)" stroke-width="20"></path><path d="M158 14 L200 14 L228 42 L228 98 L200 126 L150 126 L150 70" stroke="hsl(218, 70%, 46%)" stroke-width="20"></path><polygon points="116,4 148,4 110,58 78,58" fill="hsl(216, 95%, 54%)"></polygon></svg>
+        <svg class="front" width="280" height="164" viewBox="0 0 240 140" fill="none" stroke-linejoin="miter" stroke-miterlimit="10" style="position: absolute; left: 0; top: 0; transform: translateZ(1px)" aria-label="GOOD DRIVE ロゴ">
+          <defs>
+            <linearGradient id="metalS" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"></stop><stop offset=".35" stop-color="#c9d6ea"></stop><stop offset=".55" stop-color="#ffffff"></stop><stop offset=".8" stop-color="#9fb3d4"></stop><stop offset="1" stop-color="#eef4ff"></stop></linearGradient>
+            <linearGradient id="bluegS" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7cc0ff"></stop><stop offset="1" stop-color="#0a55e0"></stop></linearGradient>
+          </defs>
+          <path d="M104 14 L40 14 L12 42 L12 98 L40 126 L96 126 L124 98 L124 76 L70 76" stroke="url(#metalS)" stroke-width="20"></path>
+          <path d="M158 14 L200 14 L228 42 L228 98 L200 126 L150 126 L150 70" stroke="url(#metalS)" stroke-width="20"></path>
+          <polygon points="116,4 148,4 110,58 78,58" fill="url(#bluegS)"></polygon>
+        </svg>
+      </div>
+    </div>
+    <div style="position: relative; z-index: 5; display: flex; flex-direction: column; align-items: center; gap: 18px; width: 100%">
+      <div class="fu" style="animation-delay: .3s"><div class="en chrome" style="font-size: 30px; font-weight: 700; letter-spacing: .28em">Good Drive</div></div>
+      <h1 class="jp-d" style="margin: 0; font-size: 38px; line-height: 1.25; color: #ffffff">
+        <span class="mask"><span style="animation-delay: .5s">働き方は、</span></span>
+        <span class="mask"><span style="animation-delay: .7s; color: #3d8bff; text-shadow: 0 0 30px rgba(30,123,255,.7)">自分で選ぶ。</span></span>
+      </h1>
+      <p class="fu" style="margin: 0; font-size: 15px; line-height: 1.85; color: #b9c6dc; animation-delay: .9s">東京・足立区発の軽貨物カンパニー。<br>配送 × SNS発信 × AIで、<br>ドライバーの新しい働き方をつくる。</p>
+      <div class="fu" style="display: flex; flex-direction: column; gap: 10px; width: 100%; animation-delay: 1.1s">
+        <a class="btn btn-line" href="https://lin.ee/r5xgMfa">未経験OK｜LINEで応募する</a>
+        <a class="btn btn-g" href="#sp-contact">配送のご依頼はこちら</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- marquee -->
+  <section style="border-top: 1px solid rgba(90,155,255,.2); border-bottom: 1px solid rgba(90,155,255,.2); background: #060a14; padding: 14px 0; overflow: hidden">
+    <div class="mq en" style="font-size: 24px; font-weight: 700; color: #e8eef7; gap: 28px; white-space: nowrap">
+      <span>Last One Mile</span><span style="color: #1e7bff">◆</span><span class="outline">Social Media</span><span style="color: #1e7bff">◆</span><span>AI Automation</span><span style="color: #1e7bff">◆</span><span class="outline">Driver Recruit</span><span style="color: #1e7bff">◆</span>
+      <span>Last One Mile</span><span style="color: #1e7bff">◆</span><span class="outline">Social Media</span><span style="color: #1e7bff">◆</span><span>AI Automation</span><span style="color: #1e7bff">◆</span><span class="outline">Driver Recruit</span><span style="color: #1e7bff">◆</span>
+    </div>
+  </section>
+
+  <!-- RECRUIT first on mobile -->
+  <section id="sp-recruit" style="padding: 72px 16px 64px; background: radial-gradient(ellipse at 50% 20%, rgba(30,107,255,.2), transparent 60%)">
+    <div data-rv="rec" class="rv" style="display: flex; flex-direction: column; gap: 20px">
+      <div class="en" style="font-size: 12px; color: #7fb6ff">01 — Driver Recruit</div>
+      <h2 class="jp-d" style="margin: 0; font-size: 32px; line-height: 1.3; color: #ffffff">未経験OK。<br>一緒に走る仲間、<br>募集中。</h2>
+      <div style="display: flex; justify-content: center; perspective: 900px; padding: 10px 0">
+        <div class="p3" style="transform: rotateY(-14deg) rotateX(4deg)">
+          <div class="phone" style="width: 240px; height: 480px"><video data-src="assets/recruit.mp4" preload="none" autoplay="" muted="" loop="" playsinline="" aria-label="軽貨物ドライバー募集動画"></video></div>
+        </div>
+      </div>
+      <p style="margin: 0; font-size: 15px; line-height: 1.85; color: #aab7cf">オーナーが現場に立つ会社だから、ルートのコツも、稼ぎ方の考え方も、直接伝えます。</p>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+        <div class="card" style="padding: 16px; display: flex; flex-direction: column; gap: 4px"><span class="en" style="font-size: 10px; color: #7fb6ff">Vehicle</span><span style="font-size: 15px; font-weight: 700; color: #ffffff">車がなくてもリースOK</span></div>
+        <div class="card" style="padding: 16px; display: flex; flex-direction: column; gap: 4px"><span class="en" style="font-size: 10px; color: #7fb6ff">Shift</span><span style="font-size: 15px; font-weight: 700; color: #ffffff">休み希望はLINEで</span></div>
+        <div class="card" style="padding: 16px; display: flex; flex-direction: column; gap: 4px"><span class="en" style="font-size: 10px; color: #7fb6ff">Support</span><span style="font-size: 15px; font-weight: 700; color: #ffffff">同乗研修で伴走</span></div>
+        <div class="card" style="padding: 16px; display: flex; flex-direction: column; gap: 4px"><span class="en" style="font-size: 10px; color: #7fb6ff">Challenge</span><span style="font-size: 15px; font-weight: 700; color: #ffffff">SNS・AIにも挑戦可</span></div>
+      </div>
+      <div class="card" style="padding: 6px 18px">
+        <div style="display: flex; flex-direction: column; gap: 4px; padding: 14px 0; border-bottom: 1px solid rgba(90,155,255,.18)"><span style="font-size: 12px; color: #7fb6ff">稼働時間</span><span style="font-size: 15px; color: #e8eef7">9:00〜（早ければ17:00終了）<span style="font-size: 12px; color: #8fa0bd">※案件により変動</span></span></div>
+        <div style="display: flex; flex-direction: column; gap: 4px; padding: 14px 0; border-bottom: 1px solid rgba(90,155,255,.18)"><span style="font-size: 12px; color: #7fb6ff">車両</span><span style="font-size: 15px; color: #e8eef7">持ち込みOK（推奨）／リースあり 月額40,000円〜</span></div>
+        <div style="display: flex; flex-direction: column; gap: 4px; padding: 14px 0; border-bottom: 1px solid rgba(90,155,255,.18)"><span style="font-size: 12px; color: #7fb6ff">報酬</span><span style="font-size: 15px; color: #e8eef7">末締め・末払い <span style="font-size: 12px; color: #8fa0bd">※案件により変動</span></span></div>
+        <div style="display: flex; flex-direction: column; gap: 4px; padding: 14px 0"><span style="font-size: 12px; color: #7fb6ff">応募の流れ</span><span style="font-size: 15px; color: #e8eef7">LINEで応募 → 面談 → 同乗研修 → 稼働スタート</span></div>
+      </div>
+      <a class="btn btn-line" href="https://lin.ee/r5xgMfa">LINEで応募・相談する</a>
+      <p style="margin: 0; font-size: 12px; color: #8a97b0; line-height: 1.7">※ 稼働時間・報酬は案件により変動します。詳しくは面談にてご説明します。収入は稼働日数・ルート等により個人差があります。</p>
+    </div>
+  </section>
+
+  <!-- BUSINESS prism -->
+  <section id="sp-business" style="padding: 64px 16px; border-top: 1px solid rgba(90,155,255,.12)">
+    <div data-rv="biz" class="rv" style="display: flex; flex-direction: column; gap: 18px">
+      <div class="en" style="font-size: 12px; color: #3d8bff">02 — Business</div>
+      <h2 class="jp-d" style="margin: 0; font-size: 32px; line-height: 1.3; color: #ffffff">3つのエンジンで、<br>走り続ける。</h2>
+      <div style="height: 400px; display: flex; justify-content: center; align-items: center; perspective: 1000px">
+        <div class="prism p3">
+          <div class="pface" style="transform: rotateY(0deg) translateZ(72px)">
+            <span class="en" style="font-size: 48px; font-weight: 700; color: #1d3566">01</span>
+            <span class="jp-d" style="font-size: 26px; color: #ffffff">軽貨物配送</span>
+            <span style="font-size: 14px; line-height: 1.8; color: #aab7cf">店舗宅配ルートを中心に、東京東部〜北部を毎日カバー。</span>
+          </div>
+          <div class="pface" style="transform: rotateY(120deg) translateZ(72px)">
+            <span class="en" style="font-size: 48px; font-weight: 700; color: #1d3566">02</span>
+            <span class="jp-d" style="font-size: 26px; color: #ffffff">SNS運用</span>
+            <span style="font-size: 14px; line-height: 1.8; color: #aab7cf">軽貨物のリアルを毎日発信。仲間集めと認知拡大のエンジンに。</span>
+          </div>
+          <div class="pface" style="transform: rotateY(240deg) translateZ(72px)">
+            <span class="en" style="font-size: 48px; font-weight: 700; color: #1d3566">03</span>
+            <span class="jp-d" style="font-size: 26px; color: #ffffff">AI事業</span>
+            <span style="font-size: 14px; line-height: 1.8; color: #aab7cf">AI動画スタジオ GD CREATIVE と、現場発の業務自動化ツール。</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AREA -->
+  <section id="sp-area" style="padding: 64px 16px; background: linear-gradient(180deg, #03050a, #071023 50%, #03050a)">
+    <div data-rv="area" class="rv" style="display: flex; flex-direction: column; gap: 18px">
+      <div class="en" style="font-size: 12px; color: #3d8bff">03 — Delivery Area</div>
+      <h2 class="jp-d" style="margin: 0; font-size: 32px; line-height: 1.3; color: #ffffff">東京の東と北を、<br>毎日つなぐ。</h2>
+      <div style="display: flex; gap: 28px">
+        <div style="display: flex; flex-direction: column"><span class="en" style="font-size: 56px; font-weight: 700; color: #ffffff; line-height: 1; letter-spacing: 0">4</span><span style="font-size: 13px; color: #8fa0bd">店舗ルート</span></div>
+        <div style="display: flex; flex-direction: column"><span class="en" style="font-size: 56px; font-weight: 700; color: #3d8bff; line-height: 1; letter-spacing: 0; text-shadow: 0 0 24px rgba(30,123,255,.6)">6</span><span style="font-size: 13px; color: #8fa0bd">配送エリア（区）</span></div>
+      </div>
+      <div style="position: relative; height: 300px; perspective: 900px; display: flex; justify-content: center; align-items: center">
+        <div class="holo p3" style="position: relative; width: 340px; height: 290px; border: 1px solid rgba(90,160,255,.45); border-radius: 8px; background: radial-gradient(circle at 50% 45%, rgba(30,107,255,.28), rgba(5,10,24,.9) 65%); box-shadow: 0 0 60px rgba(30,110,255,.35)">
+          <div style="position: absolute; inset: 0; background-image: linear-gradient(rgba(90,155,255,.14) 1px, transparent 1px), linear-gradient(90deg, rgba(90,155,255,.14) 1px, transparent 1px); background-size: 28px 28px"></div>
+          <svg viewBox="0 0 600 520" width="340" height="290" style="position: absolute; inset: 0" aria-label="配送ルートの模式図">
+            <path class="route" d="M300 250 C 250 190, 190 150, 130 130" stroke="#3d8bff" stroke-width="5" fill="none"></path>
+            <path class="route" d="M300 250 C 300 200, 250 120, 220 80" stroke="#3d8bff" stroke-width="5" fill="none" style="animation-delay: .6s"></path>
+            <path class="route" d="M300 250 C 380 280, 430 330, 470 390" stroke="#3d8bff" stroke-width="5" fill="none" style="animation-delay: .9s"></path>
+            <path class="route" d="M300 250 C 380 250, 460 240, 520 260" stroke="#3d8bff" stroke-width="5" fill="none" style="animation-delay: 1.2s"></path>
+            <path class="route" d="M300 250 C 280 320, 240 380, 200 430" stroke="#3d8bff" stroke-width="5" fill="none" style="animation-delay: 1.5s"></path>
+            <path class="route" d="M300 250 C 230 260, 150 280, 90 300" stroke="#3d8bff" stroke-width="5" fill="none" style="animation-delay: 1.8s"></path>
+          </svg>
+          <div class="pin" style="left: 170px; top: 140px"><span class="r"></span><span class="d" style="background: #ffffff"></span></div>
+          <div class="pin" style="left: 74px; top: 73px"><span class="r"></span><span class="d"></span></div>
+          <div class="pin" style="left: 125px; top: 45px"><span class="r" style="animation-delay: .4s"></span><span class="d"></span></div>
+          <div class="pin" style="left: 266px; top: 220px"><span class="r" style="animation-delay: .8s"></span><span class="d"></span></div>
+          <div class="pin" style="left: 295px; top: 147px"><span class="r" style="animation-delay: 1.2s"></span><span class="d"></span></div>
+          <div class="pin" style="left: 113px; top: 243px"><span class="r" style="animation-delay: 1.6s"></span><span class="d"></span></div>
+          <div class="pin" style="left: 51px; top: 170px"><span class="r" style="animation-delay: 2s"></span><span class="d"></span></div>
+        </div>
+        <span style="position: absolute; left: 50%; top: 128px; transform: translateX(-50%); font-size: 12px; font-weight: 700; color: #ffffff; background: rgba(4,8,18,.85); border: 1px solid rgba(90,155,255,.5); padding: 4px 10px; border-radius: 4px">拠点（足立区）</span>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px"><span class="chip">足立区</span><span class="chip">葛飾区</span><span class="chip">江戸川区</span><span class="chip">北区</span><span class="chip">板橋区</span><span class="chip">文京区</span></div>
+    </div>
+  </section>
+
+  <!-- SNS swipe -->
+  <section id="sp-sns" style="padding: 64px 0">
+    <div data-rv="sns" class="rv" style="display: flex; flex-direction: column; gap: 16px">
+      <div style="padding: 0 16px; display: flex; flex-direction: column; gap: 14px">
+        <div class="en" style="font-size: 12px; color: #3d8bff">04 — Social Media</div>
+        <h2 class="jp-d" style="margin: 0; font-size: 32px; line-height: 1.3; color: #ffffff">現場のリアルを、<br>発信力に変える。</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.85; color: #9fadc6">「ぐぐ@軽貨物」として、軽貨物のリアルを毎日発信中。</p>
+        <span class="en" style="font-size: 11px; color: #6d7d99">Swipe →</span>
+      </div>
+      <div class="snap">
+        <div class="phone"><video data-src="assets/sns1.mp4" preload="none" autoplay="" muted="" loop="" playsinline="" aria-label="配達時に困る事3選"></video></div>
+        <div class="phone"><video data-src="assets/sns2.mp4" preload="none" autoplay="" muted="" loop="" playsinline="" aria-label="こんな軽貨物会社はやめとけ3選"></video></div>
+        <div class="phone"><video data-src="assets/sns3.mp4" preload="none" autoplay="" muted="" loop="" playsinline="" aria-label="置き配エピソード"></video></div>
+      </div>
+      <div style="padding: 0 16px; display: flex; flex-direction: column; gap: 10px">
+        <a class="btn btn-p" href="https://www.tiktok.com/@googootime_33">TikTok @googootime_33</a>
+        <a class="btn btn-g" href="https://www.instagram.com/gooddrive_official/">Instagram @gooddrive_official</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI -->
+  <section id="sp-ai" style="padding: 60px 16px; background: #050913; border-top: 1px solid rgba(90,155,255,.15); border-bottom: 1px solid rgba(90,155,255,.15)">
+    <div data-rv="ai" class="rv" style="display: flex; flex-direction: column; gap: 16px">
+      <div class="en" style="font-size: 12px; color: #3d8bff">05 — AI × Logistics</div>
+      <h2 class="jp-d" style="margin: 0; font-size: 30px; line-height: 1.3; color: #ffffff">現場の「面倒」を、<br>AIで0にする。</h2>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+        <div class="card" style="padding: 16px; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 15px; font-weight: 700; color: #ffffff">シフト自動化</span><span style="font-size: 12px; line-height: 1.7; color: #9fadc6">休み希望〜LINE共有まで</span></div>
+        <div class="card" style="padding: 16px; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 15px; font-weight: 700; color: #ffffff">住所取り込み</span><span style="font-size: 12px; line-height: 1.7; color: #9fadc6">地図アプリへ一括反映</span></div>
+        <div class="card" style="padding: 16px; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 15px; font-weight: 700; color: #ffffff">トレンド分析</span><span style="font-size: 12px; line-height: 1.7; color: #9fadc6">SNS企画を高速化</span></div>
+        <div class="card" style="padding: 16px; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 15px; font-weight: 700; color: #ffffff">AI動画制作</span><span style="font-size: 12px; line-height: 1.7; color: #9fadc6">GD CREATIVE</span></div>
+      </div>
+      <a class="btn btn-g" href="https://gooddrivehaisou-create.github.io/gd-creative-site/">GD CREATIVE を見る</a>
+    </div>
+  </section>
+
+  <!-- MOTTO -->
+  <section style="position: relative; padding: 70px 16px; text-align: center; overflow: hidden">
+    <div style="position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(30,107,255,.22), transparent 65%)"></div>
+    <div style="position: relative; display: flex; flex-direction: column; align-items: center; gap: 16px">
+      <div class="en" style="font-size: 12px; color: #3d8bff">Our Motto</div>
+      <p class="jp-d" style="margin: 0; font-size: 34px; line-height: 1.35; color: #ffffff">やらない後悔より、<br><span style="color: #3d8bff; text-shadow: 0 0 30px rgba(30,123,255,.7)">やって後悔。</span></p>
+      <p style="margin: 0; font-size: 14px; line-height: 1.85; color: #9fadc6">元プロサッカー選手として海外のピッチに立った代表・ぐぐ。挑戦し続けるマインドは、配送でも、発信でも、AIでも変わらない。</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section style="padding: 40px 16px 60px">
+    <div class="en" style="font-size: 12px; color: #3d8bff; margin-bottom: 12px">06 — FAQ</div>
+    <h2 class="jp-d" style="margin: 0 0 16px; font-size: 28px; color: #ffffff">よくある質問</h2>
+    <div style="border-top: 1px solid rgba(90,155,255,.2)">
+      <div style="border-bottom: 1px solid rgba(90,155,255,.2)"><button class="faq-q" type="button" aria-expanded="true" aria-controls="sp-faq0"><span>軽貨物の経験がなくても応募できますか？</span><span class="en faq-sign" style="font-size: 24px; color: #3d8bff; width: 26px; text-align: center; flex-shrink: 0">−</span></button><p id="sp-faq0" class="faq-a" style="margin: 0; padding: 0 0 24px; font-size: 14px; line-height: 1.9; color: #aab7cf">はい、未経験の方も歓迎です。同乗研修でルートや積み込みのコツからお伝えします。</p></div>
+<div style="border-bottom: 1px solid rgba(90,155,255,.2)"><button class="faq-q" type="button" aria-expanded="false" aria-controls="sp-faq1"><span>車両は持っていないといけませんか？</span><span class="en faq-sign" style="font-size: 24px; color: #3d8bff; width: 26px; text-align: center; flex-shrink: 0">+</span></button><p id="sp-faq1" class="faq-a" hidden style="margin: 0; padding: 0 0 24px; font-size: 14px; line-height: 1.9; color: #aab7cf">軽貨物車両は必要ですが、お持ちでなくても大丈夫です。GOOD DRIVEでリース（月額40,000円〜）をご用意しています。お持ちの方は持ち込みがおすすめです。</p></div>
+<div style="border-bottom: 1px solid rgba(90,155,255,.2)"><button class="faq-q" type="button" aria-expanded="false" aria-controls="sp-faq2"><span>稼働時間や報酬の支払いはどうなりますか？</span><span class="en faq-sign" style="font-size: 24px; color: #3d8bff; width: 26px; text-align: center; flex-shrink: 0">+</span></button><p id="sp-faq2" class="faq-a" hidden style="margin: 0; padding: 0 0 24px; font-size: 14px; line-height: 1.9; color: #aab7cf">稼働は9時スタート、早ければ17時に終了します。報酬は基本的に末締め・末払いです。いずれも案件により変動するため、詳しくは面談でご説明します。</p></div>
+<div style="border-bottom: 1px solid rgba(90,155,255,.2)"><button class="faq-q" type="button" aria-expanded="false" aria-controls="sp-faq3"><span>スポットの配送だけでも依頼できますか？</span><span class="en faq-sign" style="font-size: 24px; color: #3d8bff; width: 26px; text-align: center; flex-shrink: 0">+</span></button><p id="sp-faq3" class="faq-a" hidden style="margin: 0; padding: 0 0 24px; font-size: 14px; line-height: 1.9; color: #aab7cf">対応エリア・日時によってご相談可能です。フォームからお問い合わせください。</p></div>
+<div style="border-bottom: 1px solid rgba(90,155,255,.2)"><button class="faq-q" type="button" aria-expanded="false" aria-controls="sp-faq4"><span>SNS運用やAI制作だけの依頼も可能ですか？</span><span class="en faq-sign" style="font-size: 24px; color: #3d8bff; width: 26px; text-align: center; flex-shrink: 0">+</span></button><p id="sp-faq4" class="faq-a" hidden style="margin: 0; padding: 0 0 24px; font-size: 14px; line-height: 1.9; color: #aab7cf">可能です。AI動画制作・SNS運用代行・LP／HP制作は、GD CREATIVE にて承っています。</p></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="sp-contact" style="padding: 60px 16px 140px; background: linear-gradient(180deg, #03050a, #0a1a3d)">
+    <div style="display: flex; flex-direction: column; gap: 18px">
+      <div class="en" style="font-size: 12px; color: #3d8bff">07 — For Business</div>
+      <h2 class="jp-d" style="margin: 0; font-size: 28px; line-height: 1.3; color: #ffffff">配送・SNS・AIの<br>ご相談はこちら。</h2>
+      <form class="card mailform" style="padding: 20px; display: flex; flex-direction: column; gap: 16px"><div style="display: flex; flex-direction: column; gap: 14px"><div class="field"><label for="sp-type">ご用件</label><select id="sp-type" name="type"><option>配送のご依頼</option><option>SNS運用のご相談</option><option>AI・制作のご相談</option><option>その他</option></select></div><div class="field"><label for="sp-name">会社名・お名前</label><input id="sp-name" name="name" type="text" autocomplete="name" placeholder="株式会社〇〇 山田 太郎"></div><div class="field"><label for="sp-msg">内容</label><textarea id="sp-msg" name="msg" rows="4" placeholder="ご相談内容をご記入ください"></textarea></div><button type="submit" class="btn btn-p">メールで送信する</button><p style="margin: 0; font-size: 12px; color: #8a97b0; line-height: 1.7">お使いのメールアプリが開き、入力内容が gooddrive.haisou@gmail.com 宛てに入ります。</p></div></form>
+      <div style="font-size: 14px; color: #aab7cf; line-height: 1.9">GOOD DRIVE ／ 東京都足立区<br><a href="mailto:gooddrive.haisou@gmail.com">gooddrive.haisou@gmail.com</a></div>
+      <div style="display: flex; gap: 20px; font-size: 13px">
+        <a href="https://www.tiktok.com/@googootime_33">TikTok</a><a href="https://www.instagram.com/gooddrive_official/">Instagram</a><a href="https://gooddrivehaisou-create.github.io/gd-creative-site/">GD CREATIVE</a>
+      </div>
+      <span class="en" style="font-size: 11px; color: #6d7d99">© Good Drive</span>
+    </div>
+  </section>
+
+  <!-- sticky bottom CTA -->
+  <div style="position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; padding: 12px 16px calc(16px + env(safe-area-inset-bottom)); background: linear-gradient(to top, rgba(3,5,10,.98) 60%, rgba(3,5,10,0))">
+    <a class="btn btn-line" href="https://lin.ee/r5xgMfa" style="min-height: 56px; font-size: 17px">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"></path></svg>
+      LINEで応募・相談（未経験OK）
+    </a>
+  </div>
+</div>
+
+</div>
+<script>
+(function(){
+  var mq = window.matchMedia('(min-width: 900px)');
+  function activeRoot(){ return document.querySelector(mq.matches ? '.pc' : '.sp'); }
+  function wake(){
+    document.querySelectorAll('video').forEach(function(v){
+      var on = activeRoot().contains(v);
+      if (on) {
+        if (!v.getAttribute('src')) { v.setAttribute('src', v.getAttribute('data-src')); }
+        v.muted = true; v.loop = true; v.playsInline = true;
+        var p = v.play(); if (p && p.catch) p.catch(function(){});
+      } else if (!v.paused) { v.pause(); }
+    });
+  }
+  // reveal on scroll
+  var rvs = document.querySelectorAll('.rv');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }); }, {threshold: 0.12});
+    rvs.forEach(function(el){ io.observe(el); });
+  } else { rvs.forEach(function(el){ el.classList.add('in'); }); }
+  // FAQ
+  document.querySelectorAll('.faq-q').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var a = document.getElementById(btn.getAttribute('aria-controls'));
+      var open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      a.hidden = open;
+      btn.querySelector('.faq-sign').textContent = open ? '+' : '−';
+    });
+  });
+  // mobile menu
+  var mb = document.getElementById('sp-menu-btn'), menu = document.getElementById('sp-menu'), icon = document.getElementById('sp-menu-icon');
+  function setMenu(o){ menu.hidden = !o; mb.setAttribute('aria-expanded', String(o)); icon.setAttribute('d', o ? 'M6 6l12 12M18 6L6 18' : 'M4 7h16M4 12h16M4 17h16'); }
+  if (mb) { mb.addEventListener('click', function(){ setMenu(menu.hidden); }); document.querySelectorAll('.sp-menu-link').forEach(function(l){ l.addEventListener('click', function(){ setMenu(false); }); }); }
+  // contact form -> mail app
+  document.querySelectorAll('.mailform').forEach(function(f){
+    f.addEventListener('submit', function(ev){
+      ev.preventDefault();
+      var t = f.querySelector('[name=type]').value, n = f.querySelector('[name=name]').value, m = f.querySelector('[name=msg]').value;
+      var body = 'ご用件：' + t + '\n会社名・お名前：' + n + '\n\n' + m;
+      location.href = 'mailto:gooddrive.haisou@gmail.com?subject=' + encodeURIComponent('【GOOD DRIVE】' + t) + '&body=' + encodeURIComponent(body);
+    });
+  });
+  wake();
+  (mq.addEventListener ? mq.addEventListener('change', wake) : mq.addListener(wake));
+})();
+</script>
+</body>
+</html>
