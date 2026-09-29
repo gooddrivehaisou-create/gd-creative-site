@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GD CREATIVE | AIで、ブランドを映像に。</title>
+<meta name="description" content="GD CREATIVEは、AI映像で広告・ブランドフィルム・SNSクリエイティブを企画から納品まで制作するクリエイティブスタジオです。SNS運用・LP制作・HP制作もご相談いただけます。">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="canonical" href="https://gdcreative.jp/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GD CREATIVE">
+<meta property="og:title" content="GD CREATIVE | AIで、ブランドを映像に。">
+<meta property="og:description" content="AI映像で、広告・ブランドフィルム・SNSクリエイティブを企画から納品まで。">
+<meta property="og:url" content="https://gdcreative.jp/">
+<meta property="og:image" content="https://gdcreative.jp/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@GDCREATIVE_ST">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M20 4h24l16 16v24L44 60H20L4 44V20z' fill='%230a0a0a' stroke='%23fff' stroke-width='3'/%3E%3Cpath d='M22 50 44 14' stroke='%23c8ff2e' stroke-width='5'/%3E%3Ctext x='32' y='39' text-anchor='middle' font-family='Arial Black,Arial' font-weight='900' font-size='20' fill='%23fff'%3EGD%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+} }
+</script>
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#0a0a0a;
+  --bg-2:#111112;
+  --panel:#161617;
+  --line:rgba(255,255,255,.1);
+  --line-2:rgba(255,255,255,.2);
+  --text:#f4f4f2;
+  --muted:#a3a3a0;
+  --dim:#6b6b68;
+  --accent:#c8ff2e;
+  --accent-2:#dcff78;
+  --radius:18px;
+  --max:1180px;
+  --latin:'Syne',system-ui,sans-serif;
+  --jp:'Zen Kaku Gothic New','Hiragino Sans','Noto Sans JP',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--text);font-family:var(--jp);line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img,video{display:block;max-width:100%}
+.wrap{width:100%;max-width:var(--max);margin:0 auto;padding:0 24px}
+.eyebrow{font-family:var(--latin);font-size:12px;letter-spacing:.28em;color:var(--accent);font-weight:700}
+.h2{font-size:clamp(28px,4.6vw,52px);font-weight:900;line-height:1.3;letter-spacing:.01em;margin-top:14px}
+section{padding:120px 0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:54px;padding:0 28px;border-radius:999px;font-weight:700;font-size:15px;transition:transform .2s,background .2s,color .2s,border-color .2s;cursor:pointer;border:1px solid transparent;white-space:nowrap}
+.btn-accent{background:var(--accent);color:#0a0a0a}
+.btn-accent:hover{background:var(--accent-2);transform:translateY(-2px)}
+.btn-ghost{border-color:var(--line-2);color:var(--text);background:rgba(255,255,255,.03)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn .arr{font-family:var(--latin)}
+
+/* header */
+header{position:fixed;inset:0 0 auto 0;z-index:50;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+header.scrolled{background:rgba(10,10,10,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--latin);font-weight:800;font-size:16px;letter-spacing:.22em}
+.logo svg{width:32px;height:32px;flex:none}
+.menu{display:flex;gap:34px;font-family:var(--latin);font-size:13px;letter-spacing:.16em;font-weight:600}
+.menu a{color:var(--muted);transition:color .2s}
+.menu a:hover{color:var(--text)}
+.nav .btn{height:42px;padding:0 20px;font-size:13px}
+.burger{display:none;width:42px;height:42px;border:1px solid var(--line-2);border-radius:50%;background:none;color:var(--text);cursor:pointer}
+.burger i{display:block;width:16px;height:1.5px;background:currentColor;margin:4px auto}
+.drawer{display:none}
+
+/* hero */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;background:
+  radial-gradient(ellipse at 72% 50%,rgba(200,255,46,.08),transparent 55%),var(--bg)}
+#stage{position:absolute;inset:0;z-index:0}
+#stage canvas{display:block;width:100%;height:100%;opacity:0;transition:opacity 1.2s ease}
+#stage.ready canvas{opacity:1}
+.fallback{position:absolute;top:50%;right:8%;width:min(38vw,440px);transform:translateY(-50%);opacity:.9;transition:opacity .8s}
+#stage.ready .fallback{opacity:0}
+.hero::after{content:"";position:absolute;inset:auto 0 0 0;height:30%;background:linear-gradient(180deg,transparent,var(--bg));pointer-events:none;z-index:1}
+.hero .wrap{position:relative;z-index:2;pointer-events:none}
+.hero .wrap a{pointer-events:auto}
+.hero-text{max-width:600px}
+.hero h1{font-size:clamp(40px,7.4vw,96px);font-weight:900;line-height:1.12;letter-spacing:-.01em;margin:18px 0 22px}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p.lead{max-width:520px;color:#d4d4d0;font-size:clamp(15px,1.6vw,17px)}
+.tags{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0 36px}
+.tags li{list-style:none;font-family:var(--latin);font-size:11px;letter-spacing:.2em;font-weight:700;padding:8px 14px;border:1px solid var(--line-2);border-radius:999px;color:var(--muted);background:rgba(10,10,10,.5)}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px}
+.scroll-hint{position:absolute;right:24px;bottom:34px;z-index:2;font-family:var(--latin);font-size:11px;letter-spacing:.3em;color:var(--dim);writing-mode:vertical-rl}
+.drag-hint{position:absolute;left:50%;bottom:30px;transform:translateX(-50%);z-index:2;font-family:var(--latin);font-size:11px;letter-spacing:.24em;color:var(--dim);display:none}
+
+/* work */
+.work-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;margin-bottom:56px}
+.work-head p{color:var(--muted);max-width:380px;font-size:15px}
+.work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.work-video{position:relative;aspect-ratio:9/16;border-radius:var(--radius);overflow:hidden;background:var(--panel);border:1px solid var(--line)}
+.work-video video{width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
+.work-card:hover .work-video video{transform:scale(1.04)}
+.work-video .sound{position:absolute;right:12px;bottom:12px;width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,.55);border:1px solid var(--line-2);color:var(--text);display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px)}
+.work-video .sound svg{width:18px;height:18px}
+.work-meta{padding:18px 4px 0}
+.work-meta .cat{font-family:var(--latin);font-size:11px;letter-spacing:.22em;color:var(--accent);font-weight:700}
+.work-meta h3{font-family:var(--latin);font-size:21px;font-weight:700;margin:6px 0}
+.work-meta p{color:var(--muted);font-size:14px}
+
+/* services */
+.band{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:56px}
+.plan{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:30px 26px;display:flex;flex-direction:column;transition:border-color .25s,transform .25s;clip-path:polygon(18px 0,calc(100% - 18px) 0,100% 18px,100% calc(100% - 18px),calc(100% - 18px) 100%,18px 100%,0 calc(100% - 18px),0 18px)}
+.plan:hover{border-color:var(--line-2);transform:translateY(-4px)}
+.plan.pick{border-color:rgba(200,255,46,.5);background:linear-gradient(180deg,rgba(200,255,46,.08),var(--panel) 60%)}
+.plan .badge{align-self:flex-start;background:var(--accent);color:#0a0a0a;font-size:11px;font-weight:700;padding:3px 12px;border-radius:999px;margin-bottom:12px}
+.plan h3{font-family:var(--latin);font-size:17px;letter-spacing:.1em;font-weight:800}
+.plan ul{list-style:none;margin:20px 0 26px;color:var(--muted);font-size:14px;flex:1}
+.plan li{padding:7px 0;border-bottom:1px dashed var(--line)}
+.plan li:last-child{border:0}
+.price{font-family:var(--latin);font-size:30px;font-weight:800}
+.price small{font-family:var(--jp);font-size:14px;color:var(--muted);font-weight:500;margin-left:2px}
+.plan .btn{height:44px;font-size:13px;margin-top:18px;width:100%}
+.plans-cta{display:flex;justify-content:center;margin-top:48px}
+.note{color:var(--dim);font-size:13px;text-align:center;margin-top:16px}
+.extras{margin-top:72px;padding-top:56px;border-top:1px solid var(--line);display:grid;grid-template-columns:.8fr 1.2fr;gap:40px;align-items:start}
+.extras-head h3{font-size:clamp(22px,2.6vw,30px);font-weight:900;line-height:1.4;margin:12px 0 14px;text-wrap:balance}
+.extras-head p{color:var(--muted);font-size:14px}
+.extras-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.extra{display:flex;flex-direction:column;gap:6px;padding:22px 20px;border:1px solid var(--line);border-radius:14px;background:var(--panel);transition:border-color .2s,transform .2s;min-width:0}
+.extra:hover,.extra:focus-visible{border-color:var(--accent);transform:translateY(-3px);outline:none}
+.ex-en{font-family:var(--latin);font-size:10px;letter-spacing:.22em;color:var(--accent);font-weight:700}
+.extra strong{font-size:18px;font-weight:900}
+.ex-desc{color:var(--muted);font-size:13px;flex:1;line-height:1.7}
+.ex-price{margin-top:10px;align-self:flex-start;font-size:12px;font-weight:700;padding:4px 12px;border:1px solid var(--line-2);border-radius:999px}
+@media (max-width:1000px){.extras{grid-template-columns:1fr;gap:28px}}
+@media (max-width:640px){.extras-grid{grid-template-columns:1fr}.extra{padding:18px}}
+
+/* products */
+.prod-main{display:grid;grid-template-columns:1.1fr .9fr;margin-top:56px;border:1px solid rgba(200,255,46,.35);border-radius:24px;overflow:hidden;background:var(--panel)}
+.prod-visual{position:relative;min-height:420px;background:#0c0c0d;display:flex;align-items:flex-end;padding:40px;overflow:hidden}
+.prod-visual::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:44px 44px;mask-image:linear-gradient(180deg,#000,transparent 85%);-webkit-mask-image:linear-gradient(180deg,#000,transparent 85%)}
+.prod-visual::after{content:"";position:absolute;width:10px;height:160%;background:var(--accent);top:-30%;right:22%;transform:rotate(32deg);box-shadow:0 0 60px 8px rgba(200,255,46,.35)}
+.prod-visual h3{position:relative;z-index:1;font-family:var(--latin);font-weight:800;font-size:clamp(34px,4.6vw,58px);line-height:1}
+.prod-visual h3 span{color:var(--accent)}
+.prod-body{padding:44px 40px;display:flex;flex-direction:column}
+.prod-body .lead{color:#d4d4d0;font-size:15px;margin-top:12px}
+.checks{list-style:none;margin:26px 0;display:grid;gap:12px}
+.checks li{display:flex;gap:12px;align-items:flex-start;font-size:15px}
+.checks li::before{content:"";flex:none;width:20px;height:20px;margin-top:3px;border-radius:50%;background:var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.5l3 3 6-6.5' stroke='%23111' stroke-width='2.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/100% no-repeat}
+.prod-price{display:flex;align-items:baseline;gap:14px;margin:auto 0 20px;flex-wrap:wrap}
+.prod-price .label{font-family:var(--latin);font-size:12px;letter-spacing:.2em;color:var(--accent);font-weight:700}
+.prod-price .val{font-family:var(--latin);font-size:44px;font-weight:800}
+.prod-sub{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+.sub-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:30px;display:flex;flex-direction:column;gap:10px}
+.sub-card h3{font-family:var(--latin);font-size:19px;font-weight:800;letter-spacing:.03em}
+.sub-card p{color:var(--muted);font-size:14px;flex:1}
+.sub-card .row{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:12px;flex-wrap:wrap}
+.sub-card .val{font-family:var(--latin);font-size:26px;font-weight:800}
+.sub-card .btn{height:46px;padding:0 22px;font-size:14px}
+.secure{display:flex;align-items:center;justify-content:center;gap:8px;color:var(--dim);font-size:13px;margin-top:26px}
+
+/* process */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);margin-top:56px;border-top:1px solid var(--line)}
+.step{padding:34px 26px 10px 0}
+.step+.step{padding-left:26px;border-left:1px solid var(--line)}
+.step .num{font-family:var(--latin);font-size:13px;color:var(--accent);font-weight:700;letter-spacing:.1em}
+.step h3{font-family:var(--latin);font-size:24px;font-weight:800;letter-spacing:.06em;margin:10px 0 8px}
+.step p{color:var(--muted);font-size:14px}
+
+/* statement */
+.statement{padding:140px 0 100px;text-align:center;overflow:hidden}
+.statement .h2{font-size:clamp(30px,5.6vw,66px)}
+.statement .h2 span{color:var(--accent)}
+.marquee{margin-top:70px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0;overflow:hidden;white-space:nowrap}
+.marquee-track{display:inline-flex;gap:48px;animation:mq 28s linear infinite;font-family:var(--latin);font-weight:800;font-size:clamp(22px,3vw,34px);letter-spacing:.06em;color:var(--dim)}
+.marquee-track b{color:var(--text);font-weight:800}
+.marquee-track i{font-style:normal;color:var(--accent)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* contact */
+.contact{background:var(--bg-2);border-top:1px solid var(--line)}
+.contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:start}
+.contact-grid .desc{color:var(--muted);margin-top:20px;font-size:15px}
+.direct{margin-top:34px;padding:22px;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel)}
+.direct .k{font-size:12px;color:var(--dim)}
+.direct a{font-family:var(--latin);font-weight:700;color:var(--accent);word-break:break-all}
+form{background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:36px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.field{display:flex;flex-direction:column;gap:8px}
+.field.full{grid-column:1/-1}
+label{font-size:13px;font-weight:700;color:#d4d4d0}
+label .req{color:var(--accent);margin-left:4px;font-weight:500}
+input,select,textarea{width:100%;background:#0d0d0e;border:1px solid var(--line-2);border-radius:12px;color:var(--text);font:inherit;font-size:15px;padding:13px 14px;outline:none;transition:border-color .2s}
+input:focus,select:focus,textarea:focus{border-color:var(--accent)}
+textarea{min-height:140px;resize:vertical}
+select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M6 8l4 4 4-4' stroke='%23a3a3a0' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-size:18px;padding-right:40px}
+form .btn{grid-column:1/-1;width:100%;margin-top:6px}
+.form-note{grid-column:1/-1;color:var(--dim);font-size:12px;text-align:center}
+
+/* footer */
+footer{padding:60px 0 calc(40px + env(safe-area-inset-bottom));border-top:1px solid var(--line)}
+.foot{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:flex-start}
+.foot-links{display:flex;flex-wrap:wrap;gap:12px 26px;font-size:13px;color:var(--muted)}
+.foot-links a:hover{color:var(--accent)}
+.social{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+.social a{font-family:var(--latin);font-size:11px;letter-spacing:.14em;font-weight:700;padding:8px 14px;border:1px solid var(--line-2);border-radius:999px;color:var(--muted)}
+.social a:hover{border-color:var(--accent);color:var(--accent)}
+.copy{margin-top:40px;color:var(--dim);font-size:12px;font-family:var(--latin);letter-spacing:.1em}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s ease}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}.marquee-track{animation:none}html{scroll-behavior:auto}}
+
+/* responsive */
+@media (max-width:1000px){
+  .plans{grid-template-columns:1fr 1fr}
+  .prod-main{grid-template-columns:1fr}
+  .prod-visual{min-height:260px}
+  .contact-grid{grid-template-columns:1fr;gap:40px}
+  .steps{grid-template-columns:1fr 1fr}
+  .step:nth-child(3){padding-left:0;border-left:0}
+  .step:nth-child(n+3){border-top:1px solid var(--line)}
+}
+@media (max-width:760px){
+  section{padding:84px 0}
+  .wrap{padding:0 16px}
+  .menu,.nav .btn{display:none}
+  .burger{display:block}
+  .drawer{position:fixed;inset:72px 0 auto 0;background:rgba(10,10,10,.97);border-bottom:1px solid var(--line);padding:18px 16px 26px;flex-direction:column;gap:4px;z-index:49}
+  .drawer.open{display:flex}
+  .drawer a{padding:14px 4px;font-family:var(--latin);letter-spacing:.16em;font-weight:700;border-bottom:1px solid var(--line)}
+  .drawer .btn{margin-top:14px;border:0}
+  .hero{align-items:flex-end;padding:calc(72px + min(60vw,300px) + 40px) 0 64px}
+  .fallback{top:calc(88px + min(30vw,150px));right:50%;transform:translate(50%,-50%);width:min(60vw,300px)}
+  .scroll-hint{display:none}
+  .cta-row .btn{flex:1 1 100%}
+  .work-grid{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:78%;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -16px;padding:0 16px 8px;scrollbar-width:none}
+  .work-grid::-webkit-scrollbar{display:none}
+  .work-card{scroll-snap-align:start}
+  .plans{grid-template-columns:1fr}
+  .prod-body{padding:30px 22px}
+  .prod-visual{padding:28px 22px}
+  .prod-sub{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr;border-top:0}
+  .step,.step+.step{padding:26px 0 18px;border-left:0;border-top:1px solid var(--line)}
+  form{grid-template-columns:1fr;padding:24px 18px}
+}
+</style>
+</head>
+<body>
+
+<!-- 2Dロゴ(ヘッダー・フォールバック共通) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="gd-mark" viewBox="0 0 100 100">
+      <path d="M30 4h40l26 26v40L70 96H30L4 70V30z" fill="#0a0a0a" stroke="#f4f4f2" stroke-width="5"/>
+      <text x="50" y="62" text-anchor="middle" font-family="Syne,Arial Black,Arial" font-weight="800" font-size="34" fill="#f4f4f2" letter-spacing="-1">GD</text>
+      <path d="M33 80 67 20" stroke="#c8ff2e" stroke-width="7" stroke-linecap="square"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="#top" class="logo"><svg><use href="#gd-mark"/></svg>GD CREATIVE</a>
+    <nav class="menu">
+      <a href="#work">WORK</a>
+      <a href="#services">SERVICES</a>
+      <a href="#products">PRODUCTS</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
+    <a href="#contact" class="btn btn-accent">制作を相談する</a>
+    <button class="burger" id="burger" aria-label="メニュー"><i></i><i></i><i></i></button>
+  </div>
+</header>
+<div class="drawer" id="drawer">
+  <a href="#work">WORK</a>
+  <a href="#services">SERVICES</a>
+  <a href="#products">PRODUCTS</a>
+  <a href="#contact">CONTACT</a>
+  <a href="#contact" class="btn btn-accent">制作を相談する</a>
+</div>
+
+<main id="top">
+  <!-- HERO:3Dロゴ -->
+  <section class="hero" id="hero">
+    <div id="stage">
+      <svg class="fallback" aria-hidden="true"><use href="#gd-mark"/></svg>
+    </div>
+    <div class="wrap">
+      <div class="hero-text">
+        <div class="eyebrow">AI VIDEO &amp; CREATIVE STUDIO</div>
+        <h1>AIで、<br>ブランドを<em>映像</em>に。</h1>
+        <p class="lead">AIを使うことが目的じゃない。ブランドの空気まで伝わる広告映像を、企画から納品まで設計します。</p>
+        <ul class="tags"><li>AI VIDEO</li><li>BRAND FILM</li><li>SOCIAL ADS</li></ul>
+        <div class="cta-row">
+          <a href="#contact" class="btn btn-accent">制作を相談する <span class="arr">→</span></a>
+          <a href="#work" class="btn btn-ghost">制作実績を見る</a>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-hint">SCROLL</div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="wrap">
+      <div class="work-head rv">
+        <div>
+          <div class="eyebrow">SELECTED WORK</div>
+          <h2 class="h2">広告として見せる。<br>作品として残す。</h2>
+        </div>
+        <p>商品、企業、スポーツ。ジャンルごとの空気感を捉え、縦型SNS広告からブランドフィルムまで制作しています。</p>
+      </div>
+      <div class="work-grid">
+        <article class="work-card rv">
+          <div class="work-video">
+            <video muted loop playsinline preload="metadata" data-lazy src="https://d2ol7oe51mr4n9.cloudfront.net/user_3FUITiSvxu2pT2xMxdePF5KiswJ/8c16c3a9-c6c2-453f-bba3-107a3fe16fc0.mp4"></video>
+            <button class="sound" aria-label="音声オン/オフ"></button>
+          </div>
+          <div class="work-meta">
+            <div class="cat">PRODUCT / SNEAKER</div>
+            <h3>Premium Sneaker Ad</h3>
+            <p>人物と商品の両方を主役にした、縦型15秒のシネマティック商品広告。</p>
+          </div>
+        </article>
+        <article class="work-card rv">
+          <div class="work-video">
+            <video muted loop playsinline preload="metadata" data-lazy src="https://d2ol7oe51mr4n9.cloudfront.net/user_3FUITiSvxu2pT2xMxdePF5KiswJ/2e83c957-ef8e-4b65-aa8a-2551d355bfba.mp4"></video>
+            <button class="sound" aria-label="音声オン/オフ"></button>
+          </div>
+          <div class="work-meta">
+            <div class="cat">LOGISTICS / DELIVERY</div>
+            <h3>Delivery Brand Creative</h3>
+            <p>配送の現場感をプレミアムに見せる、企業・採用向けクリエイティブ。</p>
+          </div>
+        </article>
+        <article class="work-card rv">
+          <div class="work-video">
+            <video muted loop playsinline preload="metadata" data-lazy src="https://d2ol7oe51mr4n9.cloudfront.net/user_3FUITiSvxu2pT2xMxdePF5KiswJ/91270cb8-b332-4470-b136-7bcfacbdbdab.mp4"></video>
+            <button class="sound" aria-label="音声オン/オフ"></button>
+          </div>
+          <div class="work-meta">
+            <div class="cat">FOOTBALL / CINEMATIC</div>
+            <h3>Cinematic Football Ad</h3>
+            <p>スポーツドキュメンタリーの空気感と商品ディテールを組み合わせた広告表現。</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="band">
+    <div class="wrap">
+      <div class="rv">
+        <div class="eyebrow">SERVICES</div>
+        <h2 class="h2">映像一本から、継続制作まで。</h2>
+      </div>
+      <div class="plans">
+        <div class="plan rv">
+          <h3>STARTER AD</h3>
+          <ul><li>15秒前後</li><li>縦型</li><li>1コンセプト</li><li>修正1回</li></ul>
+          <div class="price">¥39,800<small>〜</small></div>
+          <a class="btn btn-ghost" data-product="starter" target="_blank" rel="noopener">申し込む <span class="arr">↗</span></a>
+        </div>
+        <div class="plan pick rv">
+          <span class="badge">おすすめ</span>
+          <h3>CINEMATIC AD</h3>
+          <ul><li>15〜30秒</li><li>企画構成・編集</li><li>SE・字幕</li><li>修正2回</li></ul>
+          <div class="price">¥79,800<small>〜</small></div>
+          <a class="btn btn-accent" data-product="cinematic" target="_blank" rel="noopener">申し込む <span class="arr">↗</span></a>
+        </div>
+        <div class="plan rv">
+          <h3>BRAND FILM</h3>
+          <ul><li>30〜60秒</li><li>ブランド設計</li><li>複数シーン</li><li>複数比率で納品</li></ul>
+          <div class="price">¥149,800<small>〜</small></div>
+          <a class="btn btn-ghost" data-product="brandfilm" target="_blank" rel="noopener">申し込む <span class="arr">↗</span></a>
+        </div>
+        <div class="plan rv">
+          <h3>MONTHLY</h3>
+          <ul><li>継続制作</li><li>月次企画</li><li>SNS・広告クリエイティブ</li></ul>
+          <div class="price">¥198,000<small>〜/月</small></div>
+          <a class="btn btn-ghost" data-product="monthly" target="_blank" rel="noopener">申し込む <span class="arr">↗</span></a>
+        </div>
+      </div>
+      <p class="note">内容・尺・納期により変動します。迷ったらお気軽にご相談ください。</p>
+
+      <div class="extras rv">
+        <div class="extras-head">
+          <div class="eyebrow">ALSO AVAILABLE</div>
+          <h3>映像と一緒に、<br>届ける場所までつくる。</h3>
+          <p>作った映像を、SNSで流して、LPやHPで受け止める。集客の導線ごとまとめてご相談いただけます。</p>
+        </div>
+        <div class="extras-grid">
+          <a class="extra" href="#contact" data-plan="SNS運用(要相談)">
+            <span class="ex-en">SOCIAL MEDIA</span>
+            <strong>SNS運用</strong>
+            <span class="ex-desc">TikTok・Instagram・Threadsの企画、投稿、動画制作まで。</span>
+            <span class="ex-price">要相談</span>
+          </a>
+          <a class="extra" href="#contact" data-plan="LP制作(要相談)">
+            <span class="ex-en">LANDING PAGE</span>
+            <strong>LP制作</strong>
+            <span class="ex-desc">広告・商品販売・採用のための1枚完結ページ。</span>
+            <span class="ex-price">要相談</span>
+          </a>
+          <a class="extra" href="#contact" data-plan="HP制作(要相談)">
+            <span class="ex-en">WEBSITE</span>
+            <strong>HP制作</strong>
+            <span class="ex-desc">会社・店舗・ブランドの公式サイト。映像を活かした構成で。</span>
+            <span class="ex-price">要相談</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="plans-cta rv"><a href="#contact" class="btn btn-ghost">まずは相談する <span class="arr">→</span></a></div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section id="products">
+    <div class="wrap">
+      <div class="rv">
+        <div class="eyebrow">PRODUCTS</div>
+        <h2 class="h2">プロの制作フローを、<br>そのまま手元に。</h2>
+      </div>
+      <div class="prod-main rv">
+        <div class="prod-visual">
+          <h3>CINEMATIC<br><span>AI AD</span><br>SYSTEM</h3>
+        </div>
+        <div class="prod-body">
+          <div class="eyebrow">MAIN PRODUCT</div>
+          <p class="lead">プロンプトだけで終わらない。企画、提案、制作、修正、納品までを一つにしたAI広告制作システム。</p>
+          <ul class="checks">
+            <li>40 Cinematic Prompts</li>
+            <li>AI Ad Creator Playbook</li>
+            <li>Client Ops Toolkit</li>
+            <li>見積・修正・納品テンプレート</li>
+          </ul>
+          <div class="prod-price">
+            <span class="label">FULL SYSTEM</span>
+            <span class="val">¥12,800</span>
+          </div>
+          <a class="btn btn-accent" data-product="system" target="_blank" rel="noopener">購入する <span class="arr">↗</span></a>
+        </div>
+      </div>
+      <div class="prod-sub">
+        <div class="sub-card rv">
+          <div class="eyebrow">PROMPTS</div>
+          <h3>AI CINEMATIC PROMPT VAULT 40</h3>
+          <p>広告化しやすい40本のシネマティックプロンプト。</p>
+          <div class="row">
+            <span class="val">¥4,980</span>
+            <a class="btn btn-ghost" data-product="vault" target="_blank" rel="noopener">購入する <span class="arr">↗</span></a>
+          </div>
+        </div>
+        <div class="sub-card rv">
+          <div class="eyebrow">PLAYBOOK</div>
+          <h3>AI AD CREATOR PLAYBOOK</h3>
+          <p>価格設計、提案、修正、納品までをまとめた実践ガイド。</p>
+          <div class="row">
+            <span class="val">¥7,980</span>
+            <a class="btn btn-ghost" data-product="playbook" target="_blank" rel="noopener">購入する <span class="arr">↗</span></a>
+          </div>
+        </div>
+      </div>
+      <p class="secure">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+        決済はShopifyの安全なチェックアウトで行われます
+      </p>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process" class="band">
+    <div class="wrap">
+      <div class="rv">
+        <div class="eyebrow">PROCESS</div>
+        <h2 class="h2">制作を、迷わない流れに。</h2>
+      </div>
+      <div class="steps">
+        <div class="step rv"><div class="num">01</div><h3>BRIEF</h3><p>目的とターゲットを整理。</p></div>
+        <div class="step rv"><div class="num">02</div><h3>CONCEPT</h3><p>構成と映像トーンを設計。</p></div>
+        <div class="step rv"><div class="num">03</div><h3>CREATE</h3><p>AI生成と編集で形にする。</p></div>
+        <div class="step rv"><div class="num">04</div><h3>DELIVER</h3><p>用途に合わせて納品。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATEMENT -->
+  <section class="statement">
+    <div class="wrap rv">
+      <div class="eyebrow">GD CREATIVE</div>
+      <h2 class="h2">AIを使う。<br>でも、<span>AIっぽく</span>終わらせない。</h2>
+    </div>
+    <div class="marquee" aria-hidden="true"><div class="marquee-track" id="mq"></div></div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <div class="wrap contact-grid">
+      <div class="rv">
+        <div class="eyebrow">PROJECT INQUIRY</div>
+        <h2 class="h2">次の広告を、<br>映像から変える。</h2>
+        <p class="desc">商品広告、採用動画、SNS運用向けの継続制作まで。目的と予算感をお聞かせください。最適なプランをご提案します。</p>
+        <div class="direct">
+          <div class="k">メールで直接のご相談</div>
+          <a id="mailDirect" href="#"></a>
+        </div>
+      </div>
+      <form id="inq" class="rv" novalidate>
+        <div class="field">
+          <label for="f-name">お名前<span class="req">必須</span></label>
+          <input id="f-name" name="name" required autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="f-company">会社名・屋号</label>
+          <input id="f-company" name="company" autocomplete="organization">
+        </div>
+        <div class="field full">
+          <label for="f-email">メールアドレス<span class="req">必須</span></label>
+          <input id="f-email" name="email" type="email" required autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="f-plan">ご希望のプラン</label>
+          <select id="f-plan" name="plan">
+            <option>未定・相談したい</option>
+            <option>STARTER AD(¥39,800〜)</option>
+            <option>CINEMATIC AD(¥79,800〜)</option>
+            <option>BRAND FILM(¥149,800〜)</option>
+            <option>MONTHLY(¥198,000〜/月)</option>
+            <option>SNS運用(要相談)</option>
+            <option>LP制作(要相談)</option>
+            <option>HP制作(要相談)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-due">希望納期</label>
+          <input id="f-due" name="due" placeholder="例:10月末まで">
+        </div>
+        <div class="field full">
+          <label for="f-msg">ご相談内容<span class="req">必須</span></label>
+          <textarea id="f-msg" name="message" required placeholder="商品・サービスの内容、動画の用途(広告/採用/SNSなど)、参考イメージなど"></textarea>
+        </div>
+        <button type="submit" class="btn btn-accent">送信内容をメールで開く <span class="arr">↗</span></button>
+        <p class="form-note">送信ボタンを押すと、入力内容が反映されたメール作成画面が開きます。</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a href="#top" class="logo"><svg><use href="#gd-mark"/></svg>GD CREATIVE</a>
+        <div class="social">
+          <a href="https://www.instagram.com/gdcreative.studio/" target="_blank" rel="noopener">INSTAGRAM</a>
+          <a href="https://www.threads.net/@gdcreative.studio" target="_blank" rel="noopener">THREADS</a>
+          <a href="https://www.tiktok.com/@gdcreative.studio" target="_blank" rel="noopener">TIKTOK</a>
+          <a href="https://x.com/GDCREATIVE_ST" target="_blank" rel="noopener">X</a>
+          <a href="https://www.youtube.com/@GDCREATIVE-official" target="_blank" rel="noopener">YOUTUBE</a>
+        </div>
+      </div>
+      <nav class="foot-links">
+        <a href="#work">制作実績</a>
+        <a href="#services">料金プラン</a>
+        <a href="#products">商品</a>
+        <a href="#contact">お問い合わせ</a>
+        <a data-link="tokushoho" target="_blank" rel="noopener">特定商取引法に基づく表記</a>
+        <a data-link="privacy" target="_blank" rel="noopener">プライバシーポリシー</a>
+      </nav>
+    </div>
+    <div class="copy">© <span id="yr"></span> GD CREATIVE</div>
+  </div>
+</footer>
+
+<script>
+/* ===== 設定:ここだけ書き換えればOK ===== */
+const CONFIG = {
+  email: 'gooddrive.haisou@gmail.com',
+  shop: 'https://gdcreativestudio.myshopify.com',
+  // Shopifyの商品ハンドル(空欄にすると「購入相談メール」に切り替わる)
+  products: {
+    system:    'cinematic-ai-ad-system',
+    vault:     'ai-cinematic-prompt-vault-40',
+    playbook:  'ai-ad-creator-playbook',
+    starter:   'starter-ad',
+    cinematic: 'cinematic-ad',
+    brandfilm: 'brand-film',
+    monthly:   'monthly-content-plan-first-month'
+  },
+  // Shopify管理画面「設定 → ポリシー」で作成後に有効になります
+  links: {
+    tokushoho: '/policies/legal-notice',
+    privacy:   '/policies/privacy-policy'
+  }
+};
+const PRODUCT_NAMES = {
+  system:'CINEMATIC AI AD SYSTEM', vault:'AI CINEMATIC PROMPT VAULT 40', playbook:'AI AD CREATOR PLAYBOOK',
+  starter:'STARTER AD', cinematic:'CINEMATIC AD', brandfilm:'BRAND FILM', monthly:'MONTHLY'
+};
+/* ======================================== */
+
+const mailto = (subject, body='') =>
+  `mailto:${CONFIG.email}?subject=${encodeURIComponent(subject)}${body ? '&body=' + encodeURIComponent(body) : ''}`;
+
+document.querySelectorAll('[data-product]').forEach(a => {
+  const key = a.dataset.product, handle = CONFIG.products[key];
+  if (handle) a.href = `${CONFIG.shop}/products/${handle}`;
+  else { a.href = mailto(`${PRODUCT_NAMES[key]} 購入相談`); a.removeAttribute('target'); }
+});
+document.querySelectorAll('[data-link]').forEach(a => {
+  const p = CONFIG.links[a.dataset.link];
+  if (p) a.href = CONFIG.shop + p; else a.style.display = 'none';
+});
+const md = document.getElementById('mailDirect');
+md.textContent = CONFIG.email; md.href = mailto('GD CREATIVE 制作相談');
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+// 「映像と一緒に頼める制作」→ フォームのプランを自動選択
+document.querySelectorAll('[data-plan]').forEach(a => a.addEventListener('click', () => {
+  const sel = document.getElementById('f-plan');
+  sel.value = a.dataset.plan;
+}));
+
+const hdr = document.getElementById('hdr');
+const onScroll = () => hdr.classList.toggle('scrolled', scrollY > 30);
+addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+const drawer = document.getElementById('drawer');
+document.getElementById('burger').addEventListener('click', () => drawer.classList.toggle('open'));
+drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => drawer.classList.remove('open')));
+
+const words = ['AI VIDEO','PRODUCT ADS','SPORTS FILMS','RECRUITING','SOCIAL CREATIVE'];
+const line = words.map((w,i) => `<${i%2?'span':'b'}>${w}</${i%2?'span':'b'}><i>/</i>`).join('');
+document.getElementById('mq').innerHTML = line.repeat(4);
+
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+}), {threshold:.12});
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+const icoOff = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="m23 9-6 6M17 9l6 6"/></svg>';
+const icoOn  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg>';
+const vids = document.querySelectorAll('video[data-lazy]');
+const vio = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) e.target.play().catch(()=>{}); else e.target.pause();
+}), {threshold:.35});
+vids.forEach(v => {
+  vio.observe(v);
+  const b = v.parentElement.querySelector('.sound');
+  b.innerHTML = icoOff;
+  b.addEventListener('click', () => {
+    const turnOn = v.muted;
+    vids.forEach(o => { o.muted = true; o.parentElement.querySelector('.sound').innerHTML = icoOff; });
+    if (turnOn) { v.muted = false; v.play().catch(()=>{}); b.innerHTML = icoOn; }
+  });
+});
+
+document.getElementById('inq').addEventListener('submit', e => {
+  e.preventDefault();
+  const f = e.target;
+  for (const n of ['name','email','message']) {
+    if (!f[n].value.trim()) { f[n].focus(); f[n].style.borderColor = 'var(--accent)'; return; }
+  }
+  if (!f.email.checkValidity()) { f.email.focus(); return; }
+  const body =
+`お名前:${f.name.value}
+会社名・屋号:${f.company.value || '-'}
+メール:${f.email.value}
+希望プラン:${f.plan.value}
+希望納期:${f.due.value || '-'}
+
+【ご相談内容】
+${f.message.value}`;
+  location.href = mailto(`GD CREATIVE 制作相談(${f.name.value}様)`, body);
+});
+</script>
+
+<!-- ===== 3Dロゴ(Three.js) ===== -->
+<script type="module">
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+
+const stage = document.getElementById('stage');
+const hero = document.getElementById('hero');
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const LIME = 0xc8ff2e;
+
+let renderer;
+try {
+  renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
+} catch (e) { throw e; } // WebGL非対応ならSVGロゴのまま
+
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.05;
+stage.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x0a0a0a);
+scene.fog = new THREE.Fog(0x0a0a0a, 9, 18);
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+
+const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
+camera.position.set(0, 0, 10);
+
+// ---- ライト
+scene.add(new THREE.AmbientLight(0xffffff, 0.15));
+const key = new THREE.DirectionalLight(0xffffff, 1.6); key.position.set(3, 4, 6); scene.add(key);
+const limeLight = new THREE.PointLight(LIME, 30, 12, 2); limeLight.position.set(-2.5, -1.5, 3); scene.add(limeLight);
+const rim = new THREE.DirectionalLight(0xffffff, 1.2); rim.position.set(-4, 2, -4); scene.add(rim);
+
+// ---- 八角形シェイプ(角を面取りした四角)
+function octa(s, c) {
+  const p = [[-s+c, s],[s-c, s],[s, s-c],[s,-s+c],[s-c,-s],[-s+c,-s],[-s,-s+c],[-s, s-c]];
+  const sh = new THREE.Shape();
+  p.forEach(([x,y],i) => i ? sh.lineTo(x,y) : sh.moveTo(x,y));
+  sh.closePath();
+  return sh;
+}
+function centerZ(g, d) { g.translate(0, 0, -d/2); return g; }
+
+const emblem = new THREE.Group();   // 位置・スケール
+const spinner = new THREE.Group();  // 回転
+emblem.add(spinner);
+scene.add(emblem);
+
+const matFrame = new THREE.MeshPhysicalMaterial({ color: 0xf2f2f0, metalness: 1, roughness: 0.18, clearcoat: 1, clearcoatRoughness: 0.1 });
+const matPlate = new THREE.MeshPhysicalMaterial({ color: 0x0d0d0e, metalness: 0.6, roughness: 0.35, clearcoat: 0.6, clearcoatRoughness: 0.25 });
+const matText  = new THREE.MeshPhysicalMaterial({ color: 0xffffff, metalness: 0.9, roughness: 0.12, clearcoat: 1 });
+const matLime  = new THREE.MeshStandardMaterial({ color: LIME, emissive: LIME, emissiveIntensity: 1.6, roughness: 0.3, metalness: 0.2 });
+
+// 外枠(八角形リング)
+const ringShape = octa(1.62, 0.56);
+ringShape.holes.push(octa(1.4, 0.48));
+const ringDepth = 0.34;
+const ring = new THREE.Mesh(centerZ(new THREE.ExtrudeGeometry(ringShape, { depth: ringDepth, bevelEnabled: true, bevelThickness: 0.04, bevelSize: 0.03, bevelSegments: 4 }), ringDepth), matFrame);
+spinner.add(ring);
+
+// 背面プレート
+const plateDepth = 0.16;
+const plate = new THREE.Mesh(centerZ(new THREE.ExtrudeGeometry(octa(1.42, 0.49), { depth: plateDepth, bevelEnabled: false }), plateDepth), matPlate);
+plate.position.z = -0.08;
+spinner.add(plate);
+
+// ライムのスラッシュ
+const slash = new THREE.Mesh(new THREE.BoxGeometry(0.17, 3.25, 0.42), matLime);
+slash.rotation.z = -0.52;
+slash.position.z = 0.02;
+spinner.add(slash);
+
+// 周回するライン(八角形ワイヤー)
+const orbitPts = octa(2.35, 0.8).getPoints().map(p => new THREE.Vector3(p.x, p.y, 0));
+const orbit = new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(orbitPts),
+  new THREE.LineBasicMaterial({ color: LIME, transparent: true, opacity: 0.35 }));
+orbit.rotation.x = 1.15;
+emblem.add(orbit);
+const orbit2 = new THREE.LineLoop(orbit.geometry, new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.12 }));
+orbit2.scale.setScalar(1.25); orbit2.rotation.set(1.3, 0.4, 0);
+emblem.add(orbit2);
+
+// パーティクル
+const N = 700, pos = new Float32Array(N*3), col = new Float32Array(N*3);
+const cL = new THREE.Color(LIME), cW = new THREE.Color(0xffffff);
+for (let i = 0; i < N; i++) {
+  const r = 3.2 + Math.random()*5, t = Math.random()*Math.PI*2, ph = Math.acos(2*Math.random()-1);
+  pos.set([r*Math.sin(ph)*Math.cos(t), r*Math.sin(ph)*Math.sin(t)*0.7, r*Math.cos(ph) - 1], i*3);
+  (Math.random() < 0.25 ? cL : cW).toArray(col, i*3);
+}
+const pg = new THREE.BufferGeometry();
+pg.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+pg.setAttribute('color', new THREE.BufferAttribute(col, 3));
+const dust = new THREE.Points(pg, new THREE.PointsMaterial({ size: 0.028, vertexColors: true, transparent: true, opacity: 0.7, sizeAttenuation: true, depthWrite: false }));
+emblem.add(dust);
+
+// "GD" 立体文字(ロゴに合わせた面取りの角ばった字形。フォント読み込み不要)
+function poly(pts, holes = []) {
+  const s = new THREE.Shape(pts.map(([x,y]) => new THREE.Vector2(x,y)));
+  holes.forEach(h => s.holes.push(new THREE.Path(h.map(([x,y]) => new THREE.Vector2(x,y)))));
+  return s;
+}
+const LH = 1.3, LW = 0.95, T = 0.27, C = 0.3, ci = C * 0.55, mid = LH * 0.52;
+const G = poly([
+  [LW,LH],[C,LH],[0,LH-C],[0,C],[C,0],[LW,0],[LW,mid],[LW*0.46,mid],[LW*0.46,mid-T],
+  [LW-T,mid-T],[LW-T,T],[T+ci,T],[T,T+ci],[T,LH-T-ci],[T+ci,LH-T],[LW,LH-T]
+]);
+const D = poly(
+  [[0,0],[LW-C,0],[LW,C],[LW,LH-C],[LW-C,LH],[0,LH]],
+  [[[T,T],[T,LH-T],[LW-T-ci,LH-T],[LW-T,LH-T-ci],[LW-T,T+ci],[LW-T-ci,T]]]
+);
+const gap = 0.13, textDepth = 0.3;
+const letterOpts = { depth: textDepth, bevelEnabled: true, bevelThickness: 0.03, bevelSize: 0.02, bevelSegments: 3 };
+const gGeo = new THREE.ExtrudeGeometry(G, letterOpts);
+const dGeo = new THREE.ExtrudeGeometry(D, letterOpts);
+const totalW = LW * 2 + gap;
+gGeo.translate(-totalW/2, -LH/2, -textDepth/2);
+dGeo.translate(-totalW/2 + LW + gap, -LH/2, -textDepth/2);
+const letters = new THREE.Group();
+letters.add(new THREE.Mesh(gGeo, matText), new THREE.Mesh(dGeo, matText));
+letters.position.z = 0.02;
+spinner.add(letters);
+requestAnimationFrame(() => stage.classList.add('ready'));
+
+// ---- ポストエフェクト(ライムの発光)
+const composer = new EffectComposer(renderer);
+composer.addPass(new RenderPass(scene, camera));
+const bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), 0.7, 0.55, 0.82);
+composer.addPass(bloom);
+composer.addPass(new OutputPass());
+
+// ---- レイアウト
+let layout = { x: 0, y: 0, s: 1 };
+function resize() {
+  const w = hero.clientWidth, h = hero.clientHeight;
+  renderer.setSize(w, h, false);
+  composer.setSize(w, h);
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+  const wide = w / h > 1.05;
+  const halfH = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.position.z;
+  if (wide) layout = { x: Math.min(2.6, 1.9 * camera.aspect / 1.6), y: 0.1, s: 1 };
+  else {
+    // スマホ:ヘッダー下にロゴ、下半分にテキスト
+    const rPx = Math.min(w * 0.3, 150), cy = 72 + rPx + 16;
+    layout = { x: 0, y: (0.5 - cy / h) * 2 * halfH, s: (rPx / h * 2 * halfH) / 1.65 };
+  }
+  emblem.scale.setScalar(layout.s);
+}
+addEventListener('resize', resize);
+resize();
+
+// ---- インタラクション
+const target = { x: 0, y: 0 };
+let dragging = false, lastX = 0, spinVel = 0, extraSpin = 0;
+addEventListener('pointermove', e => {
+  target.x = (e.clientX / innerWidth - 0.5);
+  target.y = (e.clientY / innerHeight - 0.5);
+  if (dragging) { spinVel += (e.clientX - lastX) * 0.0025; lastX = e.clientX; }
+}, { passive: true });
+renderer.domElement.addEventListener('pointerdown', e => { dragging = true; lastX = e.clientX; });
+addEventListener('pointerup', () => dragging = false);
+
+// ヒーローが見えている時だけ描画
+let visible = true;
+new IntersectionObserver(([e]) => { visible = e.isIntersecting; }, { threshold: 0 }).observe(hero);
+
+const clock = new THREE.Clock();
+function tick() {
+  requestAnimationFrame(tick);
+  if (!visible) return;
+  const t = clock.getElapsedTime();
+  const sc = Math.min(scrollY / innerHeight, 1);
+
+  spinVel *= 0.94; extraSpin += spinVel;
+  const idle = reduce ? 0 : Math.sin(t * 0.45) * 0.38;
+  spinner.rotation.y += ((idle + target.x * 0.6 + extraSpin + sc * 1.6) - spinner.rotation.y) * 0.06;
+  spinner.rotation.x += ((target.y * 0.35 - sc * 0.3) - spinner.rotation.x) * 0.06;
+
+  emblem.position.x = layout.x;
+  emblem.position.y = layout.y + (reduce ? 0 : Math.sin(t * 0.9) * 0.08) + sc * 1.2;
+
+  if (!reduce) {
+    orbit.rotation.z = t * 0.25;
+    orbit2.rotation.z = -t * 0.12;
+    dust.rotation.y = t * 0.03;
+    matLime.emissiveIntensity = 1.4 + Math.sin(t * 2.2) * 0.35;
+    limeLight.position.x = -2.5 + Math.sin(t * 0.7) * 1.2;
+  }
+  composer.render();
+}
+tick();
+</script>
+</body>
+</html>
