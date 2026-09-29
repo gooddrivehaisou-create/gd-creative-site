@@ -814,7 +814,7 @@ requestAnimationFrame(() => stage.classList.add('ready'));
 // ---- ポストエフェクト(ライムの発光)
 const composer = new EffectComposer(renderer);
 composer.addPass(new RenderPass(scene, camera));
-const bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), 0.7, 0.55, 0.82);
+const bloom = new UnrealBloomPass(new THREE.Vector2(hero.clientWidth || innerWidth, hero.clientHeight || innerHeight), 0.7, 0.55, 0.82);
 composer.addPass(bloom);
 composer.addPass(new OutputPass());
 
@@ -824,6 +824,8 @@ function resize() {
   const w = hero.clientWidth, h = hero.clientHeight;
   renderer.setSize(w, h, false);
   composer.setSize(w, h);
+  bloom.resolution.set(w, h);
+  bloom.setSize(w * renderer.getPixelRatio(), h * renderer.getPixelRatio());
   camera.aspect = w / h;
   camera.updateProjectionMatrix();
   const wide = w / h > 1.05;
@@ -854,7 +856,6 @@ addEventListener('pointerup', () => dragging = false);
 let visible = true;
 new IntersectionObserver(([e]) => { visible = e.isIntersecting; }, { threshold: 0 }).observe(hero);
 
-window.__gd = { scene, spinner, emblem, renderer, composer, camera };
 const clock = new THREE.Clock();
 function tick() {
   requestAnimationFrame(tick);
