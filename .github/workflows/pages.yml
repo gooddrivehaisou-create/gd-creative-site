@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
       - name: Exclude internal files from the site
-        run: rm -rf .claude sns
+        run: rm -rf .claude sns policies
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .
