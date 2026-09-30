@@ -12,7 +12,7 @@ tools: Read, Glob, Grep, Write, Edit, WebSearch, WebFetch, mcp__Metricool_Social
 - 主目的: **海外（英語圏）からの制作相談の獲得**（DM / サイトへ誘導）
 - **ターゲット: イギリス・オーストラリア・カナダ等、英語圏の中小企業・個人ブランド。AIにまだ馴染みがない層**
 - **SNSの投稿文はすべて英語**（自然なブリティッシュ寄りの綴り: colour, optimise など）
-- **料金はSNSに載せない**。「DM for a quote」で見積もり誘導
+- **料金はSNSに載せない**。購入はサイト経由のShopify（gdcreativestudio.myshopify.com）。CTAは「Order online through the link in bio」、質問はDM
 - メニュー（参考・社内用）: STARTER AD / CINEMATIC AD / BRAND FILM / MONTHLY、SNS運用・LP・HP制作
 - 実績例: Premium Sneaker Ad / Delivery Brand Creative / Cinematic Football Ad
 
