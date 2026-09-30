@@ -1,5 +1,6 @@
 {
   "brand": "GD CREATIVE",
+  "language": "en",
   "accounts": {
     "instagram": "@gdcreative.studio",
     "tiktok": "@gdcreative.studio",
@@ -7,60 +8,60 @@
   },
   "site": "https://gdcreative.jp/",
   "notes": [
-    "料金は index.html と一致を確認済み（2026-09-30時点）: STARTER AD ¥39,800〜 / CINEMATIC AD ¥79,800〜 / BRAND FILM ¥149,800〜 / MONTHLY ¥198,000〜/月、SNS運用・LP制作・HP制作は要相談。サイトに税込・税別の表記がないため、投稿前に要確認。",
-    "公開許諾は要確認: 3本ともサイトに掲載済みだが、SNSへの転載もOKかはクライアントに確認すること。sneaker / football はクライアント名を出さない前提。delivery はキャプションに『グループ会社の GOOD DRIVE』と明記しているため、社名を出してよいか確認すること。",
-    "キャプションにスニーカーやサッカーのブランド名・実在企業名は入れていない。映像内にロゴや実在ブランドが映り込んでいないか、投稿前に目視で確認すること。",
-    "AI生成の表示: Instagram は『AI情報』ラベル、TikTok は『AI生成コンテンツ』表示を投稿時にONにすることを推奨（各プラットフォームのルールで求められる場合がある）。",
-    "縦横比: sneaker.mp4 は縦型15秒。delivery.mp4 と football.mp4 は縦横比が未確認。横型の場合はリールやTikTokで上下に帯が入るため、可能なら9:16版を用意すること。",
-    "音源: 動画内のBGMや効果音が商用アカウントのSNSで使ってよいものか確認すること。IGやTikTokのアプリ内楽曲は、ビジネスアカウントでは使える曲が限られる。",
-    "cover_text はリールやTikTokのカバー（サムネイル）用の文字。best_time は Metricool のベストタイム（2026-10-01〜10-07のデータ）で決めた。IGとTikTokはどちらも平日10時と18時が高い。Threads はデータ対象外のため、IGと同じ時刻を推奨。",
-    "投稿4の動画は sneaker.mp4 を再利用（縦型15秒で STARTER AD や CINEMATIC AD の仕様に最も近いため）。手間をかけられるなら、3本を約5秒ずつつないで料金テロップを入れた15秒版に差し替えると、なお良い。",
-    "『お客様の声』のような表現は、実際の声がないため入れていない。今回は Metricool に登録していない（手動投稿用）。"
+    "対象: 英国・豪州（＋カナダ等）の中小企業・個人ブランド・ショップ。本文はすべて英語（ブリティッシュ綴り: colour 等）。料金は一切記載していない。誘導は『DM us for a quote』『link in bio』に統一。",
+    "投稿時刻の補足: シドニーの夏時間（AEST→AEDT）開始は『10月の第1日曜』のため、2026年は10/4(日)（指示の10/5ではない）。投稿日には影響なし。また書式例の『20:00 JST = 22:00 AEST』は誤りで、AEST(UTC+10)なら21:00。よって 10/1 は 21:00 AEST、10/6以降は 22:00 AEDT と記載。英国は10/25までBSTなので全投稿 12:00 BST。参考: パース 19:00 AWST、ブリスベン（夏時間なし）21:00 AEST、トロント 07:00 EDT（カナダ向けには朝で弱い）。",
+    "best_time は Metricool のデータ（日本の既存フォロワー中心）ではなく、ターゲット地域の生活時間から決めた。英語圏のフォロワーが増えたら、Metricool のベストタイムで見直すこと。",
+    "リンク先 https://gdcreative.jp/ が日本語のみの場合、英語圏の人はそこで離脱しやすい。当面はDM誘導を主にし、プロフィール文（bio）を英語化すること。英語の問い合わせ・見積もり（通貨、請求書、海外送金、消費税の扱い、英語での修正対応）の準備も必要。",
+    "公開許諾は要確認: 3本ともSNSへの転載（特に海外向け）をクライアントに確認すること。実在のブランド名・企業名はキャプションに入れていない。Delivery は ‘a Tokyo logistics company’ とだけ表記し、GOOD DRIVE の社名は出していない。映像内に社名ロゴ・車両の社名・実在ブランドのロゴが映っていないか、投稿前に目視で確認すること。",
+    "AIで作っていることは本文で明記している。あわせて Instagram の『AI情報』ラベル、TikTok の『AI生成コンテンツ』表示を投稿時にONにすること。",
+    "投稿4の制作の流れ（写真・ロゴ・雰囲気を送る → 絵コンテで計画 → 制作・編集・音と字幕 → 確認・修正 → 納品）が実際の運用と合っているか確認すること。修正回数や納品形式はプランで異なるため、本文では約束していない。",
+    "縦横比: sneaker.mp4 は縦型15秒。delivery.mp4 と football.mp4 は未確認。横型なら9:16版を用意すること。音源: BGM・効果音が海外向けの商用SNSで使えるか確認すること。",
+    "ハッシュタグは IG 10〜11個、TikTok 5個、Threads 1個。投稿4のみ #smallbusinesscanada を追加。お客様の声は実例がないため入れていない。Metricool には登録していない（手動投稿用）。"
   ],
   "posts": [
     {
       "no": 1,
-      "title": "Premium Sneaker Ad｜人も、靴も、主役にする15秒",
+      "title": "Premium Sneaker Ad | Product and person, both the hero",
       "video": "sneaker.mp4",
-      "why_this_order": "縦型15秒で冒頭のインパクトが最も強く、リールやTikTokの仕様に完全に合う。名刺代わりの一本として最初に出す。",
-      "best_time": "2026-10-01(木) 10:00 IG・TikTok・Threads同時",
-      "cover_text": "人も、靴も、主役。",
-      "instagram": "人も、靴も、主役にする15秒。\n\nPremium Sneaker Ad\n縦型15秒のシネマティック商品広告。\n\n商品だけを映すと、スペック表になる。\n人だけを映すと、商品が記憶に残らない。\nだから、履く人の空気と素材のディテールを、同じ熱量で描く設計にしました。\n\nブランドが「どう見られたいか」から逆算して、光・動き・間を決めています。\n\nGD CREATIVE｜AIで、ブランドを映像に。\n制作相談はプロフィールのリンク/DMへ。\n\n#GDCREATIVE #AI映像 #AI動画 #広告映像 #商品動画 #シネマティック #スニーカー #縦型動画 #リール広告 #ブランディング #映像制作",
-      "tiktok": "人も、靴も、主役。縦型15秒のシネマティック商品広告。履く人の空気と素材のディテールを、同じ熱量で。ブランドが伝わる映像をつくります。制作相談はプロフィールから。\n#AI映像 #広告動画 #スニーカー #シネマティック #GDCREATIVE",
-      "threads": "商品広告でいちばん迷うのは「何を主役にするか」だと思っています。\n\n商品だけを映せばディテールは伝わるけど、スペック表みたいになる。人だけを映せば雰囲気は出るけど、見終わったあとに商品が残らない。\n\nこのスニーカーの15秒は、最初に「人と商品のどちらも主役にする」と決めて、カットごとに視線がどちらへ向くかを設計しました。\n\nAIで作っているけど、AIっぽさを見せたいわけじゃない。見た人に残ってほしいのは、ブランドの空気のほうです。\n\nhttps://gdcreative.jp/\n#AI映像"
+      "why_this_order": "縦型15秒で冒頭のインパクトが最も強く、リールやTikTokの仕様に合う。『撮影なしでもこの品質』を最初に見せる名刺代わりの一本。",
+      "best_time": "2026-10-01 (Thu) 20:00 JST = 12:00 BST / 21:00 AEST",
+      "cover_text": "No crew. Still cinematic.",
+      "instagram": "Your product. Your people. Both in the spotlight.\n\nPremium Sneaker Ad\nA 15-second vertical ad, made for Reels and TikTok.\n\nShow only the product and it feels like a spec sheet. Show only the person and nobody remembers what they were wearing. So we gave both equal weight: the texture of the shoe, and the feel of the person wearing it.\n\nNo film crew. No location hire. No casting.\nWe make it with AI, then shape every frame by eye (light, movement, timing) until it looks like your brand, not a tech demo.\n\nThinking of something similar for your shop?\nDM us for a quote, or tap the link in bio.\n\nGD CREATIVE | Cinematic ads for your brand. Made in Tokyo.\n\n#smallbusinessuk #australianbusiness #brandvideo #videoads #productvideo #sneakers #reelsforbusiness #videomarketing #shopsmall #cinematic #GDCREATIVE",
+      "tiktok": "Product and person, both in the spotlight. A 15-sec cinematic ad with no crew, no location, no casting. Made with AI. DM us for a quote.\n#brandvideo #productvideo #videoads #smallbusinessuk #australianbusiness",
+      "threads": "The hardest call in a product ad? Deciding who the star is.\n\nFocus on the product and it reads like a spec sheet. Focus on the person and the product gets forgotten.\n\nFor this 15-second sneaker ad, we chose both. Every shot is planned so your eye moves between the shoe and the person wearing it.\n\nYes, it's made with AI. No, that's not the point. The point is that it feels like the brand.\n\nhttps://gdcreative.jp/\n#brandvideo"
     },
     {
       "no": 2,
-      "title": "Cinematic Football Ad｜ドキュメンタリーの温度で見せる広告",
+      "title": "Cinematic Football Ad | An ad that feels like a documentary",
       "video": "football.mp4",
-      "why_this_order": "1本目の『商品広告』に続けて、スポーツの感情表現を見せて表現の幅を示す。スポーツの視聴が伸びる夕方の枠に置く。",
-      "best_time": "2026-10-06(火) 18:00 IG・TikTok・Threads同時",
-      "cover_text": "ドキュメンタリーの温度で。",
-      "instagram": "広告なのに、ドキュメンタリーを観ている感覚。\n\nCinematic Football Ad\nスポーツドキュメンタリーの空気感と、商品ディテールを組み合わせた広告表現。\n\nスポーツの広告は、商品より先に「熱」が伝わるかどうか。\n空気の温度をつくってから、商品に寄る。\nその順番で、見た人の記憶に残る一本にしています。\n\nGD CREATIVE｜AIで、ブランドを映像に。\n制作相談はプロフィールのリンク/DMへ。\n\n#GDCREATIVE #AI映像 #AI動画 #広告映像 #サッカー #フットボール #スポーツ映像 #シネマティック #ドキュメンタリー #ブランドフィルム #映像制作",
-      "tiktok": "広告なのに、ドキュメンタリーの温度。スポーツの空気感と商品ディテールを一本に。熱が伝わってから、商品に寄る。制作相談はプロフィールから。\n#AI映像 #サッカー #スポーツ映像 #シネマティック #GDCREATIVE",
-      "threads": "スポーツの広告を作るとき、最初に考えるのは「どこで商品を見せるか」より「どこまで商品を見せないか」だったりします。\n\nいきなり商品のアップから入ると、広告だと身構えられてしまう。先にドキュメンタリーのような空気をつくって、見る人が入り込んだところでディテールに寄る。\n\nこのサッカーの一本は、その順番をいちばん大事にしました。\n\n商品を目立たせるより、ブランドの温度ごと覚えてもらう。そういう広告をつくっていきたいです。\n\n#AI映像"
+      "why_this_order": "1本目の商品広告に続けて、感情で見せる表現の幅を示す。英国・豪州で身近なフットボールを題材に『本物の撮影と比べて品質は？』という不安に正面から答える回。",
+      "best_time": "2026-10-06 (Tue) 20:00 JST = 12:00 BST / 22:00 AEDT",
+      "cover_text": "Real shoot? Look again.",
+      "instagram": "An ad that feels like a sports documentary.\n\nCinematic Football Ad\nMatch-day atmosphere, with close-up product detail.\n\nIn sport, the feeling comes first. So we build the mood before we show the product, then move in on the details. That order is what makes people remember it.\n\n‘Can it really hold up against a real shoot?’\nIt's the question we hear most. Watch it full screen and judge for yourself.\n\nNo stadium hire. No crew. No players to book.\nMade with AI, directed with a filmmaker's eye.\n\nGot a product with a story behind it?\nDM us for a quote, or tap the link in bio.\n\nGD CREATIVE | Cinematic ads for your brand. Made in Tokyo.\n\n#smallbusinessuk #australianbusiness #brandvideo #videoads #productvideo #footballculture #sportsbrand #cinematic #videomarketing #GDCREATIVE",
+      "tiktok": "Feels like a sports documentary. It's an ad. Mood first, then the product detail. No stadium, no crew, made with AI. DM us for a quote.\n#brandvideo #footballtiktok #videoads #smallbusinessuk #australianbusiness",
+      "threads": "When we make a sports ad, the big question isn't where to show the product. It's how long to hold it back.\n\nOpen on a product close-up and people spot an ad and scroll. Build the atmosphere first, like a documentary, and they lean in. Then you show the detail.\n\nThat order mattered most in this football piece.\n\nPeople often ask if video made with AI can match a real shoot. Honestly? Watch it and tell us what you think.\n\n#brandvideo"
     },
     {
       "no": 3,
-      "title": "Delivery Brand Creative｜毎日の配送を、ブランドの顔に",
+      "title": "Delivery Brand Creative | Everyday work, shown with pride",
       "video": "delivery.mp4",
-      "why_this_order": "商品を持たない企業や採用の用途へ相談の間口を広げる一本。料金紹介の直前に置き、『商品以外も作れる』と示す。",
-      "best_time": "2026-10-09(金) 10:00 IG・TikTok・Threads同時",
-      "cover_text": "配送の現場を、主役に。",
-      "instagram": "毎日の配送を、ブランドの顔にする。\n\nDelivery Brand Creative\n配送の現場感をプレミアムに見せる、企業・採用向けクリエイティブ。\n\nクライアントは、グループ会社の GOOD DRIVE。\n現場のリアルはそのままに、誇りを持って働ける仕事として伝わるトーンに仕上げました。\n\n商品を持たない業種こそ、映像でブランドは伝わる。\n企業紹介・採用映像のご相談もお待ちしています。\n\nGD CREATIVE｜AIで、ブランドを映像に。\n制作相談はプロフィールのリンク/DMへ。\n\n#GDCREATIVE #AI映像 #AI動画 #企業ブランディング #採用動画 #採用ブランディング #物流 #配送 #企業VP #映像制作",
-      "tiktok": "毎日の配送を、ブランドの顔に。現場のリアルはそのままに、プレミアムなトーンで。企業紹介や採用の映像にも。制作相談はプロフィールから。\n#AI映像 #採用動画 #企業ブランディング #物流 #GDCREATIVE",
-      "threads": "少し身内の話を。\n\nこの配送のクリエイティブは、グループ会社 GOOD DRIVE の案件です。近い距離にいるからこそ、現場の大変さも、そこで働く人の誇りも知っていました。\n\nだから目指したのは「きれいに盛る」ことじゃなく、現場の空気はそのままに、見た人が「ここで働くのかっこいいな」と思える温度にすること。\n\n商品を持たない業種でも、ブランドは映像で伝わる。企業紹介や採用の映像を考えている方は、気軽に声をかけてください。\n\nhttps://gdcreative.jp/\n#採用ブランディング"
+      "why_this_order": "商品を持たないサービス業・採用の用途へ相談の間口を広げる。『自分のブランド（業種）でもできる？』に答え、最後の仕組み紹介へつなぐ。",
+      "best_time": "2026-10-09 (Fri) 20:00 JST = 12:00 BST / 22:00 AEDT",
+      "cover_text": "No product? Still a brand.",
+      "instagram": "Everyday deliveries, shown as something to be proud of.\n\nDelivery Brand Creative\nA brand and recruitment film for a Tokyo logistics company.\n\nNo product on a shelf? You still have a brand.\nWe kept the real feel of the job and gave it a premium, cinematic finish, so the people doing the work look as good as the work they do.\n\nGreat for company introductions, recruitment and ‘about us’ pages.\nNo filming days, so no disruption to your team's working day.\n\nRun a service business, a trade or a growing team?\nDM us for a quote, or tap the link in bio.\n\nGD CREATIVE | Cinematic ads for your brand. Made in Tokyo.\n\n#smallbusinessuk #australianbusiness #brandvideo #videoads #employerbranding #recruitmentmarketing #logistics #corporatevideo #videomarketing #GDCREATIVE",
+      "tiktok": "Everyday deliveries, made to look premium. A brand film for a Tokyo logistics company. No filming days, no disrupted shifts. Hiring videos too. DM us.\n#employerbranding #brandvideo #logistics #smallbusinessuk #australianbusiness",
+      "threads": "A slightly different one today.\n\nThis film was made for a Tokyo logistics company. No product to show, just people doing a hard job well, every day.\n\nWe didn't want to polish it into something fake. The aim was to keep the real feel of the work and make the viewer think: ‘I'd be proud to work there.’\n\nIf you run a service business, a trade or a team you're hiring for, video can carry your brand too. Happy to chat.\n\nhttps://gdcreative.jp/\n#employerbranding"
     },
     {
       "no": 4,
-      "title": "サービス・料金紹介｜映像一本から、継続制作まで",
+      "title": "What we make / How it works | No shoot day needed",
       "video": "sneaker.mp4",
-      "why_this_order": "3本の実績で幅を見せたあとに料金を出し、『いくらで頼めるか』で相談につなげる締めの一本。IGで最も数値が高い平日10時の枠に置く。",
-      "best_time": "2026-10-14(水) 10:00 IG・TikTok・Threads同時",
-      "cover_text": "映像一本から、継続まで。",
-      "instagram": "広告映像、いくらで作れる？\n\nGD CREATIVE の制作プランです。\n\nSTARTER AD ¥39,800〜\n15秒前後・縦型・1コンセプト・修正1回\n\nCINEMATIC AD ¥79,800〜（おすすめ）\n15〜30秒・企画構成・編集・SE・字幕・修正2回\n\nBRAND FILM ¥149,800〜\n30〜60秒・ブランド設計・複数シーン・複数比率で納品\n\nMONTHLY ¥198,000〜/月\n継続制作・月次企画・SNS／広告クリエイティブ\n\nSNS運用・LP制作・HP制作もまとめてご相談いただけます（要相談）。\n※内容・尺・納期により変動します。\n\n「どのプランが合うかわからない」段階からで大丈夫です。\n制作相談はプロフィールのリンク/DMへ。\n\n#GDCREATIVE #AI映像 #AI動画 #広告映像 #映像制作 #動画制作 #SNS広告 #縦型動画 #ブランドフィルム #中小企業 #集客",
-      "tiktok": "広告映像、いくらで作れる？15秒前後・縦型のSTARTER ADは¥39,800〜、おすすめのCINEMATIC ADは¥79,800〜。ブランドフィルムや月額プランもあります。詳しくはプロフィールのリンクから。\n#AI映像 #動画制作 #広告動画 #SNS広告 #GDCREATIVE",
-      "threads": "料金のこと、まとめておきます。\n\nSTARTER AD ¥39,800〜（15秒前後・縦型）\nCINEMATIC AD ¥79,800〜（15〜30秒・企画構成から）\nBRAND FILM ¥149,800〜（30〜60秒・ブランド設計から）\nMONTHLY ¥198,000〜/月（継続制作）\n\n迷ったら、CINEMATIC AD を基準に考えてもらうのがおすすめです。映像を一本作るだけでなく「どう見せるか」から一緒に組み立てられるので。\n\nSNS運用やLP・HP制作もまとめて相談できます。内容・尺・納期で変わるので、まずは気軽にどうぞ。\n\nhttps://gdcreative.jp/\n#映像制作"
+      "why_this_order": "3本で品質と幅を見せたあと、AIに疎い人の『撮影なしでどう作るの？何を用意すればいい？』に答えて相談へつなぐ締めの一本。料金は出さずDMで見積もりへ。",
+      "best_time": "2026-10-14 (Wed) 20:00 JST = 12:00 BST / 22:00 AEDT",
+      "cover_text": "No shoot. Here's how.",
+      "instagram": "No camera crew. No shoot day. So how does it work?\n\nHere's how we make a cinematic ad for your brand:\n\n1. Send us what you have\nProduct photos, your logo, and a few words (or a moodboard) on how your brand should feel.\n\n2. We plan it\nA short concept and a shot-by-shot plan, so you know what you're getting before we build it.\n\n3. We create it\nWe make the footage with AI, then edit, add sound and captions, and fine-tune the colour. Every frame is checked by eye.\n\n4. You review, we deliver\nTell us what to change, we refine it, and you get a video ready for Reels, TikTok, YouTube or your website.\n\nWhat we make\nStarter Ad: a short vertical ad for social\nCinematic Ad: a fuller story, planned and edited\nBrand Film: a longer film about who you are\nMonthly: fresh videos every month\nWe also help with social media management, landing pages and websites.\n\nNot sure which fits? That's completely normal.\nDM us for a quote, or tap the link in bio.\n\nGD CREATIVE | Cinematic ads for your brand. Made in Tokyo.\n\n#smallbusinessuk #australianbusiness #smallbusinesscanada #brandvideo #videoads #productvideo #videomarketing #smallbusinessowner #shopsmall #GDCREATIVE",
+      "tiktok": "No crew, no shoot day. Send us product photos, your logo and the feel you want. We plan, create with AI, edit and deliver. DM us for a quote.\n#brandvideo #videoads #smallbusinessuk #australianbusiness #smallbusinesstips",
+      "threads": "‘How do you make an ad without filming anything?’ Fair question. Here's the honest answer.\n\nYou send product photos, your logo and a few words on the feel you want. We plan it shot by shot. We create the footage with AI, then edit, add sound and captions. You review, we refine, we deliver.\n\nNo crew, no location, no casting.\n\nStarter Ad, Cinematic Ad, Brand Film or Monthly. Not sure which? DM us.\n\nhttps://gdcreative.jp/\n#smallbusiness"
     }
   ]
 }
