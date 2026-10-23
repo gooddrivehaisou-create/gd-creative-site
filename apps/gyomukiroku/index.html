@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>声の業務記録</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html{color-scheme:light}
+body{margin:0;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+img{max-width:100%}
+[hidden]{display:none!important}
+/* Layout: スマホ1カラム。上に固定タブ（今日・履歴・事故・設定）。今日の画面は「話す欄」と「業務記録票」 */
+:root{
+  --accent:var(--b); --on-accent:var(--on-b);
+  --bg:#f5f3ee; --surface:#fff; --ink:#1d1a14; --muted:#655f52; --line:#e4dfd3;
+  --b:#d9900f; --b-soft:#fbf0d9; --b-ink:#8a5600; --on-b:#1d1606;
+  --road:#3a4254;
+  --warn:#b4372c; --warn-soft:#fbe9e7; --ok:#24804f; --ok-soft:#e3f3ea;
+  --display:"Dela Gothic One","Hiragino Kaku Gothic StdN",sans-serif;
+  --body:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#13110d; --surface:#1e1b15; --ink:#efe9dc; --muted:#a79f8e; --line:#332e24;
+  --b:#f1b23e; --b-soft:#3a2e17; --b-ink:#f6c870; --on-b:#1d1606; --road:#2a3142;
+  --warn:#ff8a7d; --warn-soft:#3a1f1d; --ok:#5fd394; --ok-soft:#173326; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#13110d; --surface:#1e1b15; --ink:#efe9dc; --muted:#a79f8e; --line:#332e24;
+  --b:#f1b23e; --b-soft:#3a2e17; --b-ink:#f6c870; --on-b:#1d1606; --road:#2a3142;
+  --warn:#ff8a7d; --warn-soft:#3a1f1d; --ok:#5fd394; --ok-soft:#173326; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.7;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:640px;margin:0 auto;padding-block:16px 64px;display:flex;flex-direction:column;gap:18px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.35;text-wrap:balance}
+h1{font-size:clamp(24px,6.5vw,30px)} h2{font-size:18px} h3{font-size:15px}
+p{margin:0}
+.muted{color:var(--muted)} .small{font-size:13px}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:600}
+.eyebrow{font-size:12px;letter-spacing:.12em;color:var(--muted);font-weight:700}
+.hero{display:grid;grid-template-columns:1fr 104px;gap:12px;align-items:center}
+.hero svg{width:104px;height:auto}
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:6px;display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.tab{font:inherit;font-weight:700;font-size:13.5px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:10px;padding:9px 4px;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--b);border-color:var(--b);color:var(--on-b)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+label.f{display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:700}
+input[type=text],input[type=datetime-local],textarea{font:inherit;font-size:15px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;width:100%;box-sizing:border-box}
+textarea{min-height:90px;resize:vertical}
+input:focus-visible,textarea:focus-visible,button:focus-visible{outline:3px solid var(--b);outline-offset:1px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:12px;padding:12px 16px;cursor:pointer;background:var(--b);color:var(--on-b);font-size:15px}
+.btn.ghost{background:transparent;color:var(--b-ink);border:1.5px solid var(--b)}
+.btn.sm{padding:7px 12px;font-size:13px;border-radius:10px}
+.btn:disabled{opacity:.55;cursor:default}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.status{font-size:13px;color:var(--muted);min-height:1.2em}
+.status.err{color:var(--warn)}
+.ex{display:flex;flex-direction:column;gap:6px}
+.ex button{font:inherit;font-size:13px;text-align:left;background:var(--b-soft);color:var(--ink);border:0;border-radius:10px;padding:8px 12px;cursor:pointer}
+.ex button::before{content:"例 ";font-weight:700;color:var(--b-ink)}
+.hint{display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--muted)}
+.hint svg{flex:none;width:18px;height:18px;margin-top:2px}
+/* 記録票 */
+.sheet{border:2px solid var(--ink);border-radius:10px;overflow:hidden}
+.sheet .hd{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;padding:8px 12px;background:var(--ink);color:var(--bg);font-weight:700;font-size:14px}
+.sheet dl{margin:0;display:grid;grid-template-columns:104px 1fr}
+.sheet dt,.sheet dd{margin:0;padding:8px 12px;border-top:1px solid var(--line);font-size:14px;min-width:0}
+.sheet dt{font-weight:700;font-size:12.5px;color:var(--muted);background:var(--bg)}
+.sheet dd.miss{color:var(--warn);font-weight:700}
+.timeline{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.timeline li{display:grid;grid-template-columns:52px 64px 1fr auto;gap:8px;align-items:center;background:var(--bg);border-radius:10px;padding:7px 10px;font-size:13.5px}
+.timeline .t{font-family:var(--mono);font-weight:600}
+.badge{font-size:11.5px;font-weight:700;border-radius:6px;padding:1px 6px;text-align:center;background:var(--b-soft);color:var(--b-ink)}
+.badge.start{background:var(--ok-soft);color:var(--ok)}
+.badge.end{background:var(--ink);color:var(--bg)}
+.del{font:inherit;background:none;border:0;color:var(--muted);cursor:pointer;font-size:18px;line-height:1;padding:2px 6px}
+.okline{display:flex;gap:8px;align-items:center;font-size:13.5px;font-weight:700;border-radius:10px;padding:8px 12px}
+.okline.ok{background:var(--ok-soft);color:var(--ok)} .okline.ng{background:var(--warn-soft);color:var(--warn)}
+.list{display:flex;flex-direction:column;gap:6px}
+.list .it{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;background:var(--bg);border-radius:10px;padding:9px 12px;font-size:13.5px}
+.empty{font-size:13.5px;color:var(--muted);background:var(--bg);border:1px dashed var(--line);border-radius:10px;padding:14px;text-align:center}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:440px){.row2{grid-template-columns:1fr}}
+.note{font-size:12.5px;color:var(--muted);border-left:3px solid var(--b);padding-left:10px}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="hero">
+    <div style="display:flex;flex-direction:column;gap:6px;min-width:0">
+      <span class="eyebrow">試作版 ・ パターンB</span>
+      <h1>声の業務記録</h1>
+      <p class="muted small">軽貨物ドライバー向け。話すように入れるだけで、国交省が求める業務記録（1年保存）の項目に自動で振り分けます。</p>
+    </div>
+    <svg viewBox="0 0 104 104" aria-hidden="true">
+      <rect width="104" height="104" rx="22" fill="var(--b-soft)"/>
+      <rect x="0" y="78" width="104" height="10" fill="var(--road)"/>
+      <path d="M12 52 a8 8 0 0 1 8 -8 h38 v32 h-46z" fill="var(--b)"/>
+      <path d="M58 48 h12 l14 16 v12 h-26z" fill="var(--b)"/>
+      <path d="M62 52 h7 l9 11 h-16z" fill="var(--surface)"/>
+      <circle cx="26" cy="78" r="7" fill="var(--ink)"/><circle cx="72" cy="78" r="7" fill="var(--ink)"/>
+      <path d="M52 14 h36 a6 6 0 0 1 6 6 v14 a6 6 0 0 1 -6 6 h-24 l-8 7 v-7 h-4 a6 6 0 0 1 -6 -6 v-14 a6 6 0 0 1 6 -6z" fill="var(--surface)"/>
+      <path d="M58 23 h26 M58 31 h16" stroke="var(--b)" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="画面">
+    <button class="tab" role="tab" data-v="today" aria-selected="true">今日</button>
+    <button class="tab" role="tab" data-v="hist" aria-selected="false">履歴</button>
+    <button class="tab" role="tab" data-v="acc" aria-selected="false">事故記録</button>
+    <button class="tab" role="tab" data-v="set" aria-selected="false">設定</button>
+  </nav>
+
+  <!-- 今日 -->
+  <section id="v-today" style="display:flex;flex-direction:column;gap:18px">
+    <div class="card">
+      <h2>話して記録する</h2>
+      <textarea id="say" aria-label="話した内容" placeholder="例：8時に足立区の営業所から乗務開始、メーター52310"></textarea>
+      <div class="hint"><svg viewBox="0 0 20 20"><rect x="7" y="2" width="6" height="10" rx="3" fill="var(--b)"/><path d="M4 9 a6 6 0 0 0 12 0 M10 15 v3" stroke="var(--b)" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg><span>キーボードのマイクボタンで話すと文字になります。運転中は操作しないでください。</span></div>
+      <div class="btns"><button class="btn" id="rec" type="button">記録する</button></div>
+      <p class="status" id="st" role="status"></p>
+      <div class="ex" id="ex">
+        <button type="button">8時に足立区の営業所から乗務開始、メーター52310</button>
+        <button type="button">12時10分から40分休憩、場所は草加のコンビニ</button>
+        <button type="button">北千住と越谷を回った</button>
+        <button type="button">18時5分に営業所に戻って終了、メーター52398</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap">
+        <h2>今日の業務記録</h2><span class="num small muted" id="todayLabel"></span>
+      </div>
+      <div id="sheet"></div>
+      <div id="check"></div>
+      <h3>入力した順</h3>
+      <ul class="timeline" id="tl"></ul>
+    </div>
+  </section>
+
+  <!-- 履歴 -->
+  <section id="v-hist" hidden style="display:flex;flex-direction:column;gap:18px">
+    <div class="card">
+      <h2>これまでの記録</h2>
+      <p class="note">業務記録は1年間の保存が必要です。CSVで受け取ってパソコンにも残しておくと安心です。</p>
+      <div class="btns"><button class="btn sm" id="csv" type="button">CSVで保存（全期間）</button></div>
+      <p class="status" id="st3" role="status"></p>
+      <div class="list" id="hist"><div class="empty">まだ記録がありません。「今日」の画面で話して記録すると、日ごとにここへ並びます。</div></div>
+    </div>
+  </section>
+
+  <!-- 事故記録 -->
+  <section id="v-acc" hidden style="display:flex;flex-direction:column;gap:18px">
+    <div class="card">
+      <h2>事故記録をつくる</h2>
+      <p class="note">事故記録は3年間の保存が必要です。死傷者が出た事故などは、運輸支局等を通じて国への報告も必要です。</p>
+      <label class="f" for="accSay">何があったかを話す
+        <textarea id="accSay" placeholder="例：今日の14時ごろ、越谷市の住宅街でバックした時に電柱にこすった。けが人なし。後ろの確認が足りなかった。"></textarea>
+      </label>
+      <div class="btns"><button class="btn sm" id="accAi" type="button">AIで項目に分ける</button></div>
+      <p class="status" id="st4" role="status"></p>
+      <label class="f" for="aWhen">発生日時<input type="text" id="aWhen"></label>
+      <label class="f" for="aWhere">場所<input type="text" id="aWhere"></label>
+      <label class="f" for="aWhat">事故の概要<textarea id="aWhat"></textarea></label>
+      <label class="f" for="aWhy">原因<textarea id="aWhy"></textarea></label>
+      <label class="f" for="aFix">再発防止策<textarea id="aFix"></textarea></label>
+      <label class="f" for="aHurt">死傷者<input type="text" id="aHurt" placeholder="なし／あり（内容）"></label>
+      <div class="btns"><button class="btn" id="accSave" type="button">事故記録を保存</button></div>
+      <p class="status" id="st5" role="status"></p>
+    </div>
+    <div class="card">
+      <h2>保存した事故記録</h2>
+      <div class="list" id="accList"><div class="empty">事故記録はありません。</div></div>
+    </div>
+  </section>
+
+  <!-- 設定 -->
+  <section id="v-set" hidden style="display:flex;flex-direction:column;gap:18px">
+    <div class="card">
+      <h2>記録に入る基本情報</h2>
+      <div class="row2">
+        <label class="f" for="sName">運転者の氏名<input type="text" id="sName" autocomplete="name"></label>
+        <label class="f" for="sCar">車両番号<input type="text" id="sCar" placeholder="足立 480 あ 12-34"></label>
+      </div>
+      <label class="f" for="sOffice">営業所<input type="text" id="sOffice" placeholder="足立営業所"></label>
+      <div class="btns"><button class="btn" id="sSave" type="button">保存</button></div>
+      <p class="status" id="st6" role="status"></p>
+      <p class="note">記録はこのスマホの中だけに保存されます。機種変更やブラウザの履歴削除で消えるので、「履歴」からCSVでも残してください。試作版のため、法令上の要件は国土交通省の最新資料で確認してください。</p>
+    </div>
+  </section>
+</div>
+<script src="../config.js"></script>
+<script src="../common.js"></script>
+<script src="parse.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

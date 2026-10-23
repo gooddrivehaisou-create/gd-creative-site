@@ -1,0 +1,14 @@
+name = "gd-ai-api"
+main = "src/index.ts"
+compatibility_date = "2026-10-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+# アプリを置くサイトのURL（カンマ区切りで複数可）。ここ以外のページからは呼び出せない
+ALLOWED_ORIGINS = "https://gooddrivehaisou-create.github.io"
+# 使うClaudeのモデル
+MODEL = "claude-opus-5-5"
+
+# 秘密の値は wrangler.toml に書かず、次のコマンドで登録する:
+#   npx wrangler secret put ANTHROPIC_API_KEY
+#   npx wrangler secret put ACCESS_CODE
