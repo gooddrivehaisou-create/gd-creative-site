@@ -10,5 +10,5 @@ window.GD_CONTACT = {
 
 // 声の業務記録 → Googleスプレッドシート連携。Apps Script の「ウェブアプリのURL」を入れる（空なら連携しない）
 window.GD_SHEET = {
-  url: "",
+  url: "https://script.google.com/macros/s/AKfycbxODT1plgiO98o2wnaVwLsvoZBURP-Azc1vKMYxUYskIkeqcb7pRe-Q_cc-EbigLMCJ/exec",
 };
