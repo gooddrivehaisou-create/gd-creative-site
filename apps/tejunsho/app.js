@@ -7,14 +7,34 @@
   // AI中継サーバーを設定していない時は、無料のAI（Claude・ChatGPT・Gemini）に依頼文を貼ってもらう
   var useAI=!!window.GD_API_BASE;
   var FORMAT='{"title":"作業名","summary":"1〜2文の説明","purpose":["この作業をする理由・目的"],"tools":["道具"],"safety":["安全のために必ず守ること"],"steps":[{"action":"1つの動作","point":"コツ（無ければ空文字）","why":"理由（無ければ空文字）"}],"checklist":["作業後に確認すること"],"questions":["ベテランに追加で聞くこと"]}';
-  function manualPrompt(task,industry,tr,purpose){
+  // 納品できる言語（key は保存する時の名前、ask はAIへの頼み方）
+  var LANGS=[
+    {key:'やさしい日本語',label:'やさしい日本語',ask:'やさしい日本語（短い文で、むずかしい言葉や漢語を使わない）'},
+    {key:'ベトナム語',label:'Tiếng Việt',ask:'ベトナム語'},
+    {key:'インドネシア語',label:'Bahasa Indonesia',ask:'インドネシア語'},
+    {key:'ミャンマー語',label:'မြန်မာ',ask:'ミャンマー語'},
+    {key:'ネパール語',label:'नेपाली',ask:'ネパール語'},
+    {key:'タガログ語',label:'Tagalog',ask:'タガログ語（フィリピン）'},
+    {key:'中国語',label:'中文',ask:'中国語（簡体字）'},
+    {key:'英語',label:'English',ask:'英語'}];
+  var OLD_KEYS={'やさしい日本語（漢字にふりがなはつけず、短い文で）':'やさしい日本語'};
+  function langInfo(k){k=OLD_KEYS[k]||k;for(var i=0;i<LANGS.length;i++)if(LANGS[i].key===k)return LANGS[i];return {key:k,label:k,ask:k}}
+  function pickedLangs(){return LANGS.filter(function(l){var c=document.getElementById('lp-'+LANGS.indexOf(l));return c&&c.checked})}
+  function manualPrompt(task,industry,tr,purpose,langs){
+    langs=langs||[];
+    var fmt=FORMAT,multi='';
+    if(langs.length){
+      fmt='{"ja":'+FORMAT+',"translations":{'+langs.map(function(l){return '"'+l.key+'":{…"ja"と同じ形で'+l.ask+'に訳したもの…}'}).join(',')+'}}';
+      multi='- 日本語の手順書を "ja" に入れ、同じ内容を '+langs.map(function(l){return l.ask}).join('・')+' に訳したものを "translations" に入れる（キーは '+langs.map(function(l){return '"'+l.key+'"'}).join('、')+'）。訳では形とキー名はそのまま、文字列だけ訳し、数値・単位はそのまま。現場の新人が読む想定で短く分かりやすく。\n';
+    }
     return 'あなたは製造・建設・介護などの現場の技能継承の専門家です。以下はベテランが話した内容の書き起こしです。新人や外国人スタッフでも分かる作業手順書にしてください。\n'+
       '守ること:\n- 話に出てこない数値・手順・道具を作らない。\n- 足りない情報や、確認すべきことは questions に入れる。\n- 文は短く、1つの手順に1つの動作。\n- 安全に関わることは safety に必ず入れる。\n- purpose（この作業をする理由・目的）は、話の中の理由と「この作業をする理由」欄の内容から、短い文で1〜3つ。どちらにも無ければ空の配列にして、questions に「この作業をする目的は？」を入れる。\n\n'+
-      '返事は、次の形のJSONだけを ```json のコードブロック1つで返してください。説明の文章はいりません。\n'+FORMAT+'\n\n'+
+      multi+'\n'+
+      '返事は、次の形のJSONだけを ```json のコードブロック1つで返してください。説明の文章はいりません。\n'+fmt+'\n\n'+
       '作業名: '+task+'\n業種: '+industry+'\nこの作業をする理由（作る人のメモ）: '+(purpose||'（なし）')+'\n書き起こし:\n"""\n'+tr+'\n"""';
   }
   function translatePrompt(manual,lang){
-    return '次の作業手順書のJSONを'+lang+'に翻訳してください。構造とキー名はそのまま、文字列の値だけ訳す。数値・単位はそのまま。現場の新人が読む想定で短く分かりやすく。\n'+
+    return '次の作業手順書のJSONを'+langInfo(lang).ask+'に翻訳してください。構造とキー名はそのまま、文字列の値だけ訳す。数値・単位はそのまま。現場の新人が読む想定で短く分かりやすく。\n'+
       '返事は、訳したJSONだけを ```json のコードブロック1つで返してください。\n\n'+JSON.stringify(manual);
   }
   function askPrompt(manual,q){
@@ -119,6 +139,16 @@
     sel.onchange=function(){state.manual.steps[i].frame=sel.value?Number(sel.value):null;render()};
     return sel;
   }
+  function renderLangButtons(){
+    var keys=['ja'];
+    Object.keys(state.translations||{}).forEach(function(k){if(keys.indexOf(k)<0)keys.push(k)});
+    pickedLangs().forEach(function(l){if(keys.indexOf(l.key)<0)keys.push(l.key)});
+    var box=$('langs');
+    box.replaceChildren.apply(box,keys.map(function(k){
+      var done=k==='ja'||!!state.translations[k];
+      return el('button',{class:'btn ghost sm',type:'button','data-lang':k,'aria-pressed':k===state.lang?'true':'false',text:(k==='ja'?'日本語':langInfo(k).label)+(done?'':'（未作成）')});
+    }));
+  }
   function render(){
     var m=state.lang==='ja'?state.manual:(state.translations[state.lang]||state.manual);
     var box=$('manual');box.replaceChildren();
@@ -135,7 +165,7 @@
       var id='ck'+i;return el('label',{for:id},[el('input',{type:'checkbox',id:id}),el('span',{text:c})])}))));
     if(m.questions&&m.questions.length)box.append(el('div',{class:'sec qs'},[el('h3',{text:'ベテランに追加で聞くこと'}),el('ul',null,m.questions.map(function(q){return el('li',{text:q})}))]));
     $('exTag').hidden=!state.isSample;
-    document.querySelectorAll('#langs button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.lang===state.lang?'true':'false')});
+    renderLangButtons();
   }
   render();
 
@@ -147,7 +177,7 @@
     if(!useAI){
       if(tr.length<20){$('st').className='status err';$('st').textContent='話した内容をもう少し入れてください（20文字以上）。';return}
       $('st').className='status';$('st').textContent='';
-      openRelay('manual',manualPrompt($('task').value,$('industry').value,tr.slice(0,12000),$('purpose').value.trim()),{frames:frames});
+      openRelay('manual',manualPrompt($('task').value,$('industry').value,tr.slice(0,12000),$('purpose').value.trim(),pickedLangs()),{frames:frames});
       return;
     }
     if(tr.length<20&&!frames.length){$('st').className='status err';$('st').textContent=GD.errorText({code:'too_short'});return}
@@ -158,6 +188,12 @@
       if(!m||!Array.isArray(m.steps))throw {code:'invalid_json'};
       state={manual:m,translations:{},lang:'ja',isSample:false,docId:null,turns:[],frames:frames.map(function(f){return {thumb:f.thumb,t:f.t}})};
       resetChat();render();
+      var langs=pickedLangs();
+      for(var li=0;li<langs.length;li++){
+        $('st').textContent=langs[li].label+'に訳しています…（'+(li+1)+'/'+langs.length+'）';
+        try{var tr2=await GD.api('/translate',{manual:m,lang:langs[li].ask},ctl.signal);if(tr2&&Array.isArray(tr2.steps))state.translations[langs[li].key]=tr2}catch(e){if(e&&e.code==='cancelled')throw e}
+      }
+      render();
       $('st').textContent='できました。下で確認してください。';
       $('out-h').scrollIntoView({behavior:'smooth',block:'start'});
     }catch(e){$('st').className=e&&e.code==='cancelled'?'status':'status err';$('st').textContent=GD.errorText(e)}
@@ -167,11 +203,11 @@
   $('langs').addEventListener('click',async function(ev){
     var b=ev.target.closest('button');if(!b)return;var lang=b.dataset.lang;
     if(lang==='ja'||state.translations[lang]){state.lang=lang;render();return}
-    var label=b.dataset.label||b.textContent;
+    var label=langInfo(lang).label;
     if(!useAI){openRelay('translate',translatePrompt(state.manual,lang),{lang:lang,label:label});return}
     $('st2').className='status';$('st2').textContent=label+'に訳しています…';b.disabled=true;
     try{
-      var t=await GD.api('/translate',{manual:state.manual,lang:lang});
+      var t=await GD.api('/translate',{manual:state.manual,lang:langInfo(lang).ask});
       if(!t||!Array.isArray(t.steps))throw {code:'invalid_json'};
       state.translations[lang]=t;state.lang=lang;render();$('st2').textContent=label+'版ができました。';
     }catch(e){$('st2').className='status err';$('st2').textContent=GD.errorText(e)}
@@ -240,17 +276,27 @@
   }
   renderSaved();
 
+  // 納品する言語のチェック
+  $('langPick').replaceChildren.apply($('langPick'),LANGS.map(function(l,i){
+    var c=el('input',{type:'checkbox',id:'lp-'+i});c.onchange=function(){var n=pickedLangs().length;$('langNote').textContent=n>2?'3言語以上はAIの返事が長くなり、途中で切れることがあります。切れた時は、できた後に上の言語ボタンから1つずつ作ってください。':'選んだ言語は、日本語の手順書と一緒に1回で作ります。';renderLangButtons()};
+    return el('label',{for:'lp-'+i},[c,document.createTextNode(l.key)]);
+  }));
+
   $('recopy').onclick=async function(){var ok=await copyText($('promptText').value);$('relayCopied').textContent=ok?'もう一度コピーしました。':'コピーできませんでした。「依頼文を見る」から長押しでコピーしてください。'};
   $('applyReply').onclick=function(){
-    var j=extractJson($('reply').value);
+    var j=extractJson($('reply').value),extra=null;
+    if(j&&j.ja&&Array.isArray(j.ja.steps)){extra=j.translations||{};j=j.ja}
     if(!j||!Array.isArray(j.steps)||!j.steps.length){$('relaySt').className='status err';$('relaySt').textContent='手順書の形になっていません。AIの返事を最初から最後まで全部コピーして貼ってください。';return}
     if(!pending)return;
     if(pending.kind==='manual'){
       var fr=(pending.frames||[]).map(function(f){return {thumb:f.thumb,t:f.t}});
       j.steps.forEach(function(s){s.frame=null});
-      state={manual:j,translations:{},lang:'ja',isSample:false,docId:null,turns:[],frames:fr};
+      var tl={},got=[];
+      if(extra)Object.keys(extra).forEach(function(k){var t=extra[k];if(t&&Array.isArray(t.steps)){var key=langInfo(k).key;tl[key]=t;got.push(langInfo(k).label)}});
+      state={manual:j,translations:tl,lang:'ja',isSample:false,docId:null,turns:[],frames:fr};
       resetChat();
-      $('st2').className='status';$('st2').textContent='手順書にしました。'+(fr.length?'各手順の下で、動画の写真を選んでつけられます。':'');
+      var missing=pickedLangs().filter(function(l){return !tl[l.key]}).map(function(l){return l.label});
+      $('st2').className='status';$('st2').textContent='手順書にしました。'+(got.length?'（'+got.join('・')+'版も取り込みました）':'')+(missing.length?' '+missing.join('・')+'は返事に入っていなかったので、上の言語ボタンから作ってください。':'')+(fr.length?' 各手順の下で、動画の写真を選んでつけられます。':'');
     }else{
       state.translations[pending.lang]=j;state.lang=pending.lang;
       $('st2').className='status';$('st2').textContent=pending.label+'版を取り込みました。';
