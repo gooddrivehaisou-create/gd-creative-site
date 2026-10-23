@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>作業手順書</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+/* Layout: 紙の作業手順書（A4）。画面ではスマホ幅でも読め、印刷するとA4にそのまま収まる。
+   印刷物と同じ見た目を保つため、明るい紙の配色だけで作る */
+:root{
+  --desk:#e9ecf2; --paper:#ffffff; --ink:#18202f; --muted:#5a6377; --line:#d9dee8;
+  --a:#3d57c8; --a-soft:#e7ebfb; --a-ink:#2c43a8;
+  --warn:#b4372c; --warn-soft:#fbe9e7;
+  --display:"Dela Gothic One","Hiragino Kaku Gothic StdN",sans-serif;
+  --body:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+  color-scheme:light;
+}
+body{margin:0;background:var(--desk);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.7;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+  padding-left:max(12px,env(safe-area-inset-left,0px));padding-right:max(12px,env(safe-area-inset-right,0px))}
+[hidden]{display:none!important}
+img{max-width:100%}
+h1,h2,h3{margin:0;line-height:1.35;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:820px;margin:0 auto;padding-block:16px 48px;display:flex;flex-direction:column;gap:16px}
+
+/* 操作パネル（画面だけ） */
+.panel{background:var(--paper);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:12px;border:1px solid var(--line)}
+.panel h2{font-family:var(--display);font-weight:400;font-size:17px}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.fields label{display:flex;flex-direction:column;gap:3px;font-size:12.5px;font-weight:700;color:var(--muted)}
+.fields input,.fields select{font:inherit;font-size:14.5px;color:var(--ink);background:#f6f7fa;border:1px solid var(--line);border-radius:8px;padding:8px 10px;width:100%}
+.toggles{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:14px}
+.toggles label{display:flex;gap:6px;align-items:center}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.btn{font:inherit;font-weight:700;font-size:14.5px;border:0;border-radius:10px;padding:10px 16px;cursor:pointer;background:var(--a);color:#fff;text-decoration:none;display:inline-block}
+.btn.ghost{background:transparent;color:var(--a-ink);border:1.5px solid var(--a)}
+.btn:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--a);outline-offset:2px}
+.help{font-size:13px;color:var(--muted);background:#f6f7fa;border-radius:10px;padding:10px 12px}
+.help ol{margin:4px 0 0;padding-left:1.3em}
+.help code{font-family:var(--mono);font-size:12.5px;background:var(--a-soft);color:var(--a-ink);padding:1px 5px;border-radius:4px;word-break:break-all}
+.viewer-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.viewer-bar select{font:inherit;font-size:14px;padding:7px 10px;border-radius:8px;border:1px solid var(--line);background:var(--paper);color:var(--ink)}
+.msg{background:var(--paper);border-radius:14px;padding:24px;text-align:center;color:var(--muted)}
+
+/* 手順書（紙） */
+.doc{background:var(--paper);border-radius:4px;box-shadow:0 1px 3px rgba(20,30,60,.12);padding:clamp(16px,4vw,36px);display:flex;flex-direction:column;gap:18px}
+.dhead{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:start;border-bottom:3px solid var(--ink);padding-bottom:12px}
+.kind{font-size:12px;letter-spacing:.14em;font-weight:700;color:var(--a-ink)}
+.dtitle{font-family:var(--display);font-weight:400;font-size:clamp(22px,5vw,30px)}
+.dsub{font-size:13px;color:var(--muted)}
+.meta{display:grid;grid-template-columns:auto auto;gap:0;font-size:12px;border:1px solid var(--line);border-radius:6px;overflow:hidden;min-width:0}
+.meta dt,.meta dd{margin:0;padding:3px 8px;border-bottom:1px solid var(--line)}
+.meta dt{background:#f6f7fa;color:var(--muted);font-weight:700}
+.meta dd{font-family:var(--mono);font-size:12px}
+.meta dt:nth-last-of-type(1),.meta dd:last-of-type{border-bottom:0}
+.summary{font-size:15px}
+.sec{display:flex;flex-direction:column;gap:8px}
+.sec>h2{font-size:14px;font-weight:700;letter-spacing:.06em;color:var(--a-ink);display:flex;align-items:center;gap:8px}
+.sec>h2::after{content:"";flex:1;height:1px;background:var(--line)}
+.safety{background:var(--warn-soft);border-radius:8px;padding:10px 14px;border-left:5px solid var(--warn)}
+.safety h2{color:var(--warn);font-size:14px;font-weight:700}
+.safety ul{margin:4px 0 0;padding-left:1.2em;font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:13px;border:1px solid var(--line);border-radius:6px;padding:2px 10px}
+ol.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+ol.steps li{display:grid;grid-template-columns:38px 1fr minmax(0,180px);gap:12px;padding:12px 0;border-top:1px solid var(--line);align-items:start;break-inside:avoid}
+ol.steps li.noimg{grid-template-columns:38px 1fr}
+.no{font-family:var(--mono);font-weight:600;font-size:17px;width:38px;height:38px;border-radius:8px;background:var(--a);color:#fff;display:grid;place-items:center}
+.stxt{display:flex;flex-direction:column;gap:3px;min-width:0}
+.act{font-weight:700;font-size:16px}
+.act-sub{font-size:13px;color:var(--muted)}
+.pt{font-size:13.5px}.pt b{color:var(--a-ink)}
+.why{font-size:13px;color:var(--muted)}
+.sphoto{width:100%;border-radius:6px;display:block}
+@media (max-width:560px){ol.steps li{grid-template-columns:38px 1fr}ol.steps li .sphoto{grid-column:2;max-width:260px}}
+.checks{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:6px 16px}
+.checks li{display:grid;grid-template-columns:20px 1fr;gap:8px;font-size:14px}
+.checks li::before{content:"";width:16px;height:16px;border:2px solid var(--ink);border-radius:3px;margin-top:4px}
+.dfoot{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:end;border-top:1px solid var(--line);padding-top:12px;font-size:12px;color:var(--muted)}
+.qr{display:flex;gap:10px;align-items:center}
+.qr svg{width:92px;height:92px;display:block}
+.qr p{font-size:12px;max-width:12em}
+
+@media print{
+  @page{size:A4;margin:12mm}
+  body{background:#fff;padding:0;font-size:11.5pt}
+  .wrap{max-width:none;padding:0;gap:0}
+  .panel,.viewer-bar,.no-print{display:none!important}
+  .doc{box-shadow:none;border-radius:0;padding:0}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  ol.steps li{grid-template-columns:34px 1fr 52mm}
+  ol.steps li.noimg{grid-template-columns:34px 1fr}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- 作る人用の操作パネル（アプリから開いた時だけ） -->
+  <section class="panel no-print" id="panel" hidden aria-labelledby="p-h">
+    <h2 id="p-h">納品用に整える</h2>
+    <div class="fields">
+      <label for="fCompany">会社名<input type="text" id="fCompany" placeholder="株式会社〇〇"></label>
+      <label for="fChecker">確認者<input type="text" id="fChecker" placeholder="製造部 山田"></label>
+      <label for="fVersion">版<input type="text" id="fVersion" value="第1版"></label>
+      <label for="fLang">言語<select id="fLang"></select></label>
+    </div>
+    <div class="toggles">
+      <label for="tBi"><input type="checkbox" id="tBi">日本語と並べて表示（外国語の時）</label>
+      <label for="tQr"><input type="checkbox" id="tQr" checked>QRコードをのせる</label>
+      <label for="tPhoto"><input type="checkbox" id="tPhoto" checked>写真をのせる</label>
+    </div>
+    <div class="btns">
+      <button class="btn" type="button" id="print">印刷・PDFにする</button>
+      <button class="btn ghost" type="button" id="exportJson">公開用ファイルを保存</button>
+    </div>
+    <div class="help">
+      <b>PDFにするには：</b>「印刷・PDFにする」→ 送信先（プリンター）で「PDFに保存」を選びます。スマホなら共有メニューの「プリント」から保存できます。
+      <br><b>スマホで見られるようにするには（QRコード）：</b>
+      <ol>
+        <li>「公開用ファイルを保存」を押す（<code id="fileName"></code> が保存されます）</li>
+        <li><a href="https://github.com/gooddrivehaisou-create/gd-creative-site/upload/main/apps/tejunsho/m" target="_blank" rel="noopener">GitHubのアップロード画面</a>に、そのファイルを入れて「Commit changes」</li>
+        <li>1〜2分後から、QRコードと次のURLで見られます：<br><code id="pubUrl"></code></li>
+      </ol>
+      公開したページは、URLを知っている人なら誰でも見られます。社外秘の内容は、PDFだけで納品してください。
+    </div>
+  </section>
+
+  <!-- 見る人用のバー（公開ページ） -->
+  <div class="viewer-bar no-print" id="vbar" hidden>
+    <select id="vLang" aria-label="言語"></select>
+    <button class="btn ghost" type="button" id="vPrint">印刷</button>
+  </div>
+
+  <p class="msg" id="msg" hidden></p>
+  <article class="doc" id="doc" hidden></article>
+</div>
+
+<script src="../config.js"></script>
+<script src="../vendor/qrcode.js"></script>
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  function el(tag,attrs,kids){var e=document.createElement(tag);if(attrs)for(var k in attrs){if(k==='class')e.className=attrs[k];else if(k==='text')e.textContent=attrs[k];else e.setAttribute(k,attrs[k]);}(kids||[]).forEach(function(c){if(c!=null)e.append(c)});return e}
+  var LANG_NAMES={'ja':'日本語','やさしい日本語（漢字にふりがなはつけず、短い文で）':'やさしい日本語','ベトナム語':'Tiếng Việt','インドネシア語':'Bahasa Indonesia','英語':'English'};
+  var params=new URLSearchParams(location.search);
+  var data=null,mode=null;
+
+  function pubUrl(id){return location.origin+location.pathname+'?m='+encodeURIComponent(id)}
+  function newId(){var d=new Date();return d.getFullYear()+String(d.getMonth()+1).padStart(2,'0')+String(d.getDate()).padStart(2,'0')+'-'+Math.random().toString(36).slice(2,8)}
+  function showMsg(t){$('msg').textContent=t;$('msg').hidden=false;$('doc').hidden=true}
+
+  function langOptions(sel,cur){
+    var langs=['ja'].concat(Object.keys(data.translations||{}));
+    sel.replaceChildren.apply(sel,langs.map(function(l){var o=el('option',{value:l,text:LANG_NAMES[l]||l});return o}));
+    sel.value=langs.indexOf(cur)>=0?cur:'ja';
+  }
+
+  function render(){
+    var o=data.options||{};var lang=o.lang||'ja';
+    var ja=data.manual,m=lang==='ja'?ja:(data.translations[lang]||ja);
+    var bi=lang!=='ja'&&o.bilingual;
+    var meta=data.meta||{};
+    var doc=$('doc');doc.replaceChildren();
+    document.title=(m.title||'作業手順書')+(meta.company?' | '+meta.company:'');
+
+    var dl=el('dl',{class:'meta'});
+    [['会社',meta.company],['作成日',meta.date],['版',meta.version],['確認者',meta.checker]].forEach(function(r){if(r[1])dl.append(el('dt',{text:r[0]}),el('dd',{text:r[1]}))});
+    doc.append(el('header',{class:'dhead'},[
+      el('div',null,[el('div',{class:'kind',text:lang==='ja'?'作業手順書':'作業手順書 ・ '+(LANG_NAMES[lang]||lang)}),el('h1',{class:'dtitle',text:m.title||''}),bi?el('div',{class:'dsub',text:ja.title}):null]),
+      dl.children.length?dl:null]));
+    if(m.summary)doc.append(el('p',{class:'summary',text:m.summary}));
+    if(m.safety&&m.safety.length)doc.append(el('section',{class:'safety'},[el('h2',{text:'⚠ 安全のために必ず守ること'+(lang!=='ja'?' / Safety':'')}),el('ul',null,m.safety.map(function(s,i){return el('li',null,[document.createTextNode(s),bi&&ja.safety[i]?el('div',{class:'act-sub',text:ja.safety[i]}):null])}))]));
+    if(m.tools&&m.tools.length)doc.append(el('section',{class:'sec'},[el('h2',{text:'使う道具・材料'}),el('div',{class:'chips'},m.tools.map(function(t){return el('span',{class:'chip',text:t})}))]));
+    var frames=data.frames||[];var photos=o.photos!==false;
+    doc.append(el('section',{class:'sec'},[el('h2',{text:'手順'}),el('ol',{class:'steps'},(m.steps||[]).map(function(s,i){
+      var f=ja.steps&&ja.steps[i]&&ja.steps[i].frame;var img=(photos&&f&&frames[f-1])?el('img',{class:'sphoto',src:frames[f-1].thumb,alt:'手順'+(i+1)+'の写真'}):null;
+      var jas=ja.steps&&ja.steps[i];
+      return el('li',{class:img?'':'noimg'},[el('span',{class:'no',text:String(i+1)}),el('div',{class:'stxt'},[
+        el('div',{class:'act',text:s.action||''}),bi&&jas?el('div',{class:'act-sub',text:jas.action}):null,
+        s.point?el('div',{class:'pt'},[el('b',{text:lang==='ja'?'コツ：':'★ '}),document.createTextNode(s.point)]):null,
+        s.why?el('div',{class:'why',text:(lang==='ja'?'理由：':'→ ')+s.why}):null]),img])}))]));
+    if(m.checklist&&m.checklist.length)doc.append(el('section',{class:'sec'},[el('h2',{text:'作業後チェック'}),el('ul',{class:'checks'},m.checklist.map(function(c,i){return el('li',null,[el('span',null,[document.createTextNode(c),bi&&ja.checklist[i]?el('div',{class:'act-sub',text:ja.checklist[i]}):null])])}))]));
+
+    var foot=el('footer',{class:'dfoot'});
+    var c=window.GD_CONTACT||{};
+    foot.append(el('div',null,[el('div',{text:'この手順書は、現場のベテランの説明をもとに作成しました。内容は必ず現場で確認してから使ってください。'}),c.name?el('div',{text:'作成：'+c.name}):null]));
+    if(o.qr!==false&&data.id&&window.qrcode){
+      var q=qrcode(0,'M');q.addData(pubUrl(data.id)+(lang!=='ja'?'&lang='+encodeURIComponent(lang):''));q.make();
+      var box=el('div',{class:'qr'});box.innerHTML=q.createSvgTag({cellSize:3,margin:0,scalable:true});
+      box.append(el('p',{text:'スマホで見る：カメラでこのQRコードを読み取ってください'}));foot.append(box);
+    }
+    doc.append(foot);
+    $('doc').hidden=false;$('msg').hidden=true;
+  }
+
+  // ---- アプリから開いた時（作る人） ----
+  function initLocal(){
+    var cur=null;try{cur=JSON.parse(localStorage.getItem('gd-tejunsho-current')||'null')}catch(e){}
+    if(!cur||!cur.manual){showMsg('手順書が見つかりません。手順書アプリで手順書を開いてから「納品用ページ」を押してください。');return}
+    var key='gd-tejunsho-meta-'+(cur.id||'current');var saved={};try{saved=JSON.parse(localStorage.getItem(key)||'{}')}catch(e){}
+    data={id:saved.pubId||newId(),manual:cur.manual,translations:cur.translations||{},frames:cur.frames||[],
+      meta:{company:saved.company||'',checker:saved.checker||'',version:saved.version||'第1版',date:saved.date||new Date().toISOString().slice(0,10),industry:cur.industry||''},
+      options:{lang:'ja',bilingual:false,qr:true,photos:true}};
+    $('panel').hidden=false;
+    $('fCompany').value=data.meta.company;$('fChecker').value=data.meta.checker;$('fVersion').value=data.meta.version;
+    langOptions($('fLang'),'ja');
+    $('fileName').textContent=data.id+'.json';$('pubUrl').textContent=pubUrl(data.id);
+    function sync(){
+      data.meta.company=$('fCompany').value.trim();data.meta.checker=$('fChecker').value.trim();data.meta.version=$('fVersion').value.trim();
+      data.options={lang:$('fLang').value,bilingual:$('tBi').checked,qr:$('tQr').checked,photos:$('tPhoto').checked};
+      try{localStorage.setItem(key,JSON.stringify({company:data.meta.company,checker:data.meta.checker,version:data.meta.version,date:data.meta.date,pubId:data.id}))}catch(e){}
+      render();
+    }
+    ['fCompany','fChecker','fVersion'].forEach(function(i){$(i).addEventListener('input',sync)});
+    ['fLang','tBi','tQr','tPhoto'].forEach(function(i){$(i).addEventListener('change',sync)});
+    $('print').onclick=function(){window.print()};
+    $('exportJson').onclick=function(){
+      var out={id:data.id,manual:data.manual,translations:data.translations,frames:data.options.photos?data.frames:[],meta:data.meta,publishedAt:new Date().toISOString()};
+      var blob=new Blob([JSON.stringify(out)],{type:'application/json'});var u=URL.createObjectURL(blob);
+      var a=el('a',{href:u,download:data.id+'.json'});document.body.append(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(u)},2000);
+    };
+    sync();
+  }
+
+  // ---- 公開ページ（見る人） ----
+  function initPublished(id){
+    if(!/^[A-Za-z0-9_-]{3,60}$/.test(id)){showMsg('ページが見つかりません。QRコードやURLをもう一度確認してください。');return}
+    showMsg('読み込んでいます…');
+    fetch('m/'+id+'.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).then(function(j){
+      data={id:id,manual:j.manual,translations:j.translations||{},frames:j.frames||[],meta:j.meta||{},options:{lang:params.get('lang')||'ja',bilingual:false,qr:true,photos:true}};
+      if(data.options.lang!=='ja'&&!data.translations[data.options.lang])data.options.lang='ja';
+      if(Object.keys(data.translations).length){
+        $('vbar').hidden=false;langOptions($('vLang'),data.options.lang);
+        $('vLang').onchange=function(){data.options.lang=$('vLang').value;data.options.bilingual=data.options.lang!=='ja';render()};
+        data.options.bilingual=data.options.lang!=='ja';
+      }else{$('vbar').hidden=false;$('vLang').hidden=true}
+      $('vPrint').onclick=function(){window.print()};
+      render();
+    }).catch(function(){showMsg('この手順書はまだ公開されていないか、見つかりません。公開してから1〜2分たってから開き直してください。')});
+  }
+
+  var m=params.get('m');
+  if(m)initPublished(m);else if(params.get('local'))initLocal();
+  else showMsg('手順書アプリから「納品用ページ」を押すか、QRコードから開いてください。');
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>手順書の撮り方ガイド</title>
+<meta name="description" content="作業の動画を撮って送るだけで、新人・外国人スタッフ向けの手順書ができます。撮り方の5つのコツ。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+/* Layout: スマホ1カラム。番号つきの「撮り方5つ」を主役に、OK/NGを並べて見せる */
+:root{
+  --bg:#f3f5f9; --surface:#fff; --ink:#18202f; --muted:#5a6377; --line:#dfe3ec;
+  --a:#3d57c8; --a-soft:#e7ebfb; --a-ink:#2c43a8; --on-a:#fff;
+  --ok:#24804f; --ok-soft:#e3f3ea; --ng:#b4372c; --ng-soft:#fbe9e7; --skin:#f1c7a3; --hair:#2b2f3a;
+  --display:"Dela Gothic One","Hiragino Kaku Gothic StdN",sans-serif;
+  --body:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#0f1420; --surface:#182031; --ink:#e7ebf4; --muted:#9ba5bb; --line:#2a3448;
+  --a:#8ea2ff; --a-soft:#222c4d; --a-ink:#b3c0ff; --on-a:#0f1420;
+  --ok:#5fd394; --ok-soft:#173326; --ng:#ff8a7d; --ng-soft:#3a1f1d; --skin:#d9a982; --hair:#c9cfdb; color-scheme:dark}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.8;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:620px;margin:0 auto;padding-block:20px 56px;display:flex;flex-direction:column;gap:26px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.35;text-wrap:balance}
+h1{font-size:clamp(25px,7vw,34px)} h2{font-size:20px} h3{font-size:16.5px}
+p{margin:0}
+.muted{color:var(--muted)} .small{font-size:13.5px}
+.eyebrow{font-size:12px;letter-spacing:.12em;color:var(--muted);font-weight:700}
+.hero{display:flex;flex-direction:column;gap:12px}
+.hero svg{width:100%;height:auto}
+.flow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}
+.flow div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 6px;font-size:13px;font-weight:700;display:flex;flex-direction:column;gap:2px;align-items:center}
+.flow b{font-family:var(--mono);color:var(--a-ink);font-size:12px}
+.flow .you{border:2px solid var(--a);background:var(--a-soft)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.rule{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:start}
+.rule .n{width:40px;height:40px;border-radius:12px;background:var(--a);color:var(--on-a);font-family:var(--mono);font-weight:600;font-size:20px;display:grid;place-items:center}
+.rule>div{display:flex;flex-direction:column;gap:8px;min-width:0}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pair figure{margin:0;border-radius:12px;overflow:hidden;border:2px solid var(--line);background:var(--bg)}
+.pair figure.ok{border-color:var(--ok)} .pair figure.ng{border-color:var(--ng)}
+.pair svg{width:100%;height:auto;display:block}
+.pair figcaption{font-size:12.5px;font-weight:700;padding:4px 8px}
+.pair .ok figcaption{background:var(--ok-soft);color:var(--ok)} .pair .ng figcaption{background:var(--ng-soft);color:var(--ng)}
+.say{display:flex;flex-direction:column;gap:6px}
+.bubble{background:var(--a-soft);border-radius:12px 12px 12px 4px;padding:8px 12px;font-size:14.5px}
+.bubble small{display:block;color:var(--muted);font-size:12px}
+.check{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.check li{display:grid;grid-template-columns:22px 1fr;gap:8px}
+.check li::before{content:"";width:18px;height:18px;margin-top:5px;border-radius:5px;border:2px solid var(--a)}
+.send{display:flex;flex-direction:column;gap:10px}
+.contact{background:var(--a);color:var(--on-a);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:6px}
+.contact .id{font-family:var(--mono);font-size:22px;font-weight:600;user-select:all;word-break:break-all}
+.copy{font:inherit;font-weight:700;border:0;border-radius:10px;padding:8px 14px;background:var(--surface);color:var(--a-ink);cursor:pointer;align-self:flex-start}
+.copy:focus-visible{outline:3px solid var(--surface);outline-offset:2px}
+.faq details{border-top:1px solid var(--line);padding:10px 0}
+.faq summary{cursor:pointer;font-weight:700}
+.faq p{margin-top:6px;font-size:14.5px}
+.note{font-size:13px;color:var(--muted);text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <span class="eyebrow">手順書づくり ・ 撮り方ガイド</span>
+  <h1>作業を撮って送るだけで、<br>手順書ができます</h1>
+  <svg viewBox="0 0 600 220" role="img" aria-label="スマホで作業を撮って送ると、写真つきの手順書が届くイラスト">
+    <rect width="600" height="220" rx="20" fill="var(--surface)"/>
+    <!-- 職人 -->
+    <g transform="translate(40 40)">
+      <circle cx="40" cy="36" r="24" fill="var(--skin)"/>
+      <path d="M14 28 q26 -32 52 0 v-4 q-26 -22 -52 0z" fill="var(--a)"/><rect x="12" y="22" width="56" height="7" rx="3.5" fill="var(--a)"/>
+      <circle cx="32" cy="38" r="2.4" fill="var(--hair)"/><circle cx="49" cy="38" r="2.4" fill="var(--hair)"/>
+      <path d="M31 48 q9 6 18 0" stroke="var(--hair)" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+      <path d="M2 150 q0 -82 38 -82 q38 0 38 82z" fill="var(--hair)" opacity=".85"/>
+      <rect x="64" y="96" width="38" height="12" rx="3" fill="var(--muted)"/>
+    </g>
+    <!-- スマホで撮る -->
+    <g transform="translate(170 52)">
+      <rect width="62" height="110" rx="12" fill="var(--ink)"/><rect x="6" y="12" width="50" height="80" rx="4" fill="var(--a-soft)"/>
+      <circle cx="31" cy="52" r="10" fill="none" stroke="var(--a)" stroke-width="3"/><circle cx="31" cy="52" r="3.5" fill="#e0453a"/>
+      <text x="31" y="132" text-anchor="middle" font-family="var(--body)" font-weight="700" font-size="13" fill="var(--ink)">撮る</text>
+    </g>
+    <path d="M250 106 h70" stroke="var(--a)" stroke-width="4" stroke-dasharray="2 9" stroke-linecap="round"/>
+    <g transform="translate(330 70)">
+      <rect width="80" height="64" rx="16" fill="#06c755"/>
+      <text x="40" y="40" text-anchor="middle" font-family="var(--body)" font-weight="700" font-size="17" fill="#fff">送る</text>
+    </g>
+    <path d="M420 106 h40" stroke="var(--a)" stroke-width="4" stroke-dasharray="2 9" stroke-linecap="round"/>
+    <!-- 手順書 -->
+    <g transform="translate(470 30)">
+      <rect width="100" height="150" rx="10" fill="var(--bg)" stroke="var(--line)" stroke-width="2"/>
+      <rect x="12" y="14" width="60" height="9" rx="4.5" fill="var(--ink)"/>
+      <g fill="var(--a)"><rect x="12" y="38" width="14" height="14" rx="3"/><rect x="12" y="72" width="14" height="14" rx="3"/><rect x="12" y="106" width="14" height="14" rx="3"/></g>
+      <g fill="var(--line)"><rect x="32" y="38" width="30" height="22" rx="3"/><rect x="32" y="72" width="30" height="22" rx="3"/><rect x="32" y="106" width="30" height="22" rx="3"/></g>
+      <g stroke="var(--muted)" stroke-width="3" stroke-linecap="round"><path d="M68 44 h22 M68 78 h22 M68 112 h22"/></g>
+    </g>
+    <text x="520" y="205" text-anchor="middle" font-family="var(--body)" font-weight="700" font-size="13" fill="var(--ink)">手順書が届く</text>
+  </svg>
+  <p>ベテランの方が作業をしながら説明する動画を、スマホで撮って送ってください。文字にする・まとめる・写真をつける・外国語にする作業は、すべてこちらで行います。</p>
+  <div class="flow" aria-label="全体の流れ">
+    <div class="you"><b>1</b>動画を撮る<span class="small muted">御社</span></div>
+    <div class="you"><b>2</b>LINEで送る<span class="small muted">御社</span></div>
+    <div><b>3</b>手順書にして納品<span class="small muted">こちら</span></div>
+  </div>
+</header>
+
+<section class="card" aria-labelledby="r-h">
+  <h2 id="r-h">撮り方 5つのコツ</h2>
+
+  <div class="rule"><span class="n">1</span><div>
+    <h3>1つの作業を、1本の動画に</h3>
+    <p class="small">「段取り」「曲げ」「検査」のように、作業ごとに分けて撮ります。長さは3〜10分が目安。長い作業は途中で区切ってOKです。</p>
+  </div></div>
+
+  <div class="rule"><span class="n">2</span><div>
+    <h3>最初に作業名を言う</h3>
+    <p class="small">撮り始めたら「今から〇〇の作業をします」とひと言。何の動画か、こちらですぐ分かります。</p>
+  </div></div>
+
+  <div class="rule"><span class="n">3</span><div>
+    <h3>手元と道具が映るように</h3>
+    <div class="pair">
+      <figure class="ok">
+        <svg viewBox="0 0 160 110" aria-hidden="true"><rect width="160" height="110" fill="var(--bg)"/><rect x="10" y="62" width="140" height="40" rx="4" fill="var(--line)"/><rect x="40" y="52" width="80" height="14" rx="3" fill="var(--muted)"/><ellipse cx="62" cy="52" rx="16" ry="11" fill="var(--skin)"/><ellipse cx="102" cy="52" rx="16" ry="11" fill="var(--skin)"/><rect x="74" y="28" width="12" height="26" rx="3" fill="var(--a)"/></svg>
+        <figcaption>OK 手元が大きく映る</figcaption>
+      </figure>
+      <figure class="ng">
+        <svg viewBox="0 0 160 110" aria-hidden="true"><rect width="160" height="110" fill="var(--bg)"/><circle cx="80" cy="36" r="16" fill="var(--skin)"/><path d="M50 110 q0 -50 30 -50 q30 0 30 50z" fill="var(--hair)" opacity=".85"/><rect x="66" y="94" width="28" height="6" rx="3" fill="var(--muted)"/></svg>
+        <figcaption>NG 体だけで手元が見えない</figcaption>
+      </figure>
+    </div>
+    <p class="small">撮る人が横か斜め後ろから、作業する人の手元を映します。スマホは縦でも横でも大丈夫です。</p>
+  </div></div>
+
+  <div class="rule"><span class="n">4</span><div>
+    <h3>やりながら、声に出して説明</h3>
+    <p class="small">新人さんに教えるつもりで話してください。特にこの3つが大事です。</p>
+    <div class="say">
+      <div class="bubble">「ここは<b>2ミリ手前で止める</b>」<small>数字・目安</small></div>
+      <div class="bubble">「<b>なぜかというと</b>、割れるから」<small>理由</small></div>
+      <div class="bubble">「ここで<b>手を入れると危ない</b>」<small>危ないところ・よくある失敗</small></div>
+    </div>
+  </div></div>
+
+  <div class="rule"><span class="n">5</span><div>
+    <h3>静かな場所で、明るく</h3>
+    <p class="small">機械の音が大きい時は、止めた時に説明を言い直してもらえると助かります。暗い場所はライトをつけてください。</p>
+  </div></div>
+</section>
+
+<section class="card send" aria-labelledby="s-h">
+  <h2 id="s-h">送り方</h2>
+  <ul class="check">
+    <li><span>撮った動画を、そのまま<b>LINE</b>で送ってください。メッセージに「会社名」と「作業名」を添えてください。</span></li>
+    <li><span>LINEで送れないほど大きい動画は、Googleドライブなどにアップして、リンクを送ってください。</span></li>
+    <li><span>写真や、今使っている紙のマニュアル・メモがあれば、一緒に送ってもらえると、より正確になります。</span></li>
+  </ul>
+  <div class="contact" id="contact">
+    <span class="small">送り先</span>
+    <span id="cName" style="font-weight:700">担当者のLINE</span>
+    <span class="id" id="cLine" hidden></span>
+    <button class="copy" type="button" id="copyLine" hidden>IDをコピー</button>
+  </div>
+</section>
+
+<section class="card faq" aria-labelledby="f-h">
+  <h2 id="f-h">よくある質問</h2>
+  <details><summary>うまく話せなくても大丈夫？</summary><p>大丈夫です。言い間違いや「えーと」はこちらで整えます。分からないところは、あとで電話かLINEで5分ほど確認させてください。</p></details>
+  <details><summary>どのくらいで届きますか？</summary><p>動画を受け取ってから、確認の連絡をはさんで数日〜1週間ほどが目安です。</p></details>
+  <details><summary>どんな形で届きますか？</summary><p>写真つきの手順書を、印刷できるPDFと、スマホで見られるページでお届けします。現場に貼れるQRコードもつけられます。ベトナム語・インドネシア語・英語などの版も作れます。</p></details>
+  <details><summary>動画は外に出ませんか？</summary><p>手順書づくりのためだけに使います。社名や人の名前など、外に出したくない情報があれば先に教えてください。</p></details>
+</section>
+
+<p class="note">このページは、撮影をお願いする方にそのまま送ってお使いください。</p>
+</div>
+<script src="../config.js"></script>
+<script>
+(function(){
+  var c=window.GD_CONTACT||{};
+  if(c.name)document.getElementById('cName').textContent=c.name;
+  if(c.line){
+    var id=document.getElementById('cLine');id.textContent=c.line;id.hidden=false;
+    var b=document.getElementById('copyLine');b.hidden=false;
+    b.onclick=function(){
+      if(navigator.clipboard)navigator.clipboard.writeText(c.line).then(function(){b.textContent='コピーしました'},function(){b.textContent='長押しでコピーしてください'});
+    };
+  }
+})();
+</script>
+</body>
+</html>

@@ -73,14 +73,14 @@
     var dur=v.duration;if(!isFinite(dur)||dur<=0)throw new Error('decode');
     try{await v.play();v.pause()}catch(e){}
     var big=document.createElement('canvas'),sm=document.createElement('canvas');
-    var s1=Math.min(1,768/v.videoWidth),s2=Math.min(1,200/v.videoWidth);
+    var s1=Math.min(1,768/v.videoWidth),s2=Math.min(1,360/v.videoWidth);
     big.width=Math.round(v.videoWidth*s1);big.height=Math.round(v.videoHeight*s1);sm.width=Math.round(v.videoWidth*s2);sm.height=Math.round(v.videoHeight*s2);
     var out=[];
     for(var i=0;i<n;i++){
       var t=dur*(i+0.5)/n;$('vidSt').textContent='写真を切り出しています… '+(i+1)+' / '+n;
       await seek(v,t);
       big.getContext('2d').drawImage(v,0,0,big.width,big.height);sm.getContext('2d').drawImage(v,0,0,sm.width,sm.height);
-      out.push({b64:big.toDataURL('image/jpeg',0.78).split(',')[1],thumb:sm.toDataURL('image/jpeg',0.55),t:t});
+      out.push({b64:big.toDataURL('image/jpeg',0.78).split(',')[1],thumb:sm.toDataURL('image/jpeg',0.6),t:t});
     }
     v.removeAttribute('src');v.load();
     return out;
@@ -208,6 +208,13 @@
     return L.join('\n');
   }
   $('dl').onclick=function(){GD.download('tejunsho_'+new Date().toISOString().slice(0,10)+'.md',toMd(),'text/markdown')};
+
+  // 納品用ページ（印刷・PDF・QR）
+  $('deliver').onclick=function(){
+    var cur={id:state.docId,manual:state.manual,translations:state.translations,frames:state.frames||[],industry:$('industry').value};
+    if(!GD.save('gd-tejunsho-current',cur)){cur.frames=[];GD.save('gd-tejunsho-current',cur)}
+    window.open('view.html?local=1','_blank');
+  };
 
   // 保存（この端末の中）
   $('save').onclick=function(){
