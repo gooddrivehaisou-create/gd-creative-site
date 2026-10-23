@@ -16,6 +16,9 @@
     {key:'ネパール語',label:'नेपाली',ask:'ネパール語'},
     {key:'タガログ語',label:'Tagalog',ask:'タガログ語（フィリピン）'},
     {key:'中国語',label:'中文',ask:'中国語（簡体字）'},
+    {key:'韓国語',label:'한국어',ask:'韓国語'},
+    {key:'ポルトガル語',label:'Português',ask:'ポルトガル語（ブラジル）'},
+    {key:'スペイン語',label:'Español',ask:'スペイン語（中南米）'},
     {key:'英語',label:'English',ask:'英語'}];
   var OLD_KEYS={'やさしい日本語（漢字にふりがなはつけず、短い文で）':'やさしい日本語'};
   function langInfo(k){k=OLD_KEYS[k]||k;for(var i=0;i<LANGS.length;i++)if(LANGS[i].key===k)return LANGS[i];return {key:k,label:k,ask:k}}
