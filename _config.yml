@@ -1,0 +1,9 @@
+# GitHub Pagesの設定が「Deploy from a branch」の場合でも、公開しないフォルダ
+# （「GitHub Actions」の場合は .github/workflows/pages.yml で同じものを除外している）
+exclude:
+  - sns
+  - worker
+  - policies
+  - .claude
+  - .github
+  - README.md
