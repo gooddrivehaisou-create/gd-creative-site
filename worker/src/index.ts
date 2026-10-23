@@ -27,10 +27,11 @@ const nullable = (t: string) => ({ anyOf: [{ type: t }, { type: "null" }] });
 const MANUAL_SCHEMA = {
   type: "object",
   additionalProperties: false,
-  required: ["title", "summary", "tools", "safety", "steps", "checklist", "questions"],
+  required: ["title", "summary", "purpose", "tools", "safety", "steps", "checklist", "questions"],
   properties: {
     title: str,
     summary: str,
+    purpose: strArr,
     tools: strArr,
     safety: strArr,
     steps: {
@@ -169,9 +170,9 @@ async function manual(env: Env, b: Body) {
     : "\nframe は常に null にする。\n";
   const prompt =
     `あなたは製造・建設・介護などの現場の技能継承の専門家です。以下はベテランが話した内容の書き起こし${images.length ? "と、作業動画の場面写真" : ""}です。新人や外国人スタッフでも分かる作業手順書にしてください。\n` +
-    "守ること:\n- 話や映像に出てこない数値・手順・道具を作らない。\n- 足りない情報や、確認すべきことは questions に入れる。\n- 文は短く、1つの手順に1つの動作。\n- 安全に関わることは safety に必ず入れる。\n- summary は1〜2文。point（コツ）と why（理由）は無ければ空文字。" +
+    "守ること:\n- 話や映像に出てこない数値・手順・道具を作らない。\n- 足りない情報や、確認すべきことは questions に入れる。\n- 文は短く、1つの手順に1つの動作。\n- 安全に関わることは safety に必ず入れる。\n- summary は1〜2文。point（コツ）と why（理由）は無ければ空文字。\n- purpose（この作業をする理由・目的）は、話の中の理由と「この作業をする理由」欄の内容から、短い文で1〜3つ。どちらにも無ければ空の配列にして、questions に「この作業をする目的は？」を入れる。" +
     imgNote +
-    `\n作業名: ${text(b.task, 200)}\n業種: ${text(b.industry, 100)}\n書き起こし:\n"""\n${transcript || "（なし。映像だけから作る）"}\n"""`;
+    `\n作業名: ${text(b.task, 200)}\n業種: ${text(b.industry, 100)}\nこの作業をする理由（作る人のメモ）: ${text(b.purpose, 500) || "（なし）"}\n書き起こし:\n"""\n${transcript || "（なし。映像だけから作る）"}\n"""`;
   const content: Anthropic.Beta.BetaContentBlockParam[] = [
     ...images.map(
       (data): Anthropic.Beta.BetaImageBlockParam => ({

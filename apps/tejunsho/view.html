@@ -63,6 +63,9 @@ p{margin:0}
 .sec{display:flex;flex-direction:column;gap:8px}
 .sec>h2{font-size:14px;font-weight:700;letter-spacing:.06em;color:var(--a-ink);display:flex;align-items:center;gap:8px}
 .sec>h2::after{content:"";flex:1;height:1px;background:var(--line)}
+.purpose{border:1.5px solid var(--a);border-radius:8px;padding:10px 14px;break-inside:avoid}
+.purpose h2{color:var(--a-ink);font-size:14px;font-weight:700}
+.purpose ul{margin:4px 0 0;padding-left:1.2em}
 .safety{background:var(--warn-soft);border-radius:8px;padding:10px 14px;border-left:5px solid var(--warn)}
 .safety h2{color:var(--warn);font-size:14px;font-weight:700}
 .safety ul{margin:4px 0 0;padding-left:1.2em;font-weight:700}
@@ -78,7 +81,7 @@ ol.steps li.noimg{grid-template-columns:38px 1fr}
 .pt{font-size:13.5px}.pt b{color:var(--a-ink)}
 .why{font-size:13px;color:var(--muted)}
 .sphoto{width:100%;border-radius:6px;display:block}
-@media (max-width:560px){ol.steps li{grid-template-columns:38px 1fr}ol.steps li .sphoto{grid-column:2;max-width:260px}}
+@media (max-width:560px){ol.steps li{grid-template-columns:38px 1fr}ol.steps li .sphoto{grid-column:2;max-width:260px}.dfoot{grid-template-columns:1fr}}
 .checks{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:6px 16px}
 .checks li{display:grid;grid-template-columns:20px 1fr;gap:8px;font-size:14px}
 .checks li::before{content:"";width:16px;height:16px;border:2px solid var(--ink);border-radius:3px;margin-top:4px}
@@ -176,6 +179,7 @@ ol.steps li.noimg{grid-template-columns:38px 1fr}
       el('div',null,[el('div',{class:'kind',text:lang==='ja'?'作業手順書':'作業手順書 ・ '+(LANG_NAMES[lang]||lang)}),el('h1',{class:'dtitle',text:m.title||''}),bi?el('div',{class:'dsub',text:ja.title}):null]),
       dl.children.length?dl:null]));
     if(m.summary)doc.append(el('p',{class:'summary',text:m.summary}));
+    if(m.purpose&&m.purpose.length)doc.append(el('section',{class:'purpose'},[el('h2',{text:'この作業をする理由'+(lang!=='ja'?' / Why':'')}),el('ul',null,m.purpose.map(function(s,i){return el('li',null,[document.createTextNode(s),bi&&ja.purpose&&ja.purpose[i]?el('div',{class:'act-sub',text:ja.purpose[i]}):null])}))]));
     if(m.safety&&m.safety.length)doc.append(el('section',{class:'safety'},[el('h2',{text:'⚠ 安全のために必ず守ること'+(lang!=='ja'?' / Safety':'')}),el('ul',null,m.safety.map(function(s,i){return el('li',null,[document.createTextNode(s),bi&&ja.safety[i]?el('div',{class:'act-sub',text:ja.safety[i]}):null])}))]));
     if(m.tools&&m.tools.length)doc.append(el('section',{class:'sec'},[el('h2',{text:'使う道具・材料'}),el('div',{class:'chips'},m.tools.map(function(t){return el('span',{class:'chip',text:t})}))]));
     var frames=data.frames||[];var photos=o.photos!==false;

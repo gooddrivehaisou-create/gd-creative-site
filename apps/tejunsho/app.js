@@ -6,12 +6,12 @@
   var MAX_IMAGES=10;
   // AI中継サーバーを設定していない時は、無料のAI（Claude・ChatGPT・Gemini）に依頼文を貼ってもらう
   var useAI=!!window.GD_API_BASE;
-  var FORMAT='{"title":"作業名","summary":"1〜2文の説明","tools":["道具"],"safety":["安全のために必ず守ること"],"steps":[{"action":"1つの動作","point":"コツ（無ければ空文字）","why":"理由（無ければ空文字）"}],"checklist":["作業後に確認すること"],"questions":["ベテランに追加で聞くこと"]}';
-  function manualPrompt(task,industry,tr){
+  var FORMAT='{"title":"作業名","summary":"1〜2文の説明","purpose":["この作業をする理由・目的"],"tools":["道具"],"safety":["安全のために必ず守ること"],"steps":[{"action":"1つの動作","point":"コツ（無ければ空文字）","why":"理由（無ければ空文字）"}],"checklist":["作業後に確認すること"],"questions":["ベテランに追加で聞くこと"]}';
+  function manualPrompt(task,industry,tr,purpose){
     return 'あなたは製造・建設・介護などの現場の技能継承の専門家です。以下はベテランが話した内容の書き起こしです。新人や外国人スタッフでも分かる作業手順書にしてください。\n'+
-      '守ること:\n- 話に出てこない数値・手順・道具を作らない。\n- 足りない情報や、確認すべきことは questions に入れる。\n- 文は短く、1つの手順に1つの動作。\n- 安全に関わることは safety に必ず入れる。\n\n'+
+      '守ること:\n- 話に出てこない数値・手順・道具を作らない。\n- 足りない情報や、確認すべきことは questions に入れる。\n- 文は短く、1つの手順に1つの動作。\n- 安全に関わることは safety に必ず入れる。\n- purpose（この作業をする理由・目的）は、話の中の理由と「この作業をする理由」欄の内容から、短い文で1〜3つ。どちらにも無ければ空の配列にして、questions に「この作業をする目的は？」を入れる。\n\n'+
       '返事は、次の形のJSONだけを ```json のコードブロック1つで返してください。説明の文章はいりません。\n'+FORMAT+'\n\n'+
-      '作業名: '+task+'\n業種: '+industry+'\n書き起こし:\n"""\n'+tr+'\n"""';
+      '作業名: '+task+'\n業種: '+industry+'\nこの作業をする理由（作る人のメモ）: '+(purpose||'（なし）')+'\n書き起こし:\n"""\n'+tr+'\n"""';
   }
   function translatePrompt(manual,lang){
     return '次の作業手順書のJSONを'+lang+'に翻訳してください。構造とキー名はそのまま、文字列の値だけ訳す。数値・単位はそのまま。現場の新人が読む想定で短く分かりやすく。\n'+
@@ -43,6 +43,7 @@
 
   // 見本（ページを開いた時に表示）
   var SAMPLE={title:'アルミ板の曲げ加工（ベンダー）',summary:'2mmのアルミ板を、割れと傷を出さずに図面どおりの角度で曲げる手順です。',
+    purpose:['割れや傷が出ると、材料も時間もむだになるため','同じ品質のものを、誰が作っても同じようにそろえるため'],
     tools:['図面','ベンダー（プレスブレーキ）','V金型（V幅12〜16mm）','端材','分度器','記録表','保護シート'],
     safety:['手は絶対に金型の間に入れない','フットペダルは曲げる時だけ踏む。足を乗せたままにしない'],
     steps:[
@@ -122,6 +123,7 @@
     var m=state.lang==='ja'?state.manual:(state.translations[state.lang]||state.manual);
     var box=$('manual');box.replaceChildren();
     box.append(el('div',{class:'mhead'},[el('span',{class:'eyebrow',text:'作業手順書'}),el('h2',{text:m.title||''}),el('p',{class:'small',text:m.summary||''})]));
+    if(m.purpose&&m.purpose.length)box.append(el('div',{class:'sec purpose'},[el('h3',{text:'この作業をする理由'}),el('ul',null,m.purpose.map(function(s){return el('li',{text:s})}))]));
     if(m.safety&&m.safety.length)box.append(el('div',{class:'sec safety'},[el('h3',{text:'⚠ 安全のために必ず守ること'}),el('ul',null,m.safety.map(function(s){return el('li',{text:s})}))]));
     if(m.tools&&m.tools.length)box.append(el('div',{class:'sec'},[el('h3',{text:'使う道具・材料'}),el('div',{class:'chips'},m.tools.map(function(t){return el('span',{class:'chip',text:t})}))]));
     if(m.steps&&m.steps.length)box.append(el('div',{class:'sec'},[el('h3',{text:'手順'}),el('ol',{class:'steps'},m.steps.map(function(s,i){
@@ -145,14 +147,14 @@
     if(!useAI){
       if(tr.length<20){$('st').className='status err';$('st').textContent='話した内容をもう少し入れてください（20文字以上）。';return}
       $('st').className='status';$('st').textContent='';
-      openRelay('manual',manualPrompt($('task').value,$('industry').value,tr.slice(0,12000)),{frames:frames});
+      openRelay('manual',manualPrompt($('task').value,$('industry').value,tr.slice(0,12000),$('purpose').value.trim()),{frames:frames});
       return;
     }
     if(tr.length<20&&!frames.length){$('st').className='status err';$('st').textContent=GD.errorText({code:'too_short'});return}
     ctl=new AbortController();
     $('make').disabled=true;$('stop').hidden=false;$('st').className='status';$('st').textContent='AIが手順書を書いています…（'+(frames.length?'写真つきなので1〜2分':'30秒〜1分')+'ほど）';
     try{
-      var m=await GD.api('/manual',{task:$('task').value,industry:$('industry').value,transcript:tr,images:frames.map(function(f){return f.b64})},ctl.signal);
+      var m=await GD.api('/manual',{task:$('task').value,industry:$('industry').value,purpose:$('purpose').value.trim(),transcript:tr,images:frames.map(function(f){return f.b64})},ctl.signal);
       if(!m||!Array.isArray(m.steps))throw {code:'invalid_json'};
       state={manual:m,translations:{},lang:'ja',isSample:false,docId:null,turns:[],frames:frames.map(function(f){return {thumb:f.thumb,t:f.t}})};
       resetChat();render();
@@ -200,6 +202,7 @@
   function toMd(){
     var m=state.lang==='ja'?state.manual:(state.translations[state.lang]||state.manual);var L=[];
     L.push('# '+m.title,'',m.summary||'','');
+    if(m.purpose&&m.purpose.length){L.push('## この作業をする理由');m.purpose.forEach(function(s){L.push('- '+s)});L.push('')}
     if(m.safety&&m.safety.length){L.push('## 安全のために必ず守ること');m.safety.forEach(function(s){L.push('- '+s)});L.push('')}
     if(m.tools&&m.tools.length){L.push('## 使う道具・材料');m.tools.forEach(function(s){L.push('- '+s)});L.push('')}
     L.push('## 手順');(m.steps||[]).forEach(function(s,i){L.push((i+1)+'. **'+s.action+'**'+(s.point?'  \n   コツ：'+s.point:'')+(s.why?'  \n   理由：'+s.why:''))});L.push('');
