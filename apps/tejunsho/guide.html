@@ -63,6 +63,7 @@ p{margin:0}
 .faq summary{cursor:pointer;font-weight:700}
 .faq p{margin-top:6px;font-size:14.5px}
 .note{font-size:13px;color:var(--muted);text-align:center}
+.steps-ol{margin:0;padding-left:1.3em;font-size:14.5px;display:flex;flex-direction:column;gap:2px}
 </style>
 </head>
 <body>
@@ -117,7 +118,7 @@ p{margin:0}
 
   <div class="rule"><span class="n">1</span><div>
     <h3>1つの作業を、1本の動画に</h3>
-    <p class="small">「段取り」「曲げ」「検査」のように、作業ごとに分けて撮ります。長さは3〜10分が目安。長い作業は途中で区切ってOKです。</p>
+    <p class="small">「段取り」「曲げ」「検査」のように、作業ごとに分けて撮ります。<b>1本は5分以内</b>にしてください（LINEで送れるのは5分までです）。長い作業は「前半」「後半」のように区切って、何本かに分けて撮ればOKです。</p>
   </div></div>
 
   <div class="rule"><span class="n">2</span><div>
@@ -160,7 +161,6 @@ p{margin:0}
   <h2 id="s-h">送り方</h2>
   <ul class="check">
     <li><span>撮った動画を、そのまま<b>LINE</b>で送ってください。メッセージに「会社名」と「作業名」を添えてください。</span></li>
-    <li><span>LINEで送れないほど大きい動画は、Googleドライブなどにアップして、リンクを送ってください。</span></li>
     <li><span>写真や、今使っている紙のマニュアル・メモがあれば、一緒に送ってもらえると、より正確になります。</span></li>
   </ul>
   <div class="contact" id="contact">
@@ -172,6 +172,34 @@ p{margin:0}
       <button class="copy" type="button" id="copyLine" hidden>IDをコピー</button>
     </div>
   </div>
+</section>
+
+<section class="card" aria-labelledby="ng-h">
+  <h2 id="ng-h">LINEで送れない時は</h2>
+  <p class="small">5分より長い動画は、LINEでは送れないか、最初の5分だけになってしまいます。次のどれかでお願いします。</p>
+
+  <div class="rule"><span class="n">1</span><div>
+    <h3>いちばん簡単：LINEで「送れません」とだけ送る</h3>
+    <p class="small">こちらからお電話でご案内するか、近くなら動画を受け取りに伺います。難しいことはしなくて大丈夫です。</p>
+  </div></div>
+
+  <div class="rule"><span class="n">2</span><div>
+    <h3>撮り直せるなら：5分以内に分けて撮る</h3>
+    <p class="small">同じ作業を「前半」「後半」に分けて撮り直してもらえれば、そのままLINEで送れます。</p>
+  </div></div>
+
+  <div class="rule"><span class="n">3</span><div>
+    <h3>スマホに慣れている方：ギガファイル便で送る</h3>
+    <p class="small">登録なし・無料で、大きな動画をリンクにして送れるサービスです。</p>
+    <ol class="steps-ol">
+      <li>Safari（iPhone）かChrome（Android）で <b>gigafile.nu</b> を開く</li>
+      <li>「ファイルを選択」を押して、写真（ギャラリー）から動画を選ぶ</li>
+      <li>読み込みが <b>100%</b> になるまで待つ（途中で画面を閉じない）</li>
+      <li>出てきたURLを長押しして「コピー」</li>
+      <li>LINEのトークに貼って送る</li>
+    </ol>
+    <p class="small muted">動画は決まった日数（選べます）がたつと自動で消えます。画面の見た目は変わることがあります。</p>
+  </div></div>
 </section>
 
 <section class="card faq" aria-labelledby="f-h">
