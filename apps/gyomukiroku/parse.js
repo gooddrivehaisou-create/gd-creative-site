@@ -64,6 +64,8 @@ window.GyomuParse = (function () {
       var w = t.match(/([^。]+?)\s*(?:を|に)\s*(?:回っ|回る|経由|通っ|寄っ|行っ)/);
       var names = w ? w[1].split(/と|、|,|・|や/).map(cleanPlace).filter(Boolean) : [];
       if (names.length) return names.map(function (n) { return { type: "waypoint", time: time, place: n, odometer: null, minutes: null, note: null }; });
+      // 地点名が読み取れない時は、話した文をメモとして残す
+      return [{ type: "note", time: time, place: null, odometer: null, minutes: null, note: t }];
     }
     return [{ type: type, time: time, place: place, odometer: odo, minutes: min, note: type === "note" ? t : null }];
   }

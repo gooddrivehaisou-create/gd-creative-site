@@ -51,7 +51,7 @@
     return {kind:'day',code:profile.code,device:device,date:k,updatedAt:days[k].updatedAt,
       profile:{name:profile.name||'',car:profile.car||'',office:profile.office||''},
       summary:{start:sm.s?sm.s.time:'',startPlace:sm.s&&sm.s.place||'',end:sm.en?sm.en.time:'',endPlace:sm.en&&sm.en.place||'',breaks:sm.brText,distance:sm.dist,waypoints:sm.wp.join('、'),odoStart:sm.s&&sm.s.odometer,odoEnd:sm.en&&sm.en.odometer},
-      events:sm.ev.map(function(e){return {time:e.time,label:LABEL[e.type],detail:[e.place,e.odometer!=null?'メーター '+e.odometer:null,e.minutes?e.minutes+'分':null,e.type==='note'?e.note:null].filter(Boolean).join('・')}})};
+      events:sm.ev.map(function(e){return {time:e.time,label:LABEL[e.type],detail:([e.place,e.odometer!=null?'メーター '+e.odometer:null,e.minutes?e.minutes+'分':null,e.type==='note'?e.note:null].filter(Boolean).join('・')||(e.raw?'「'+e.raw+'」':''))}})};
   }
   var syncing=false,again=false;
   async function syncAll(){
@@ -123,7 +123,7 @@
     var tl=$('tl');tl.replaceChildren();
     if(!sm.ev.length){tl.append(el('li',{style:'display:block',class:'empty',text:'まだ入力がありません。上の例を押して「記録する」を試してください。'}));return}
     sm.ev.forEach(function(e){
-      var detail=[e.place,e.odometer!=null?'メーター '+e.odometer:null,e.minutes?e.minutes+'分':null,e.type==='note'?e.note:null].filter(Boolean).join('・');
+      var detail=([e.place,e.odometer!=null?'メーター '+e.odometer:null,e.minutes?e.minutes+'分':null,e.type==='note'?e.note:null].filter(Boolean).join('・')||(e.raw?'「'+e.raw+'」':''));
       var del=el('button',{class:'del',type:'button','aria-label':'この行を消す',text:'×'});
       del.onclick=function(){saveDay(key,(days[key].events||[]).filter(function(x){return x.id!==e.id}))};
       tl.append(el('li',null,[el('span',{class:'t',text:e.time}),el('span',{class:'badge '+(e.type==='start'?'start':e.type==='end'?'end':''),text:LABEL[e.type]}),el('span',{text:detail||'—'}),del]));
