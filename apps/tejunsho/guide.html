@@ -167,14 +167,17 @@ p{margin:0}
     <span class="small">送り先</span>
     <span id="cName" style="font-weight:700">担当者のLINE</span>
     <span class="id" id="cLine" hidden></span>
-    <button class="copy" type="button" id="copyLine" hidden>IDをコピー</button>
+    <div style="display:flex;flex-wrap:wrap;gap:8px">
+      <a class="copy" id="addLine" hidden href="#" target="_blank" rel="noopener" style="text-decoration:none">LINEで友だち追加</a>
+      <button class="copy" type="button" id="copyLine" hidden>IDをコピー</button>
+    </div>
   </div>
 </section>
 
 <section class="card faq" aria-labelledby="f-h">
   <h2 id="f-h">よくある質問</h2>
   <details><summary>うまく話せなくても大丈夫？</summary><p>大丈夫です。言い間違いや「えーと」はこちらで整えます。分からないところは、あとで電話かLINEで5分ほど確認させてください。</p></details>
-  <details><summary>どのくらいで届きますか？</summary><p>動画を受け取ってから、確認の連絡をはさんで数日〜1週間ほどが目安です。</p></details>
+  <details><summary>どのくらいで届きますか？</summary><p>動画を受け取ってから、<b>2日〜1週間以内</b>にお届けします（内容の確認で、途中で一度ご連絡することがあります）。</p></details>
   <details><summary>どんな形で届きますか？</summary><p>写真つきの手順書を、印刷できるPDFと、スマホで見られるページでお届けします。現場に貼れるQRコードもつけられます。ベトナム語・インドネシア語・英語などの版も作れます。</p></details>
   <details><summary>動画は外に出ませんか？</summary><p>手順書づくりのためだけに使います。社名や人の名前など、外に出したくない情報があれば先に教えてください。</p></details>
 </section>
@@ -188,6 +191,7 @@ p{margin:0}
   if(c.name)document.getElementById('cName').textContent=c.name;
   if(c.line){
     var id=document.getElementById('cLine');id.textContent=c.line;id.hidden=false;
+    var add=document.getElementById('addLine');add.href='https://line.me/R/ti/p/'+encodeURIComponent(c.line).replace('%40','@');add.hidden=false;
     var b=document.getElementById('copyLine');b.hidden=false;
     b.onclick=function(){
       if(navigator.clipboard)navigator.clipboard.writeText(c.line).then(function(){b.textContent='コピーしました'},function(){b.textContent='長押しでコピーしてください'});
