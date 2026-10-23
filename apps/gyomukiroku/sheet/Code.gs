@@ -2,11 +2,14 @@
  * 声の業務記録 → Googleスプレッドシート連携（Google Apps Script）
  *
  * 使い方：
- *  1. 記録を集めるスプレッドシートで「拡張機能」→「Apps Script」を開く
+ *  1. https://script.google.com で「新しいプロジェクト」を作る
+ *     （スプレッドシートの「拡張機能」→「Apps Script」から作ってもOK）
  *  2. このファイルの中身を全部貼りつけ、下の COMPANY_CODE を自分で決めた会社コードに変える
  *  3. 「デプロイ」→「新しいデプロイ」→ 種類「ウェブアプリ」
  *     実行するユーザー：自分 ／ アクセスできるユーザー：全員 → 「デプロイ」→ 承認
- *  4. 表示された「ウェブアプリのURL」を apps/config.js の GD_SHEET.url に入れる
+ *  4. 表示された「ウェブアプリのURL」をブラウザで開く
+ *     → Googleドライブに「業務記録（声の業務記録）」というスプレッドシートが自動でできる
+ *     このURLを apps/config.js の GD_SHEET.url に入れる
  *  5. ドライバーはアプリの「設定」で、同じ会社コードを入れる
  *
  * 料金はかかりません（Googleの無料枠で動きます）。
@@ -30,7 +33,7 @@ function doPost(e) {
     const d = JSON.parse(e.postData.contents);
     if (COMPANY_CODE === 'ここに会社コード') return out_({ ok: false, error: 'code_not_set' });
     if (String(d.code || '') !== COMPANY_CODE) return out_({ ok: false, error: 'bad_code' });
-    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    const ss = book_();
     const p = d.profile || {};
     if (d.kind === 'day') {
       const s = d.summary || {};
@@ -57,8 +60,29 @@ function doPost(e) {
 }
 
 // ブラウザでURLを開いた時の動作確認用
+// （初めて開いた時に、記録用のスプレッドシートを作る）
 function doGet() {
-  return out_({ ok: true, app: 'gyomu-kiroku', codeSet: COMPANY_CODE !== 'ここに会社コード' });
+  const ss = book_();
+  sheet_(ss, DAY_SHEET, DAY_HEAD);
+  sheet_(ss, ACC_SHEET, ACC_HEAD);
+  return out_({ ok: true, app: 'gyomu-kiroku', codeSet: COMPANY_CODE !== 'ここに会社コード', sheet: ss.getName() });
+}
+
+// 記録を入れるスプレッドシート。スプレッドシートから作ったプログラムならそれを使い、
+// そうでなければ「業務記録（声の業務記録）」を自動で作って使い続ける
+function book_() {
+  try {
+    const active = SpreadsheetApp.getActiveSpreadsheet();
+    if (active) return active;
+  } catch (e) {}
+  const props = PropertiesService.getScriptProperties();
+  const id = props.getProperty('SHEET_ID');
+  if (id) {
+    try { return SpreadsheetApp.openById(id); } catch (e) {}
+  }
+  const created = SpreadsheetApp.create('業務記録（声の業務記録）');
+  props.setProperty('SHEET_ID', created.getId());
+  return created;
 }
 
 function out_(obj) {

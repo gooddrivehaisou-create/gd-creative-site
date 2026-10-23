@@ -51,52 +51,74 @@ code{font-family:var(--mono);font-size:13px;background:var(--b-soft);color:var(-
   <header style="display:flex;flex-direction:column;gap:8px">
     <span class="eyebrow">声の業務記録 ・ 管理者向け</span>
     <h1>会社のスプレッドシートにつなぐ</h1>
-    <p class="muted">ドライバーが記録すると、会社のGoogleスプレッドシートに1日1行で自動で入ります。パソコンで、上から順に進めてください（15分ほど・無料）。</p>
+    <p class="muted">ドライバーが記録すると、会社のGoogleスプレッドシートに1日1行で自動で入ります。スマホでもパソコンでもできます。上から順に進めてください（15〜20分・無料）。</p>
   </header>
 
   <section class="step"><span class="n">1</span><div>
-    <h2>スプレッドシートを作る</h2>
-    <p>Googleドライブで新しいスプレッドシートを作り、名前を「業務記録」などにします。会社のGoogleアカウントで作ると、後で引き継ぎが楽です。</p>
+    <h2>このページを「2つ」開いておく</h2>
+    <p>このページは、プログラムをコピーするのに使います。もう1つのタブで、次の手順のGoogleの画面を開きます。</p>
+    <p class="tip">スマホなら、Safari（iPhone）かChrome（Android）で進めてください。LINEの中のブラウザだとうまくいきません。</p>
   </div></section>
 
   <section class="step"><span class="n">2</span><div>
+    <h2>Apps Script を開く</h2>
+    <ol>
+      <li>新しいタブで <a href="https://script.google.com/home/projects/create" target="_blank" rel="noopener"><b>script.google.com</b>（新しいプロジェクト）</a> を開き、Googleアカウントでログイン</li>
+      <li><b>スマホの場合</b>：画面が崩れたり「アプリを使ってください」と出たら、パソコン用の表示に切り替えます
+        <ul>
+          <li>iPhone（Safari）：アドレス欄の左の <b class="ui">ぁあ</b> →「デスクトップ用Webサイトを表示」</li>
+          <li>Android（Chrome）：右上の <b class="ui">︙</b> →「PC版サイト」にチェック</li>
+        </ul>
+      </li>
+      <li>「無題のプロジェクト」の編集画面が開けばOK（開かない時は「新しいプロジェクト」を押す）</li>
+    </ol>
+    <p class="tip">文字が小さい時は、2本指で広げて拡大してください。</p>
+  </div></section>
+
+  <section class="step"><span class="n">3</span><div>
     <h2>プログラムを貼る</h2>
     <ol>
-      <li>スプレッドシートの上のメニューで <b class="ui">拡張機能</b> → <b class="ui">Apps Script</b> を開く</li>
-      <li>最初から入っている文字を全部消す</li>
-      <li>下の「プログラムをコピー」を押して、そのまま貼りつける</li>
+      <li>このページに戻って「プログラムをコピー」を押す</li>
+      <li>Apps Scriptのタブに戻り、最初から入っている <code>function myFunction() {…}</code> の文字を全部消す<br><span class="small muted">スマホ：文字を長押し →「すべてを選択」→ 削除</span></li>
+      <li>同じ場所を長押し →「ペースト」</li>
     </ol>
     <div class="codebox"><pre id="code">読み込んでいます…</pre></div>
     <button class="btn" type="button" id="copy">プログラムをコピー</button>
   </div></section>
 
-  <section class="step"><span class="n">3</span><div>
-    <h2>会社コードを決めて書きかえる</h2>
-    <p>貼ったプログラムの上の方にある <code>const COMPANY_CODE = 'ここに会社コード';</code> の「ここに会社コード」を、自分で決めた合言葉に書きかえます（例：<code>gd-2026-kiroku</code>）。書きかえたら保存（Ctrl+S）。</p>
-    <p class="tip">この会社コードを、ドライバーにアプリの「設定」で入れてもらいます。知らない人に書き込まれないための合言葉なので、外に出さないでください。</p>
-  </div></section>
-
   <section class="step"><span class="n">4</span><div>
-    <h2>ウェブアプリとして公開する</h2>
-    <ol>
-      <li>右上の <b class="ui">デプロイ</b> → <b class="ui">新しいデプロイ</b></li>
-      <li>歯車マーク → <b class="ui">ウェブアプリ</b> を選ぶ</li>
-      <li><b>次のユーザーとして実行</b>：自分 ／ <b>アクセスできるユーザー</b>：全員</li>
-      <li><b class="ui">デプロイ</b> を押し、Googleアカウントの承認画面で許可する<br><span class="small muted">「このアプリはGoogleで確認されていません」と出たら「詳細」→「（安全ではないページ）に移動」で進めます。自分で作ったプログラムなので問題ありません。</span></li>
-      <li>表示された <b>ウェブアプリのURL</b>（<code>https://script.google.com/macros/s/…/exec</code>）をコピーする</li>
-    </ol>
-    <p class="tip">確認：そのURLをブラウザで開いて <code>"ok":true</code> と <code>"codeSet":true</code> が出れば準備できています。</p>
+    <h2>会社コードを書きかえて保存</h2>
+    <p>貼った文の上の方（16行目あたり）の <code>const COMPANY_CODE = 'ここに会社コード';</code> の「ここに会社コード」だけを消して、自分で決めた合言葉を入れます（例：<code>gd2026kiroku</code>。英数字がおすすめ）。<b>' '（クォート）は消さないでください。</b></p>
+    <p>上のフロッピーディスクのマーク（保存）を押します。</p>
+    <p class="tip">この会社コードを、あとでドライバーのアプリにも入れてもらいます。ドライバー以外には教えないでください。</p>
   </div></section>
 
   <section class="step"><span class="n">5</span><div>
-    <h2>URLを伝える</h2>
-    <p>コピーしたURLを、アプリの管理担当（Claude）に送ってください。アプリにつないで反映します。<br>自分で入れる場合は、サイトの <code>apps/config.js</code> の <code>GD_SHEET.url</code> に貼ります。</p>
+    <h2>ウェブアプリとして公開する</h2>
+    <ol>
+      <li>右上の青い <b class="ui">デプロイ</b> →「新しいデプロイ」</li>
+      <li>「種類の選択」の歯車マーク → <b class="ui">ウェブアプリ</b></li>
+      <li>「次のユーザーとして実行」：<b>自分</b> ／「アクセスできるユーザー」：<b>全員</b></li>
+      <li><b class="ui">デプロイ</b> →「アクセスを承認」→ 自分のGoogleアカウントを選ぶ</li>
+      <li>「Googleはこのアプリを検証していません」と出たら：左下の <b>詳細</b> →「（プロジェクト名）（安全ではないページ）に移動」→ <b>許可</b><br><span class="small muted">自分で作ったプログラムなので問題ありません。</span></li>
+      <li>「ウェブアプリ」の下のURL（<code>https://script.google.com/macros/s/…/exec</code>）の <b>コピー</b> を押す</li>
+    </ol>
   </div></section>
 
   <section class="step"><span class="n">6</span><div>
+    <h2>URLを開いて確かめる → 私に送る</h2>
+    <ol>
+      <li>コピーしたURLを、新しいタブで開く</li>
+      <li><code>"ok":true</code> と <code>"codeSet":true</code> が出ればOK。このとき、Googleドライブ（スプレッドシートのアプリ）に <b>「業務記録（声の業務記録）」</b> が自動でできます</li>
+      <li>そのURLを、Claudeとの会話に貼って送ってください。アプリにつないで反映します</li>
+    </ol>
+    <p class="tip"><code>"codeSet":false</code> の時は、4の会社コードが書きかわっていません。書きかえて保存し、下の「プログラムを後から書きかえた時」の方法で更新してください。</p>
+  </div></section>
+
+  <section class="step"><span class="n">7</span><div>
     <h2>ドライバーに会社コードを伝える</h2>
     <p>アプリの <b class="ui">設定</b> →「会社コード」に入れて保存してもらいます。「今日」の画面に <b>会社のスプレッドシートに送信済み</b> と出れば完了です。</p>
-    <p class="tip">それまでにスマホに残っていた記録も、まとめて送られます。圏外で記録した分は、電波が戻った後の次の記録の時に送られます。</p>
+    <p class="tip">それまでスマホに残っていた記録も、まとめて送られます。圏外で記録した分は、電波が戻った時に送られます。</p>
   </div></section>
 
   <p class="warn">プログラムを後から書きかえた時は、<b>デプロイ</b> → <b>デプロイを管理</b> → 鉛筆マーク → バージョン「新バージョン」→ デプロイ、で更新してください（URLは変わりません）。</p>
