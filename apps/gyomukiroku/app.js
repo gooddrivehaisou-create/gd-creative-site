@@ -10,8 +10,9 @@
   // この端末の中の記録
   var data=GD.load(STORE,{days:{},accidents:[],profile:{}});
   var days=data.days||{},accidents=data.accidents||[],profile=data.profile||{};
-  function persist(){return GD.save(STORE,{days:days,accidents:accidents,profile:profile})}
-  $('sName').value=profile.name||'';$('sCar').value=profile.car||'';$('sOffice').value=profile.office||'';
+  var device=data.device||('d'+Date.now().toString(36)+Math.random().toString(36).slice(2,6));
+  function persist(){return GD.save(STORE,{days:days,accidents:accidents,profile:profile,device:device})}
+  $('sName').value=profile.name||'';$('sCar').value=profile.car||'';$('sOffice').value=profile.office||'';$('sCode').value=profile.code||'';
 
   // タブ
   document.querySelectorAll('.tab').forEach(function(t){t.onclick=function(){
@@ -34,7 +35,55 @@
   }
   if(!useAI){$('accSay').closest('label').hidden=true;$('accAi').closest('.btns').hidden=true}
 
-  function saveDay(key,events){days[key]={date:key,events:events};var ok=persist();renderAll();return ok}
+  function saveDay(key,events){var prev=days[key]||{};days[key]={date:key,events:events,updatedAt:new Date().toISOString(),syncedAt:prev.syncedAt||null};var ok=persist();renderAll();syncAll();return ok}
+
+  // ---- 会社のスプレッドシートへ送る（設定がある時だけ） ----
+  var SHEET_URL=(window.GD_SHEET&&window.GD_SHEET.url)||'';
+  if(!SHEET_URL)$('sCodeWrap').hidden=true;
+  function setSync(cls,text){var e=$('sync');e.hidden=false;e.className='syncline'+(cls?' '+cls:'');e.textContent=text}
+  async function postSheet(payload){
+    var res=await fetch(SHEET_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
+    var j=await res.json();
+    if(!j||!j.ok)throw {code:(j&&j.error)||'sheet_error'};
+  }
+  function dayPayload(k){
+    var sm=summarize(days[k]);
+    return {kind:'day',code:profile.code,device:device,date:k,updatedAt:days[k].updatedAt,
+      profile:{name:profile.name||'',car:profile.car||'',office:profile.office||''},
+      summary:{start:sm.s?sm.s.time:'',startPlace:sm.s&&sm.s.place||'',end:sm.en?sm.en.time:'',endPlace:sm.en&&sm.en.place||'',breaks:sm.brText,distance:sm.dist,waypoints:sm.wp.join('、'),odoStart:sm.s&&sm.s.odometer,odoEnd:sm.en&&sm.en.odometer},
+      events:sm.ev.map(function(e){return {time:e.time,label:LABEL[e.type],detail:[e.place,e.odometer!=null?'メーター '+e.odometer:null,e.minutes?e.minutes+'分':null,e.type==='note'?e.note:null].filter(Boolean).join('・')}})};
+  }
+  var syncing=false,again=false;
+  async function syncAll(){
+    if(!SHEET_URL)return;
+    if(!profile.code){setSync('ng','会社コードが未設定のため、会社には送っていません（「設定」で入れてください）');return}
+    if(syncing){again=true;return}
+    syncing=true;
+    try{
+      var pendDays=Object.keys(days).filter(function(k){return days[k].updatedAt&&(!days[k].syncedAt||days[k].syncedAt<days[k].updatedAt)}).sort();
+      var pendAcc=accidents.filter(function(a){return !a.synced});
+      if(!pendDays.length&&!pendAcc.length){setSync('ok','会社のスプレッドシートに送信済み');return}
+      setSync('','会社に送っています…');
+      for(var i=0;i<pendDays.length;i++){
+        var k=pendDays[i],stamp=days[k].updatedAt;
+        await postSheet(dayPayload(k));
+        if(days[k]&&days[k].updatedAt===stamp){days[k].syncedAt=stamp;persist()}
+      }
+      for(var j=0;j<pendAcc.length;j++){
+        var a=pendAcc[j];if(!a.id){a.id='a'+Date.now().toString(36)+Math.random().toString(36).slice(2,6);persist()}
+        await postSheet({kind:'accident',code:profile.code,device:device,profile:{name:profile.name||'',car:profile.car||'',office:profile.office||''},accident:a});
+        a.synced=true;persist();
+      }
+      setSync('ok','会社のスプレッドシートに送信済み');
+    }catch(e){
+      if(e&&e.code==='bad_code')setSync('ng','会社コードが違います。「設定」で確認してください（記録はこのスマホに残っています）');
+      else setSync('ng','まだ会社に送れていません。電波が戻ったら次の記録の時に自動で送ります');
+    }finally{
+      syncing=false;
+      if(again){again=false;syncAll()}
+    }
+  }
+  window.addEventListener('online',syncAll);
 
   $('rec').onclick=async function(){
     var text=$('say').value.trim();if(!text)return;
@@ -92,7 +141,9 @@
     box.replaceChildren.apply(box,accidents.map(function(a){return el('div',{class:'it'},[el('span',{class:'num',text:String(a.savedAt||'').slice(0,10)}),el('span',{text:(a.when||'')+' '+(a.where||'')}),el('span',{class:'small muted',text:a.hurt||''})])}));
   }
   function renderAll(){renderToday();renderHist();renderAcc()}
+  Object.keys(days).forEach(function(k){if(days[k].events&&days[k].events.length&&!days[k].updatedAt)days[k].updatedAt=new Date().toISOString()});
   renderAll();
+  persist();syncAll();
 
   // CSV
   function csvCell(v){v=v==null?'':String(v);return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v}
@@ -119,17 +170,21 @@
   $('accSave').onclick=function(){
     var a={when:$('aWhen').value,where:$('aWhere').value,what:$('aWhat').value,why:$('aWhy').value,fix:$('aFix').value,hurt:$('aHurt').value,savedAt:new Date().toISOString()};
     if(!a.what){$('st5').className='status err';$('st5').textContent='事故の概要を入れてください。';return}
+    a.id='a'+Date.now().toString(36)+Math.random().toString(36).slice(2,6);a.synced=false;
     accidents.unshift(a);
     if(!persist()){accidents.shift();$('st5').className='status err';$('st5').textContent='この端末の保存容量がいっぱいで保存できませんでした。';return}
     $('st5').className='status';$('st5').textContent='保存しました。'+(/あり|けが|負傷|死/.test(a.hurt)&&!/なし/.test(a.hurt)?' 死傷者がいる場合は国への事故報告も必要です。':'');
     ['accSay','aWhen','aWhere','aWhat','aWhy','aFix','aHurt'].forEach(function(i){$(i).value=''});
-    renderAcc();
+    renderAcc();syncAll();
   };
 
   // 設定
   $('sSave').onclick=function(){
-    profile={name:$('sName').value.trim(),car:$('sCar').value.trim(),office:$('sOffice').value.trim()};
+    profile={name:$('sName').value.trim(),car:$('sCar').value.trim(),office:$('sOffice').value.trim(),code:$('sCode').value.trim()};
     var ok=persist();renderToday();
+    // 名前や車両番号が変わったら、その内容で送り直す
+    Object.keys(days).forEach(function(k){if(days[k].events&&days[k].events.length&&!days[k].updatedAt)days[k].updatedAt=new Date().toISOString()});
+    Object.keys(days).forEach(function(k){if(days[k].syncedAt)days[k].syncedAt=null});persist();syncAll();
     $('st6').className=ok?'status':'status err';$('st6').textContent=ok?'保存しました。':'保存できませんでした。';
   };
 })();

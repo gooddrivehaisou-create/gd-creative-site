@@ -84,6 +84,9 @@ input:focus-visible,textarea:focus-visible,button:focus-visible{outline:3px soli
 .empty{font-size:13.5px;color:var(--muted);background:var(--bg);border:1px dashed var(--line);border-radius:10px;padding:14px;text-align:center}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 @media (max-width:440px){.row2{grid-template-columns:1fr}}
+.syncline{font-size:13px;font-weight:700;border-radius:10px;padding:7px 12px;background:var(--bg);color:var(--muted)}
+.syncline.ok{background:var(--ok-soft);color:var(--ok)}
+.syncline.ng{background:var(--warn-soft);color:var(--warn)}
 .note{font-size:12.5px;color:var(--muted);border-left:3px solid var(--b);padding-left:10px}
 </style>
 </head>
@@ -137,6 +140,7 @@ input:focus-visible,textarea:focus-visible,button:focus-visible{outline:3px soli
       </div>
       <div id="sheet"></div>
       <div id="check"></div>
+      <p class="syncline" id="sync" role="status" hidden></p>
       <h3>入力した順</h3>
       <ul class="timeline" id="tl"></ul>
     </div>
@@ -187,6 +191,7 @@ input:focus-visible,textarea:focus-visible,button:focus-visible{outline:3px soli
         <label class="f" for="sCar">車両番号<input type="text" id="sCar" placeholder="足立 480 あ 12-34"></label>
       </div>
       <label class="f" for="sOffice">営業所<input type="text" id="sOffice" placeholder="足立営業所"></label>
+      <label class="f" for="sCode" id="sCodeWrap">会社コード（会社のスプレッドシートに送るための合言葉）<input type="text" id="sCode" autocomplete="off" placeholder="会社から聞いたコード"></label>
       <div class="btns"><button class="btn" id="sSave" type="button">保存</button></div>
       <p class="status" id="st6" role="status"></p>
       <p class="note">記録はこのスマホの中だけに保存されます。機種変更やブラウザの履歴削除で消えるので、「履歴」からCSVでも残してください。試作版のため、法令上の要件は国土交通省の最新資料で確認してください。</p>

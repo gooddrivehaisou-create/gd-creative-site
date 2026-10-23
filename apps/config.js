@@ -7,3 +7,8 @@ window.GD_CONTACT = {
   name: "Good Drive",
   line: "@440sfhjn",   // LINE公式アカウントのID
 };
+
+// 声の業務記録 → Googleスプレッドシート連携。Apps Script の「ウェブアプリのURL」を入れる（空なら連携しない）
+window.GD_SHEET = {
+  url: "",
+};

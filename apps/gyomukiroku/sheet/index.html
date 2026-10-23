@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>スプレッドシート連携の設定</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+/* Layout: 管理者がパソコンで上から順にこなす手順書。番号つきの段と、コピーするコード */
+:root{
+  --bg:#f5f3ee; --surface:#fff; --ink:#1d1a14; --muted:#655f52; --line:#e4dfd3;
+  --b:#d9900f; --b-soft:#fbf0d9; --b-ink:#8a5600; --on-b:#1d1606; --code:#1e1b15; --code-ink:#efe9dc;
+  --warn:#b4372c; --warn-soft:#fbe9e7;
+  --display:"Dela Gothic One","Hiragino Kaku Gothic StdN",sans-serif;
+  --body:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#13110d; --surface:#1e1b15; --ink:#efe9dc; --muted:#a79f8e; --line:#332e24;
+  --b:#f1b23e; --b-soft:#3a2e17; --b-ink:#f6c870; --on-b:#1d1606; --code:#0d0c09; --code-ink:#efe9dc;
+  --warn:#ff8a7d; --warn-soft:#3a1f1d; color-scheme:dark}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.75;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:720px;margin:0 auto;padding-block:20px 56px;display:flex;flex-direction:column;gap:18px}
+h1,h2{font-family:var(--display);font-weight:400;margin:0;line-height:1.35;text-wrap:balance}
+h1{font-size:clamp(23px,6vw,30px)} h2{font-size:17px}
+p{margin:0}
+.muted{color:var(--muted)} .small{font-size:13.5px}
+.eyebrow{font-size:12px;letter-spacing:.12em;color:var(--muted);font-weight:700}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:grid;grid-template-columns:34px 1fr;gap:12px}
+.step>div{display:flex;flex-direction:column;gap:8px;min-width:0}
+.n{width:34px;height:34px;border-radius:50%;background:var(--b);color:var(--on-b);font-family:var(--mono);font-weight:600;display:grid;place-items:center}
+ul,ol{margin:0;padding-left:1.3em}
+b.ui{background:var(--b-soft);color:var(--b-ink);border-radius:5px;padding:0 6px;font-weight:700}
+code{font-family:var(--mono);font-size:13px;background:var(--b-soft);color:var(--b-ink);padding:1px 5px;border-radius:4px;word-break:break-all}
+.codebox{position:relative}
+.codebox pre{margin:0;background:var(--code);color:var(--code-ink);border-radius:10px;padding:12px;font-family:var(--mono);font-size:12px;line-height:1.55;max-height:280px;overflow:auto}
+.btn{font:inherit;font-weight:700;border:0;border-radius:10px;padding:9px 16px;cursor:pointer;background:var(--b);color:var(--on-b);align-self:flex-start}
+.btn:focus-visible{outline:3px solid var(--b);outline-offset:2px}
+.warn{background:var(--warn-soft);color:var(--warn);border-radius:10px;padding:10px 12px;font-size:13.5px}
+.tip{font-size:13px;color:var(--muted);border-left:3px solid var(--b);padding-left:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header style="display:flex;flex-direction:column;gap:8px">
+    <span class="eyebrow">声の業務記録 ・ 管理者向け</span>
+    <h1>会社のスプレッドシートにつなぐ</h1>
+    <p class="muted">ドライバーが記録すると、会社のGoogleスプレッドシートに1日1行で自動で入ります。パソコンで、上から順に進めてください（15分ほど・無料）。</p>
+  </header>
+
+  <section class="step"><span class="n">1</span><div>
+    <h2>スプレッドシートを作る</h2>
+    <p>Googleドライブで新しいスプレッドシートを作り、名前を「業務記録」などにします。会社のGoogleアカウントで作ると、後で引き継ぎが楽です。</p>
+  </div></section>
+
+  <section class="step"><span class="n">2</span><div>
+    <h2>プログラムを貼る</h2>
+    <ol>
+      <li>スプレッドシートの上のメニューで <b class="ui">拡張機能</b> → <b class="ui">Apps Script</b> を開く</li>
+      <li>最初から入っている文字を全部消す</li>
+      <li>下の「プログラムをコピー」を押して、そのまま貼りつける</li>
+    </ol>
+    <div class="codebox"><pre id="code">読み込んでいます…</pre></div>
+    <button class="btn" type="button" id="copy">プログラムをコピー</button>
+  </div></section>
+
+  <section class="step"><span class="n">3</span><div>
+    <h2>会社コードを決めて書きかえる</h2>
+    <p>貼ったプログラムの上の方にある <code>const COMPANY_CODE = 'ここに会社コード';</code> の「ここに会社コード」を、自分で決めた合言葉に書きかえます（例：<code>gd-2026-kiroku</code>）。書きかえたら保存（Ctrl+S）。</p>
+    <p class="tip">この会社コードを、ドライバーにアプリの「設定」で入れてもらいます。知らない人に書き込まれないための合言葉なので、外に出さないでください。</p>
+  </div></section>
+
+  <section class="step"><span class="n">4</span><div>
+    <h2>ウェブアプリとして公開する</h2>
+    <ol>
+      <li>右上の <b class="ui">デプロイ</b> → <b class="ui">新しいデプロイ</b></li>
+      <li>歯車マーク → <b class="ui">ウェブアプリ</b> を選ぶ</li>
+      <li><b>次のユーザーとして実行</b>：自分 ／ <b>アクセスできるユーザー</b>：全員</li>
+      <li><b class="ui">デプロイ</b> を押し、Googleアカウントの承認画面で許可する<br><span class="small muted">「このアプリはGoogleで確認されていません」と出たら「詳細」→「（安全ではないページ）に移動」で進めます。自分で作ったプログラムなので問題ありません。</span></li>
+      <li>表示された <b>ウェブアプリのURL</b>（<code>https://script.google.com/macros/s/…/exec</code>）をコピーする</li>
+    </ol>
+    <p class="tip">確認：そのURLをブラウザで開いて <code>"ok":true</code> と <code>"codeSet":true</code> が出れば準備できています。</p>
+  </div></section>
+
+  <section class="step"><span class="n">5</span><div>
+    <h2>URLを伝える</h2>
+    <p>コピーしたURLを、アプリの管理担当（Claude）に送ってください。アプリにつないで反映します。<br>自分で入れる場合は、サイトの <code>apps/config.js</code> の <code>GD_SHEET.url</code> に貼ります。</p>
+  </div></section>
+
+  <section class="step"><span class="n">6</span><div>
+    <h2>ドライバーに会社コードを伝える</h2>
+    <p>アプリの <b class="ui">設定</b> →「会社コード」に入れて保存してもらいます。「今日」の画面に <b>会社のスプレッドシートに送信済み</b> と出れば完了です。</p>
+    <p class="tip">それまでにスマホに残っていた記録も、まとめて送られます。圏外で記録した分は、電波が戻った後の次の記録の時に送られます。</p>
+  </div></section>
+
+  <p class="warn">プログラムを後から書きかえた時は、<b>デプロイ</b> → <b>デプロイを管理</b> → 鉛筆マーク → バージョン「新バージョン」→ デプロイ、で更新してください（URLは変わりません）。</p>
+</div>
+<script>
+(function(){
+  var pre=document.getElementById('code'),btn=document.getElementById('copy'),text='';
+  fetch('Code.gs',{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.text()}).then(function(t){text=t;pre.textContent=t})
+    .catch(function(){pre.textContent='読み込めませんでした。ページを開き直してください。'});
+  btn.onclick=function(){
+    if(!text)return;
+    navigator.clipboard.writeText(text).then(function(){btn.textContent='コピーしました'},function(){
+      var r=document.createRange();r.selectNodeContents(pre);var s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='選択しました。Ctrl+C でコピーしてください';
+    });
+  };
+})();
+</script>
+</body>
+</html>
