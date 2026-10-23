@@ -19,28 +19,20 @@
     ['today','hist','acc','set'].forEach(function(v){$('v-'+v).hidden=v!==t.dataset.v})}});
   document.querySelectorAll('#ex button').forEach(function(b){b.onclick=function(){$('say').value=b.textContent;$('say').focus()}});
 
-  // AI を使えない時の簡易読み取り
-  function localParse(text){
-    var ev={type:'note',time:null,place:null,odometer:null,minutes:null,note:text};
-    var tm=text.match(/(\d{1,2})\s*[時:：]\s*(半|\d{1,2})?/);if(tm){ev.time=pad(tm[1])+':'+(tm[2]==='半'?'30':pad(tm[2]||0))}
-    var od=text.match(/(?:メーター|ODO|走行)\D{0,4}(\d{4,7})/i)||text.match(/(\d{5,7})\s*(?:km|キロ)/i);if(od)ev.odometer=Number(od[1]);
-    var mn=text.match(/休憩\D{0,6}(\d{1,3})\s*分/)||text.match(/(\d{1,3})\s*分\s*(?:間)?\s*休/);if(mn)ev.minutes=Number(mn[1]);
-    if(/開始|出発|スタート/.test(text))ev.type='start';else if(/終了|終わり|上がり|戻って/.test(text))ev.type='end';else if(/休憩|休み/.test(text))ev.type='break';else if(/回っ|経由|通っ/.test(text))ev.type='waypoint';
-    var pl=text.match(/(?:場所は|から|で|に)\s*([^\s、。,]{2,20}?)(?:から|で|に|を|。|、|$)/);if(pl&&ev.type!=='note')ev.place=pl[1];
-    if(!ev.time)ev.time=nowHM();
-    return [ev];
-  }
-
+  // 標準はこの端末の中で読み取る（無料）。AI中継サーバーを設定した時だけAIを使う
+  var useAI=!!window.GD_API_BASE;
   async function parse(text){
+    if(!useAI)return {events:GyomuParse.parse(text,nowHM())};
     try{
       var r=await GD.api('/log',{text:text,date:todayKey(),now:nowHM()});
       if(!r||!Array.isArray(r.events)||!r.events.length)throw {code:'invalid_json'};
       return {events:r.events};
     }catch(e){
-      if(e&&(e.code==='not_configured'||e.code==='network'||e.code==='no_code'))return {events:localParse(text),msg:'AIにつながらないため、簡易読み取りで記録しました：'};
+      if(e&&(e.code==='network'||e.code==='no_code'))return {events:GyomuParse.parse(text,nowHM()),msg:'AIにつながらないため、端末の中で読み取りました：'};
       throw e;
     }
   }
+  if(!useAI){$('accSay').closest('label').hidden=true;$('accAi').closest('.btns').hidden=true}
 
   function saveDay(key,events){days[key]={date:key,events:events};var ok=persist();renderAll();return ok}
 

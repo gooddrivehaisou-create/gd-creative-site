@@ -83,6 +83,18 @@ ol.steps li{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:sta
 .msg.u{align-self:flex-end;background:var(--a);color:var(--on-a);border-bottom-right-radius:4px}
 .msg.b{align-self:flex-start;background:var(--bg);border:1px solid var(--line);border-bottom-left-radius:4px}
 .ask{display:grid;grid-template-columns:1fr auto;gap:8px}
+/* 無料のAIに頼む流れ */
+.relay{display:flex;flex-direction:column;gap:14px;border:2px solid var(--a);border-radius:14px;padding:14px;background:var(--surface)}
+.relay h3{font-family:var(--body);font-weight:700;font-size:15px}
+.rstep{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start}
+.rstep>div{display:flex;flex-direction:column;gap:8px;min-width:0}
+.rno{width:28px;height:28px;border-radius:50%;background:var(--a);color:var(--on-a);display:grid;place-items:center;font-family:var(--mono);font-weight:600;font-size:14px}
+.ailinks{display:flex;flex-wrap:wrap;gap:8px}
+.ailinks a{font-weight:700;font-size:14px;color:var(--a-ink);background:var(--a-soft);border-radius:10px;padding:8px 14px;text-decoration:none}
+.relay details summary{cursor:pointer;font-size:13px;color:var(--muted)}
+.relay textarea{min-height:110px;font-size:13px}
+.free-note{font-size:12.5px;color:var(--muted);border-left:3px solid var(--a);padding-left:10px}
+.framepick{margin-top:6px;font:inherit;font-size:13px;padding:4px 8px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);width:auto}
 /* saved */
 .saved{display:flex;flex-direction:column;gap:6px}
 .saved button.item{font:inherit;text-align:left;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:9px 12px;cursor:pointer;color:var(--ink);display:flex;justify-content:space-between;gap:10px}
@@ -181,6 +193,28 @@ ol.steps li{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:sta
       <button class="btn ghost" id="stop" type="button" hidden>止める</button>
     </div>
     <p class="status" id="st" role="status"></p>
+    <div class="relay" id="relay" hidden>
+      <h3 id="relayTitle">無料のAIに頼む</h3>
+      <div class="rstep"><span class="rno">1</span><div>
+        <p class="small" id="relayCopied">AIへの依頼文をコピーしました。</p>
+        <button class="btn ghost sm" type="button" id="recopy">もう一度コピー</button>
+        <details><summary>依頼文を見る（コピーできない時はここから長押しでコピー）</summary><textarea id="promptText" readonly aria-label="AIへの依頼文"></textarea></details>
+      </div></div>
+      <div class="rstep"><span class="rno">2</span><div>
+        <p class="small">どれか1つを開いて、依頼文を貼って送ってください（どれも無料プランで使えます）。</p>
+        <div class="ailinks">
+          <a href="https://claude.ai/new" target="_blank" rel="noopener">Claude</a>
+          <a href="https://chatgpt.com/" target="_blank" rel="noopener">ChatGPT</a>
+          <a href="https://gemini.google.com/app" target="_blank" rel="noopener">Gemini</a>
+        </div>
+      </div></div>
+      <div class="rstep"><span class="rno">3</span><div>
+        <p class="small">AIの返事を全部コピーして、ここに貼ってください。</p>
+        <textarea id="reply" aria-label="AIの返事" placeholder="ここにAIの返事を貼る"></textarea>
+        <button class="btn" type="button" id="applyReply">手順書にする</button>
+        <p class="status" id="relaySt" role="status"></p>
+      </div></div>
+    </div>
   </section>
 
   <section class="card" aria-labelledby="out-h">

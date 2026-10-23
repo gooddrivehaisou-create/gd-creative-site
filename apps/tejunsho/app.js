@@ -4,6 +4,42 @@
     (kids||[]).forEach(function(c){if(c!=null)e.append(c)});return e}
   var STORE='gd-tejunsho-manuals';
   var MAX_IMAGES=10;
+  // AI中継サーバーを設定していない時は、無料のAI（Claude・ChatGPT・Gemini）に依頼文を貼ってもらう
+  var useAI=!!window.GD_API_BASE;
+  var FORMAT='{"title":"作業名","summary":"1〜2文の説明","tools":["道具"],"safety":["安全のために必ず守ること"],"steps":[{"action":"1つの動作","point":"コツ（無ければ空文字）","why":"理由（無ければ空文字）"}],"checklist":["作業後に確認すること"],"questions":["ベテランに追加で聞くこと"]}';
+  function manualPrompt(task,industry,tr){
+    return 'あなたは製造・建設・介護などの現場の技能継承の専門家です。以下はベテランが話した内容の書き起こしです。新人や外国人スタッフでも分かる作業手順書にしてください。\n'+
+      '守ること:\n- 話に出てこない数値・手順・道具を作らない。\n- 足りない情報や、確認すべきことは questions に入れる。\n- 文は短く、1つの手順に1つの動作。\n- 安全に関わることは safety に必ず入れる。\n\n'+
+      '返事は、次の形のJSONだけを ```json のコードブロック1つで返してください。説明の文章はいりません。\n'+FORMAT+'\n\n'+
+      '作業名: '+task+'\n業種: '+industry+'\n書き起こし:\n"""\n'+tr+'\n"""';
+  }
+  function translatePrompt(manual,lang){
+    return '次の作業手順書のJSONを'+lang+'に翻訳してください。構造とキー名はそのまま、文字列の値だけ訳す。数値・単位はそのまま。現場の新人が読む想定で短く分かりやすく。\n'+
+      '返事は、訳したJSONだけを ```json のコードブロック1つで返してください。\n\n'+JSON.stringify(manual);
+  }
+  function askPrompt(manual,q){
+    return 'あなたは会社の新人向けQ&A係です。次の作業手順書だけを根拠に、新人の質問に短く（3文以内）やさしく答えてください。手順書に書いていないことは推測せず「手順書には書いていません。ベテランに確認してください」と答える。安全に関わる質問では必ず注意を添える。\n\n手順書:\n'+JSON.stringify(manual)+'\n\n質問: '+q;
+  }
+  function extractJson(t){
+    var m=String(t||'').match(/```(?:json)?\s*([\s\S]*?)```/);var x=m?m[1]:String(t||'');
+    var a=x.indexOf('{'),b=x.lastIndexOf('}');if(a<0||b<a)return null;
+    try{return JSON.parse(x.slice(a,b+1))}catch(e){return null}
+  }
+  async function copyText(t){
+    try{await navigator.clipboard.writeText(t);return true}catch(e){return false}
+  }
+  var pending=null; // {kind:'manual'|'translate', lang, label, frames}
+  async function openRelay(kind,prompt,extra){
+    pending=Object.assign({kind:kind},extra||{});
+    $('promptText').value=prompt;$('reply').value='';$('relaySt').textContent='';
+    $('relayTitle').textContent=kind==='manual'?'無料のAIに手順書を頼む':'無料のAIに'+(extra.label||'')+'への翻訳を頼む';
+    $('applyReply').textContent=kind==='manual'?'手順書にする':'翻訳を取り込む';
+    $('relay').hidden=false;
+    var ok=await copyText(prompt);
+    $('relayCopied').textContent=ok?'AIへの依頼文をコピーしました。':'コピーできませんでした。下の「依頼文を見る」を開いて、長押しでコピーしてください。';
+    if(!ok)$('relay').querySelector('details').open=true;
+    $('relay').scrollIntoView({behavior:'smooth',block:'start'});
+  }
 
   // 見本（ページを開いた時に表示）
   var SAMPLE={title:'アルミ板の曲げ加工（ベンダー）',summary:'2mmのアルミ板を、割れと傷を出さずに図面どおりの角度で曲げる手順です。',
@@ -73,6 +109,15 @@
     document.querySelectorAll('#speed [data-rate]').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
   });
 
+  function stepFrame(i){var s=state.manual.steps&&state.manual.steps[i];return s&&s.frame?s.frame:null}
+  function stepImage(i){var f=stepFrame(i);return (f&&state.frames[f-1])?el('img',{class:'stepimg',src:state.frames[f-1].thumb,alt:'手順'+(i+1)+'の場面'}):null}
+  function framePicker(i){
+    if(!state.frames.length||!state.manual.steps||!state.manual.steps[i])return null;
+    var sel=el('select',{class:'framepick','aria-label':'手順'+(i+1)+'の写真'},[el('option',{value:'',text:'写真なし'})].concat(state.frames.map(function(f,j){return el('option',{value:String(j+1),text:'写真'+(j+1)+'（'+fmt(f.t)+'）'})})));
+    sel.value=stepFrame(i)?String(stepFrame(i)):'';
+    sel.onchange=function(){state.manual.steps[i].frame=sel.value?Number(sel.value):null;render()};
+    return sel;
+  }
   function render(){
     var m=state.lang==='ja'?state.manual:(state.translations[state.lang]||state.manual);
     var box=$('manual');box.replaceChildren();
@@ -83,7 +128,7 @@
       return el('li',null,[el('span',{class:'no',text:String(i+1)}),el('div',null,[el('div',{class:'act',text:s.action||''}),
         s.point?el('div',{class:'pt'},[el('b',{text:'コツ：'}),document.createTextNode(s.point)]):null,
         s.why?el('div',{class:'why',text:'理由：'+s.why}):null,
-        (s.frame&&state.frames[s.frame-1])?el('img',{class:'stepimg',src:state.frames[s.frame-1].thumb,alt:'手順'+(i+1)+'の場面'}):null])])}))]));
+        stepImage(i),framePicker(i)])])}))]));
     if(m.checklist&&m.checklist.length)box.append(el('div',{class:'sec checks'},[el('h3',{text:'作業後チェック'})].concat(m.checklist.map(function(c,i){
       var id='ck'+i;return el('label',{for:id},[el('input',{type:'checkbox',id:id}),el('span',{text:c})])}))));
     if(m.questions&&m.questions.length)box.append(el('div',{class:'sec qs'},[el('h3',{text:'ベテランに追加で聞くこと'}),el('ul',null,m.questions.map(function(q){return el('li',{text:q})}))]));
@@ -97,6 +142,12 @@
   $('make').onclick=async function(){
     var tr=$('transcript').value.trim();
     var frames=media.frames.slice(0,MAX_IMAGES);
+    if(!useAI){
+      if(tr.length<20){$('st').className='status err';$('st').textContent='話した内容をもう少し入れてください（20文字以上）。';return}
+      $('st').className='status';$('st').textContent='';
+      openRelay('manual',manualPrompt($('task').value,$('industry').value,tr.slice(0,12000)),{frames:frames});
+      return;
+    }
     if(tr.length<20&&!frames.length){$('st').className='status err';$('st').textContent=GD.errorText({code:'too_short'});return}
     ctl=new AbortController();
     $('make').disabled=true;$('stop').hidden=false;$('st').className='status';$('st').textContent='AIが手順書を書いています…（'+(frames.length?'写真つきなので1〜2分':'30秒〜1分')+'ほど）';
@@ -115,6 +166,7 @@
     var b=ev.target.closest('button');if(!b)return;var lang=b.dataset.lang;
     if(lang==='ja'||state.translations[lang]){state.lang=lang;render();return}
     var label=b.dataset.label||b.textContent;
+    if(!useAI){openRelay('translate',translatePrompt(state.manual,lang),{lang:lang,label:label});return}
     $('st2').className='status';$('st2').textContent=label+'に訳しています…';b.disabled=true;
     try{
       var t=await GD.api('/translate',{manual:state.manual,lang:lang});
@@ -129,6 +181,11 @@
   $('askForm').addEventListener('submit',async function(ev){
     ev.preventDefault();var q=$('q').value.trim();if(!q)return;
     var chat=$('chat');chat.append(el('div',{class:'msg u',text:q}));$('q').value='';
+    if(!useAI){
+      var ok=await copyText(askPrompt(state.manual,q));
+      chat.append(el('div',{class:'msg b',text:ok?'質問文をコピーしました。Claude・ChatGPT・Geminiなどに貼って聞いてください。':'コピーできませんでした。この端末ではAIへの直接の質問はできません。'}));
+      chat.scrollTop=chat.scrollHeight;return;
+    }
     var bubble=el('div',{class:'msg b',text:'考えています…'});chat.append(bubble);chat.scrollTop=chat.scrollHeight;
     $('askBtn').disabled=true;
     state.turns.push({role:'user',content:q});
@@ -172,4 +229,29 @@
       return open}));
   }
   renderSaved();
+
+  $('recopy').onclick=async function(){var ok=await copyText($('promptText').value);$('relayCopied').textContent=ok?'もう一度コピーしました。':'コピーできませんでした。「依頼文を見る」から長押しでコピーしてください。'};
+  $('applyReply').onclick=function(){
+    var j=extractJson($('reply').value);
+    if(!j||!Array.isArray(j.steps)||!j.steps.length){$('relaySt').className='status err';$('relaySt').textContent='手順書の形になっていません。AIの返事を最初から最後まで全部コピーして貼ってください。';return}
+    if(!pending)return;
+    if(pending.kind==='manual'){
+      var fr=(pending.frames||[]).map(function(f){return {thumb:f.thumb,t:f.t}});
+      j.steps.forEach(function(s){s.frame=null});
+      state={manual:j,translations:{},lang:'ja',isSample:false,docId:null,turns:[],frames:fr};
+      resetChat();
+      $('st2').className='status';$('st2').textContent='手順書にしました。'+(fr.length?'各手順の下で、動画の写真を選んでつけられます。':'');
+    }else{
+      state.translations[pending.lang]=j;state.lang=pending.lang;
+      $('st2').className='status';$('st2').textContent=pending.label+'版を取り込みました。';
+    }
+    render();$('relay').hidden=true;pending=null;
+    $('out-h').scrollIntoView({behavior:'smooth',block:'start'});
+  };
+  if(!useAI){
+    $('make').textContent='AIへの依頼文をつくる';
+    var note=el('p',{class:'free-note',text:'無料のAI（Claude・ChatGPT・Gemini）を使う方式です。「AIへの依頼文をつくる」を押すと依頼文がコピーされるので、AIに貼って送り、返事をここに貼り戻してください。'});
+    $('make').closest('.btns').before(note);
+    $('vidBox').querySelector('p.muted').textContent='動画から場面の写真を切り出します。いらない写真は × で外せます。写真は、手順書ができた後に各手順の下で選んでつけられます。動画の中の声は自動で文字にできないので、説明は下の欄に入れてください。';
+  }
 })();
