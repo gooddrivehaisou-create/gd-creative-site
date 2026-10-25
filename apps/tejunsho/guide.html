@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>手順書の撮り方ガイド</title>
-<meta name="description" content="作業の動画を撮って送るだけで、新人・外国人スタッフ向けの手順書ができます。撮り方の5つのコツ。">
+<title>GD STEP 撮り方ガイド</title>
+<meta name="description" content="GD STEP（撮るだけ手順書）。作業の動画を撮って送るだけで、新人・外国人スタッフ向けの手順書ができます。撮り方の5つのコツ。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <style>
@@ -70,7 +70,7 @@ p{margin:0}
 <div class="wrap">
 
 <header class="hero">
-  <span class="eyebrow">手順書づくり ・ 撮り方ガイド</span>
+  <span class="eyebrow"><b style="color:var(--a-ink);letter-spacing:.06em">GD STEP</b> ・ 撮るだけ手順書 ・ 撮り方ガイド</span>
   <h1>作業を撮って送るだけで、<br>手順書ができます</h1>
   <svg viewBox="0 0 600 220" role="img" aria-label="スマホで作業を撮って送ると、写真つきの手順書が届くイラスト">
     <rect width="600" height="220" rx="20" fill="var(--surface)"/>
@@ -217,7 +217,7 @@ p{margin:0}
 <script>
 (function(){
   var c=window.GD_CONTACT||{};
-  if(c.name)document.getElementById('cName').textContent=c.name;
+  if(c.name)document.getElementById('cName').textContent=(c.brand?c.brand+' ／ ':'')+'LINE「'+c.name+'」';
   if(c.line){
     var id=document.getElementById('cLine');id.textContent=c.line;id.hidden=false;
     var add=document.getElementById('addLine');add.href='https://line.me/R/ti/p/'+encodeURIComponent(c.line).replace('%40','@');add.hidden=false;

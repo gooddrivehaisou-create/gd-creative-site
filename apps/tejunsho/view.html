@@ -171,7 +171,7 @@ ol.steps li.noimg{grid-template-columns:38px 1fr}
     var bi=lang!=='ja'&&o.bilingual;
     var meta=data.meta||{};
     var doc=$('doc');doc.replaceChildren();
-    document.title=(m.title||'作業手順書')+(meta.company?' | '+meta.company:'');
+    document.title=(m.title||'作業手順書')+(meta.company?' | '+meta.company:'')+((window.GD_CONTACT||{}).brand?' | '+window.GD_CONTACT.brand:'');
 
     var dl=el('dl',{class:'meta'});
     [['会社',meta.company],['作成日',meta.date],['版',meta.version],['確認者',meta.checker]].forEach(function(r){if(r[1])dl.append(el('dt',{text:r[0]}),el('dd',{text:r[1]}))});
@@ -194,7 +194,7 @@ ol.steps li.noimg{grid-template-columns:38px 1fr}
 
     var foot=el('footer',{class:'dfoot'});
     var c=window.GD_CONTACT||{};
-    foot.append(el('div',null,[el('div',{text:'この手順書は、現場のベテランの説明をもとに作成しました。内容は必ず現場で確認してから使ってください。'}),c.name?el('div',{text:'作成：'+c.name}):null]));
+    foot.append(el('div',null,[el('div',{text:'この手順書は、現場のベテランの説明をもとに作成しました。内容は必ず現場で確認してから使ってください。'}),(c.brand||c.name)?el('div',{text:'作成：'+(c.brand?c.brand+(c.tagline?'｜'+c.tagline:''):c.name)}):null]));
     if(o.qr!==false&&data.id&&window.qrcode){
       var q=qrcode(0,'M');q.addData(pubUrl(data.id)+(lang!=='ja'?'&lang='+encodeURIComponent(lang):''));q.make();
       var box=el('div',{class:'qr'});box.innerHTML=q.createSvgTag({cellSize:3,margin:0,scalable:true});
