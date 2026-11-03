@@ -1,9 +1,21 @@
 // 話した業務メモを、業務記録の項目に分ける（AIを使わず、この端末の中だけで動く）
 window.GyomuParse = (function () {
   function pad(n) { return String(n).padStart(2, "0"); }
+  // 数字の書き方をそろえる：全角→半角、数字の間のカンマを消す、「5万2310」→52310
+  function norm(s) {
+    return String(s == null ? "" : s)
+      .replace(/[０-９]/g, function (c) { return String.fromCharCode(c.charCodeAt(0) - 0xfee0); })
+      .replace(/(\d)\s*[,，]\s*(?=\d)/g, "$1")
+      .replace(/(\d+)\s*万\s*(\d{1,4})?/g, function (m, a, b) { return String(Number(a) * 10000 + (b ? Number(b) : 0)); });
+  }
+  // 数値に直す。0以下や数字でないものは null
+  function toNum(v) {
+    if (v == null || v === "") return null;
+    var n = typeof v === "number" ? v : Number(norm(v).replace(/[^\d.]/g, ""));
+    return isFinite(n) && n > 0 ? n : null;
+  }
   function toHalf(s) {
-    return s.replace(/[０-９]/g, function (c) { return String.fromCharCode(c.charCodeAt(0) - 0xfee0); })
-      .replace(/：/g, ":").replace(/，/g, "、").replace(/．/g, ".");
+    return norm(s).replace(/：/g, ":").replace(/，/g, "、").replace(/．/g, ".");
   }
   var KANJI = { "〇": 0, "一": 1, "二": 2, "三": 3, "四": 4, "五": 5, "六": 6, "七": 7, "八": 8, "九": 9 };
   // 「十二時」「三十分」などの漢数字を数字に
@@ -24,9 +36,9 @@ window.GyomuParse = (function () {
     return pad(h) + ":" + pad(mi);
   }
   function findOdo(t) {
-    var m = t.match(/(?:メーター|ﾒｰﾀｰ|オドメーター|ODO|odo|走行距離計)\s*(?:は|が|:)?\s*(\d[\d,]{2,8})/) ||
-      t.match(/(\d[\d,]{3,8})\s*(?:km|ｋｍ|キロ)/i);
-    return m ? Number(m[1].replace(/,/g, "")) : null;
+    var m = t.match(/(?:メーター|メータ|ﾒｰﾀｰ|オドメーター|オド|ODO|距離計|走行)\D{0,6}(\d{3,7})/i) ||
+      t.match(/(\d{4,7})\s*(?:km|ｋｍ|キロ)/i);
+    return m ? toNum(m[1]) : null;
   }
   function findMinutes(t) {
     var m = t.match(/(\d{1,3})\s*分\s*(?:間)?\s*(?:の)?\s*(?:休憩|休み|昼休み)/) ||
@@ -54,6 +66,12 @@ window.GyomuParse = (function () {
     else if (/回っ|回る|経由|通っ|寄っ|行った|行って/.test(t)) type = "waypoint";
 
     var time = findTime(t), odo = findOdo(t), min = type === "break" ? findMinutes(t) : null;
+    // 開始・終了の時は、時刻ではない4〜7桁の数字をメーターとして拾う（「18時に終了、52398」など）
+    if ((type === "start" || type === "end") && odo == null) {
+      var rest = t.replace(/(午前|午後|朝|夜|夕方)?\s*\d{1,2}\s*(?:時|:)\s*(半|\d{1,2})?\s*分?/g, " ");
+      var big = rest.match(/(\d{4,7})/);
+      if (big) odo = toNum(big[1]);
+    }
     var place = null, m;
     if ((m = t.match(/場所は\s*([^、。,]+)/))) place = cleanPlace(m[1]);
     if (!place && type === "start" && (m = t.match(/([^、。,\s]+?)\s*(?:から|を)\s*(?:乗務|出発|スタート|出庫)/))) place = cleanPlace(m[1]);
@@ -88,5 +106,5 @@ window.GyomuParse = (function () {
     out.forEach(function (e) { if (!e.time) e.time = nowHM; });
     return out;
   }
-  return { parse: parse };
+  return { parse: parse, norm: norm, toNum: toNum };
 })();

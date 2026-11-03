@@ -87,6 +87,9 @@ input:focus-visible,textarea:focus-visible,button:focus-visible{outline:3px soli
 .syncline{font-size:13px;font-weight:700;border-radius:10px;padding:7px 12px;background:var(--bg);color:var(--muted)}
 .syncline.ok{background:var(--ok-soft);color:var(--ok)}
 .syncline.ng{background:var(--warn-soft);color:var(--warn)}
+.odoedit{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--bg)}
+.odoedit summary{cursor:pointer;font-weight:700;font-size:14px}
+.odoedit[open]{display:flex;flex-direction:column;gap:10px}
 .note{font-size:12.5px;color:var(--muted);border-left:3px solid var(--b);padding-left:10px}
 </style>
 </head>
@@ -140,6 +143,16 @@ input:focus-visible,textarea:focus-visible,button:focus-visible{outline:3px soli
       </div>
       <div id="sheet"></div>
       <div id="check"></div>
+      <details class="odoedit" id="odoEdit">
+        <summary>メーターを手で入れる・直す</summary>
+        <div class="row2">
+          <label class="f" for="mStart">開始メーター（km）<input type="text" inputmode="numeric" id="mStart" autocomplete="off" placeholder="例：52310"></label>
+          <label class="f" for="mEnd">終了メーター（km）<input type="text" inputmode="numeric" id="mEnd" autocomplete="off" placeholder="例：52398"></label>
+        </div>
+        <p class="small muted">いま記録票に使っている数字が入っています。空にして保存すると、話した記録のメーターを使います。</p>
+        <div class="btns"><button class="btn sm" id="mSave" type="button">メーターを保存</button></div>
+        <p class="status" id="st7" role="status"></p>
+      </details>
       <p class="syncline" id="sync" role="status" hidden></p>
       <h3>入力した順</h3>
       <ul class="timeline" id="tl"></ul>

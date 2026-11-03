@@ -216,7 +216,7 @@ async function log(env: Env, b: Body) {
   if (!t) throw new HttpError(400, "empty_text");
   const prompt =
     `軽貨物ドライバーが話した業務メモを、業務記録の項目に分けてください。今日は${text(b.date, 10)}、今の時刻は${text(b.now, 5)}。\n` +
-    "守ること: 話に出てこない地名や数値を作らない（無ければ null）。時刻は HH:MM。時刻が話に無ければ今の時刻を入れる。休憩の長さが分かれば minutes に入れて type は break。経過地点が複数なら waypoint を地点ごとに分ける。メーターの数値は odometer（km）。\n\n" +
+    "守ること: 話に出てこない地名や数値を作らない（無ければ null）。時刻は HH:MM。時刻が話に無ければ今の時刻を入れる。休憩の長さが分かれば minutes に入れて type は break。経過地点が複数なら waypoint を地点ごとに分ける。メーターの数値は odometer（km）。「5万2310」「52,310」は 52310。開始や終了と同じ発話に出たメーターは、別の note にせず、その start / end の odometer に入れる。\n\n" +
     `メモ:"""${t}"""`;
   return callJson(env, { content: [{ type: "text", text: prompt }], schema: LOG_SCHEMA, effort: "low" });
 }
