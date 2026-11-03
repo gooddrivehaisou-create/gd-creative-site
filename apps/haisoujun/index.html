@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>配達順ナビ</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html{color-scheme:light}
+body{margin:0;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+[hidden]{display:none!important}
+/* Layout: スマホ1カラム。上に地図、その下に「出発地点」「配達先」「順番」 */
+:root{
+  --bg:#f5f3ee; --surface:#fff; --ink:#1d1a14; --muted:#655f52; --line:#e4dfd3;
+  --b:#d9900f; --b-soft:#fbf0d9; --b-ink:#8a5600; --on-b:#1d1606;
+  --warn:#b4372c; --warn-soft:#fbe9e7; --ok:#24804f; --ok-soft:#e3f3ea; --info:#2a5db0; --info-soft:#e6eefb;
+  --display:"Dela Gothic One","Hiragino Kaku Gothic StdN",sans-serif;
+  --body:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#13110d; --surface:#1e1b15; --ink:#efe9dc; --muted:#a79f8e; --line:#332e24;
+  --b:#f1b23e; --b-soft:#3a2e17; --b-ink:#f6c870; --on-b:#1d1606;
+  --warn:#ff8a7d; --warn-soft:#3a1f1d; --ok:#5fd394; --ok-soft:#173326; --info:#8db4ff; --info-soft:#1c2840; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#13110d; --surface:#1e1b15; --ink:#efe9dc; --muted:#a79f8e; --line:#332e24;
+  --b:#f1b23e; --b-soft:#3a2e17; --b-ink:#f6c870; --on-b:#1d1606;
+  --warn:#ff8a7d; --warn-soft:#3a1f1d; --ok:#5fd394; --ok-soft:#173326; --info:#8db4ff; --info-soft:#1c2840; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.7;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:640px;margin:0 auto;padding-block:16px 96px;display:flex;flex-direction:column;gap:16px}
+h1,h2{font-family:var(--display);font-weight:400;margin:0;line-height:1.35}
+h1{font-size:clamp(24px,6.5vw,30px)} h2{font-size:18px}
+p{margin:0}
+.muted{color:var(--muted)} .small{font-size:13px}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:600}
+.eyebrow{font-size:12px;letter-spacing:.12em;color:var(--muted);font-weight:700}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.step{display:flex;gap:10px;align-items:center}
+.step b{flex:none;width:26px;height:26px;border-radius:50%;background:var(--b);color:var(--on-b);display:grid;place-items:center;font-family:var(--mono);font-size:14px}
+textarea,input,select{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;width:100%}
+textarea{min-height:110px;resize:vertical}
+select{width:auto;padding:6px 8px;font-size:14px}
+:focus-visible{outline:3px solid var(--b);outline-offset:1px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:12px;padding:12px 16px;cursor:pointer;background:var(--b);color:var(--on-b);font-size:15px;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.btn.ghost{background:transparent;color:var(--b-ink);border:1.5px solid var(--b)}
+.btn.sm{padding:7px 12px;font-size:13px;border-radius:10px}
+.btn.big{width:100%;font-size:18px;padding:16px}
+.btn.on{background:var(--info);color:#fff;border-color:var(--info)}
+.btn:disabled{opacity:.5;cursor:default}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.status{font-size:13px;color:var(--muted);min-height:1.2em}
+.status.err{color:var(--warn)}
+#map{height:min(46vh,380px);border-radius:14px;border:1px solid var(--line);z-index:0}
+.stops{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.stop{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.stop .addr{min-width:0;overflow-wrap:anywhere;font-size:14px;line-height:1.45}
+.stop .x{border:0;background:none;color:var(--muted);font-size:20px;cursor:pointer;padding:0 4px}
+.pin{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-family:var(--mono);font-size:12px;font-weight:600;color:#fff;background:#6b6455;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.4)}
+.pin.tw{background:var(--info)} .pin.next{background:var(--b);color:var(--on-b);width:32px;height:32px;font-size:14px}
+.pin.done{background:#9e9a90;opacity:.6} .pin.late{background:var(--warn)}
+.pin.me{background:#111;width:18px;height:18px}
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}
+.summary div{background:var(--bg);border-radius:10px;padding:8px 4px}
+.summary .num{font-size:20px;display:block}
+.summary .lbl{font-size:12px;color:var(--muted)}
+.next{border:2px solid var(--b);background:var(--b-soft);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.next .addr{font-size:18px;font-weight:700;line-height:1.45;overflow-wrap:anywhere}
+.route{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.row{display:grid;grid-template-columns:34px 1fr;gap:10px;padding:10px 0;border-top:1px solid var(--line)}
+.row .no{font-family:var(--mono);font-weight:600;font-size:16px;text-align:center}
+.row .addr{overflow-wrap:anywhere;line-height:1.45}
+.row.done .addr,.row.done .meta,.row.done .no{opacity:.45}
+.row.done .addr{text-decoration:line-through}
+.meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;margin-top:4px}
+.tag{font-size:12px;font-weight:700;border-radius:999px;padding:1px 8px;background:var(--line)}
+.tag.tw{background:var(--info-soft);color:var(--info)}
+.tag.late{background:var(--warn-soft);color:var(--warn)}
+.tag.wait{background:var(--b-soft);color:var(--b-ink)}
+.tag.ok{background:var(--ok-soft);color:var(--ok)}
+.tag.absent{background:var(--warn-soft);color:var(--warn)}
+.alert{border-radius:10px;padding:10px 12px;font-size:14px;background:var(--warn-soft);color:var(--warn);font-weight:700}
+.tip{border-radius:10px;padding:10px 12px;font-size:13.5px;background:var(--info-soft);color:var(--ink)}
+details summary{cursor:pointer;font-weight:700}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid2 label{display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:700}
+.grid2 select,.grid2 input{width:100%}
+.sticky{position:fixed;left:0;right:0;bottom:0;padding:10px max(16px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px));background:linear-gradient(transparent,var(--bg) 30%);z-index:10}
+.sticky .btn{max-width:640px;margin:0 auto;display:flex}
+.leaflet-container{font-family:var(--body)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="eyebrow">GOOD DRIVE ドライバー用</p>
+    <h1>配達順ナビ</h1>
+    <p class="muted small">配達先と時間指定を入れると、今いる場所から回る順番を自動で決めます。</p>
+  </header>
+
+  <div id="map" role="region" aria-label="地図"></div>
+
+  <section class="card" id="startCard">
+    <div class="step"><b>1</b><h2>出発地点</h2></div>
+    <div class="btns">
+      <button class="btn" id="gpsBtn" type="button">📍 今いる場所にする</button>
+      <button class="btn ghost" id="startTapBtn" type="button">地図をタップして決める</button>
+    </div>
+    <p class="status" id="startStatus">まだ決まっていません</p>
+  </section>
+
+  <section class="card">
+    <div class="step"><b>2</b><h2>配達先</h2></div>
+    <p class="small muted">住所を1行に1件ずつ貼り付けてください。時間指定は住所のあとに<strong>スペースを空けて</strong>書きます。<br>例：<span class="num">足立区千住1-2-3 14-16</span>　／　<span class="num">足立区梅田5-6-7 午前中</span></p>
+    <textarea id="paste" placeholder="足立区千住1-2-3&#10;足立区西新井3-4-5 14-16&#10;足立区梅田5-6-7 午前中"></textarea>
+    <div class="btns">
+      <button class="btn" id="addBtn" type="button">地図に置く</button>
+      <button class="btn ghost" id="tapAddBtn" type="button">地図をタップして追加</button>
+    </div>
+    <p class="status" id="addStatus"></p>
+    <details id="listBox" open hidden><summary id="listSum" class="small"></summary><ul class="stops" id="stopList" style="margin-top:8px"></ul></details>
+    <div class="btns" id="listTools" hidden>
+      <button class="btn ghost sm" id="clearBtn" type="button">全部消す</button>
+    </div>
+  </section>
+
+  <details class="card">
+    <summary>計算の設定（ふだんはそのままでOK）</summary>
+    <div class="grid2">
+      <label>平均の速さ
+        <select id="speed">
+          <option value="15">時速15km（住宅街・渋滞）</option>
+          <option value="20" selected>時速20km（ふつう）</option>
+          <option value="25">時速25km（すいている）</option>
+          <option value="30">時速30km（郊外）</option>
+        </select>
+      </label>
+      <label>1件の手渡し時間
+        <select id="service">
+          <option value="1">1分</option><option value="2" selected>2分</option>
+          <option value="3">3分</option><option value="5">5分</option>
+        </select>
+      </label>
+      <label>出発時刻（空なら今）
+        <input type="time" id="startTime">
+      </label>
+    </div>
+    <p class="small muted">時間は道のりを直線距離から見積もっています。実際と大きくずれる時は「平均の速さ」を変えてください。</p>
+  </details>
+
+  <section class="card" id="resultCard" hidden>
+    <div class="step"><b>3</b><h2>回る順番</h2></div>
+    <div class="summary">
+      <div><span class="num" id="sumCount">0</span><span class="lbl">残り件数</span></div>
+      <div><span class="num" id="sumEnd">--:--</span><span class="lbl">終わる予定</span></div>
+      <div><span class="num" id="sumLate">0</span><span class="lbl">遅れそう</span></div>
+    </div>
+    <div id="lateAlert" class="alert" hidden></div>
+    <div id="nextBox" class="next"></div>
+    <div class="tip" id="tip"></div>
+    <button class="btn ghost" id="reoptBtn" type="button">🔄 今いる場所から順番を組み直す</button>
+    <ol class="route" id="route"></ol>
+  </section>
+</div>
+
+<div class="sticky"><button class="btn big" id="optBtn" type="button">順番を決める</button></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="opt.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
